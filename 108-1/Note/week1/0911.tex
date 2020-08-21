@@ -1,0 +1,79 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis\\ 9/11 Note}
+\author{National Taiwan University, Department of Mathematics\\
+R06221012 \hspace{0.2cm} Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+
+Chapter 1. Measure theory\\
+
+measure: length, area, volume\\
+
+$E \subset \mathbb{R}^n,\;v(E) = n\text{-dim volume}$ excepted properties:
+
+\begin{enumerate}
+	\item[(1)] $v(E) \geq 0$
+	\item[(2)] $E_1 \subset E_2 \subset \mathbb{R}^n \;
+				\Rightarrow \; v(E_1) \leq v(E_2)$
+	\item[(3)] $E_1 \cap E_2 = \emptyset \;
+				\Rightarrow v(E_1 \cup E_2) = v(E_1) + v(E_2)$
+\end{enumerate}
+
+$\left( (3) + (4) \; \Rightarrow \; (2) \: : \:
+v(E_2 = E_1 \cup (E_2 \setminus E_1))
+= v(E_1) + v(E_2 \setminus E_1)
+\geq v(E_1) \right)$\\\\
+
+1. Rectangles:\\
+
+$n$-dim closed rectangle $R
+= [a_1,b_1] \times \cdots \times [a_n,b_n]
+= \left\{(x_1,\dots,x_n) \in \mathbb{R}^n \;
+| \; a_i \leq x_i \leq b_i, i=1,\dots,n \ \right\}$\\
+
+cube $Q = [a_1,b_1] \times \cdots \times [a_n,b_n],
+\;\; b_1 - a_1 = \cdots = b_n - a_n$\\\
+
+Def:
+$$\text{vol}(R)
+= |R|
+= (b_1 - a_1) \times \cdots \times (b_n - a_n) \;\;\;\;
+\left(|Q| = (b_1 - a_1)^n \right)$$\\
+
+Question:\;\;open rectangle $H = (a_1,b_1) \times \cdots \times (a_n,b_n)$, how about $\text{vol}(H)$?
+
+Ans:\;\;We should have
+$$\begin{aligned}
+&|R| = \text{vol}(H) \leq |\bar{H}|,\\
+&\bar{H} = [a_1, b_1] \times \cdots \times [a_n,b_n]
+= \text{closure}(H)\\
+&\epsilon \to 0^+ \;:\; |\bar{H}| \leq \text{vol}(H) = |R|
+\end{aligned}$$\\\\
+
+
+HW (deadline: 9/23):
+
+Prove the uniqueness part of Theorem 1.3 in Stein.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% \begin{flushleft}
+	% 	\rule[-0.5ex]{17cm}{2pt}\\
+	% 		\textbf{Theorem}\\
+	% 	\rule[1.5ex]{17cm}{0.5pt}
+			
+	% 	\rule[1.0ex]{17cm}{0.5pt}\
+	% \end{flushleft}
+	% \textbf{\textit{Proof.}}\\
+
+\end{document}

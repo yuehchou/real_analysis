@@ -1,0 +1,258 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+
+
+\title{Real Analysis\\ Homework 6}
+\author{National Taiwan University, Department of Mathematics\\
+R06221012 \hspace{0.2cm} Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 10.17
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 10.17}\\
+		\rule[1.5ex]{17cm}{0.5pt}\
+			Let $\mu$ be a $\sigma$-finite and define $\mathscr{L}^p(d\mu)$ to be the class of complex-valued $f$ with $\int|f|^p\,d\mu < +\infty$. Let $l$ be a complex-valued bounded linear functional on $\mathscr{L}^p(d\mu)$. If $1 \leq p < \infty$, show that there is a function $g \in \mathscr{L}^{p'}(d\mu)$ such that $l(f) = \int fg\,d\mu$.\\
+			Here, as usual, we define $\int h\,d\mu = \int h_1\,d\mu + i\int h_2\,d\mu$ if $h = h_1 + ih_2$ with $h_1$ and $h_2$ real-valued.\\
+			(Hint: Reduce to the real case.)
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textit{\textbf {Proof.}}\\
+		Let two complex-valued functions be $f = f_1 + if_2$.\\
+		Since $\mu$ be a $\sigma$-finite and $\mathscr{L}^p(d\mu)$ is the class of complex-valued $f$ with $\int|f|^p\,d\mu = \int |f_1 + if_2|\,d\mu < \infty$, then we can deduce that $\int |f_2|^p\,d\mu < \infty$ if we let $f_1 = 0$ and $\int |f_1|^p\,d\mu < \infty$ if we let $f_2 = 0$. So $f_1, f_2 \in L^p$. Since
+			$$\int fg\,d\mu
+			= \int (f_1 + if_2)\,g\,d\mu
+			= \int f_1g\,d\mu + i\int f_2g\,d\mu,$$
+		by Theorem 10.43 and $l$ is a complex-valued bounded linear functional, we know that
+			$$\int fg\,d\mu
+			= \int f_1g\,d\mu + i\int f_2g\,d\mu
+			= l(f_1) + il(f_2)
+			= l(f_1) + l(if_2)
+			= l(f_1 + if_2)
+			=l(f)$$\\
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 10.18
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 10.18}\\
+		\rule[1.5ex]{17cm}{0.5pt}\
+			Give an example to show that $(L^\infty)'$ cannot be identified with $L^1$ as in Theorem 10.44.\\
+
+			(Consider $L^\infty [-1,1]$ with Lebesgue measure, and let $\mathscr{S}$ be the subspace of continuous functions on $[-1,1]$ with the sup norm. Define $l(f) = f(0)$ for $f \in \mathscr{S}$. Then $l$ is a bounded linear functional on $\mathscr{S}$, so by the Hahn-Banach theorem, $l$ has an extension $l \in (L^\infty[-1,1])'$. If there were a function $g \in L^1[-1,1]$ such that $l(f) = \int_{-1}^{1} fg\,dx$ for all $f \in L^\infty[-1,1]$, then we would have $f(0) = \int_{-1}^{1} fg\,dx$ for all $f \in \mathscr{S}$. Show that this implies that $g = 0$ a.e., so that $l \equiv 0$.)
+
+			% (To show that $(L^\infty (E;dx))'$ and $L^1(E;dx)$ are not isometrically isomorphic, one can combine the following three facts: $L^1(E;dx)$ is separable; $L^\infty(E;dx)$ is not separable; and, a Banach space is separable if its dual space is separable. For the latter, see the references in the footnote below, Theorem 8.11 on p. 192 of the first, or Theorem 3.26, p. 73, of the second.)
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textit{\textbf {Proof.}}\\
+		Let $\mathscr{S}$ be the space of continuous functions on the closed interval $[-1,1]$. Clearly, $\mathscr{S}$ is a subspace of $L^\infty[-1,1]$. Also, $\mathscr{S}$ is a Banach space with norm
+			$$||\cdot||_\infty
+			= \underset{x \in [-1,1]}{\max} \,|f(x)|.$$
+		Define $l(f) = f(0)$ for $f \in \mathscr{S}$. Then $l$ is a bounded linear functional on $\mathscr{S}$, so by the Hahn-Banach theorem, $l$ has an extension $l \in (L^\infty[-1,1])'$. We want to show that there does not exist $g \in L^1$ such that
+			$$l(f) = \int_{-1}^{1} fg \,dx
+			\quad \quad \text{for all } f \in \mathscr{S}.$$
+		To show this suppose there exists such a function $g \in L^1[-1,1]$. Consider the sequence of functions $\{f_n\}$ such that
+			$$f_n(x) = \max\{1-n|x|,\,0\}.$$
+		Clearly, $f_n(x)$ converges to 0 pointwise, $|f(x)| \leq 1$. Also, we know $l$ is well defined since
+			$$\int|f_n\,g|\,dx \leq \int|g|\,dx < \infty.$$
+		Hence, by the dominated convergence theorem we have
+			$$\underset{n \to \infty}{\lim}\,l(f_n)
+			= \underset{n \to \infty}{\lim} \int \,f_n\,g\,dx
+			= \int \underset{n \to \infty}{\lim}\,f_n\,g\,dx
+			= 0.$$
+		However, $f_n(0) = 1$ for all $n$, by definition, which leads to a contradiction. This shows that there does not exist such a function $g \in L^1[-1,1]$.\\
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 10.20
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 10.20}\\
+		\rule[1.5ex]{17cm}{0.5pt}\
+			Under the hypothesis of Theorem 10.49, prove that
+				$$\underset{h \to 0}{\lim} \,\frac{1}{\mu(Q_x(h))}\, \int_{Q_x(h)} |f(\mathbf{y})-f(\mathbf{x})|\,d\mu(\mathbf{y}) = 0 \quad \text{a.e.}(\mu).$$
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textit{\textbf {Proof.}}\\
+		Since $f \in L(d\mu)$. For $r \in \mathbb{Q}$, we have
+			$$\begin{aligned}
+			\frac{1}{\mu(Q_x(h))}\, \int_{Q_x(h)} |f(\mathbf{y})-f(\mathbf{x})|\,d\mu(\mathbf{y})
+			&\leq \frac{1}{\mu(Q_x(h))}\, \int_{Q_x(h)} |f(\mathbf{y})-r|\,d\mu(\mathbf{y})
+			+ \frac{1}{\mu(Q_x(h))}\, \int_{Q_x(h)} |r-f(\mathbf{x})|\,d\mu(\mathbf{y})\\
+			&= \frac{1}{\mu(Q_x(h))}\, \int_{Q_x(h)} |f(\mathbf{y})-r|\,d\mu(\mathbf{y}) + |r-f(\mathbf{x})|.
+			\end{aligned}$$
+		By taking limit on the both sides and Theorem 10.49, we have
+			$$\underset{h \to 0}{\lim}\,\frac{1}{\mu(Q_x(h))}\, \int_{Q_x(h)} |f(\mathbf{y})-f(\mathbf{x})|\,d\mu(\mathbf{y})
+			\leq 2|r-f(\mathbf{x})|$$
+		Since $r$ can be chosen such that $|r-f(\mathbf{x})|$ is arbitrarily small. Hence
+			$$\underset{h \to 0}{\lim} \,\frac{1}{\mu(Q_x(h))}\, \int_{Q_x(h)} |f(\mathbf{y})-f(\mathbf{x})|\,d\mu(\mathbf{y}) = 0 \quad \text{a.e.}(\mu).$$\\
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 10.21
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 10.21}\\
+		\rule[1.5ex]{17cm}{0.5pt}\
+			Derive an analogue of the Besicovitch Covering Lemma for the case of two dimensions $(x,y)$ when the squares $Q_{(x,y)}$ are replaced by rectangles $R_{(x,y)}(h)$ centered at $(x,y)$ whose $x$ and $y$ dimensions are $h$ and $h^2$, respectively. Use this result to prove that under the hypothesis of Theorem 10.49,
+				$$\underset{h \to 0}{\lim}\,\frac{1}{\mu(R_{(x,y)}(h))} \int_{R_{(x,y)}(h)} f\,d\mu = f(x,y) \quad \text{a.e.}(\mu).$$
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textit{\textbf {Proof.}}\\
+		Since $f \in L(d\mu)$. For any integrable $g$, we have
+			$$\begin{aligned}
+			\left| \frac{1}{\mu(R_{(x,y)}(h))} \,\int_{R_{(x,y)}(h)} f \,d\mu - f(x,y) \right|
+			&\leq \frac{1}{\mu(R_{(x,y)}(h))} \,\int_{R_{(x,y)}(h)} |f-g|\,d\mu\\
+			.\quad &+ \left| \frac{1}{\mu(R_{(x,y)}(h))} \,\int_{R_{(x,y)}(h)} g\,d\mu - f(x,y)\right|.
+			\end{aligned}$$
+		If $g$ is also continuous, the last term on the right converges to $|g(x,y) - f(x,y)|$ as $h \to 0$. Hence, letting $L(x,y)$ denote the $\lim \sup$ as $h \to 0$ of the term of the left, we obtain
+			$$L(x,y)
+			\leq \underset{h > 0}{\sup} \frac{1}{\mu(R_{(x,y)}(h))} \,\int_{R_{(x,y)}(h)} |f-g|\,d\mu
+			+ |g(x,y) - f(x,y)|$$
+		Therefore, the set $S_\epsilon$ where $L(x,y) > \epsilon$, $\epsilon > 0$ , is contained in the union of the two sets where the corresponding terms on the right side of the last inequality exceed $\dfrac{\epsilon}{2}$. From Lemma 10.47 and Tchebyshev's inequality, we obtain
+			$$\mu(S_\epsilon)
+			\leq c \left(\frac{\epsilon}{2}\right)^{-1} \int_{\mathbb{R}^n} |f - g|\,d\mu + \left(\frac{\epsilon}{2}\right)^{-1} \int_{\mathbb{R}^n} |f - g|\,d\mu$$
+		As noted before the proof of Lemma 10.47, $g$ can be chosen such that $\int_{\mathbb{R}^n} |f - g|\,d\mu$ is arbitrarily small. Hence, $\mu(S-\epsilon) = 0$ for every $\epsilon > 0$, and the results follows.\\
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 10.26
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 10.26 (\textit{Hardy's inequality})}\\
+		\rule[1.5ex]{17cm}{0.5pt}\
+			Let $f \geq 0$ on $(0,\infty)$, $1 \leq p < \infty$, $d\mu(x) = x^\alpha\,dx$ and $d\nu(x) = x^{\alpha + p}\,dx$ on $(0,\infty)$. Prove there exists a constant $c$ independent of $f$ such that
+			\begin{enumerate}
+				\item[(i)]
+					$$\int_0^\infty (\int_0^x f(t)\,dt)^p\,d\mu(x)
+					\leq c\int_0^\infty f^p(x)\,d\nu(x),
+					\quad \alpha < -1,$$
+
+				\item[(ii)]
+					$$\int_0^\infty (\int_x^\infty f(t)\,dt)^p\,d\mu(x)
+					\leq c \int_0^\infty f^p(x)\,d\nu(x),
+					\quad \alpha > -1.$$
+			\end{enumerate}
+
+			For $(i)$, $(\int_0^x f(t)\,dt)^p \leq cx^{p-\eta-1} \int_0^x f(t)^p t^\eta\,dt$ by H\"older's inequality, provided $p - \eta - 1 > 0$. Multiply both sides by $x^\alpha$, integrate over $(0,\infty)$, change the order of integration, and observe that an appropriate $\eta$ exists since $\alpha < -1$.
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textit{\textbf {Proof.}}
+	\begin{enumerate}
+		\item [(i)]
+			If $p = 1$, then
+				$$\begin{aligned}
+				\int_0^\infty \int_0^x f(t)\,dt\,d\mu(x)
+				&= \int_0^\infty \int_0^x f(t)\,dt\,x^\alpha dx\\
+				&= \int_0^\infty f(t) \int_t^\infty x^\alpha \,dx\,dt\\
+				&= \int_0^\infty f(t) \, \frac{t^{\alpha+1}}{\alpha + 1} dt,
+				\quad \text{$t^{\alpha + 1} \to 0$ as $t \to \infty$ since $\alpha < -1$}\\
+				&= c \int_0^\infty f(x)\,x^{\alpha + 1} dx\\
+				&= c \int_0^\infty f(x)\,d\nu(x)
+				\end{aligned}$$
+			If $1 < p < \infty$ and $\alpha < -1$, then $p + \alpha < p - 1$. So $\exists\,\eta$ such that $p + \alpha < \eta < p - 1$, then $\alpha + p - \eta - 1 < -1$, $\alpha + p - \eta < 0$. Thus, we let $q$ such that $\frac{1}{p} + \frac{1}{q} = 1$, then by H\"older's inequality, we have
+				$$\begin{aligned}
+				\left( \int_0^x f(t)\,dt \right)^p
+				&= \left( \int_0^x f(t)\,t^{\frac{\eta}{p}}\,t^{\frac{-\eta}{p}}\,dt \right)^p\\
+				&\leq \left( \int_0^x f^p(t) \,t^\eta\,dt\right) \left(\int_0^x t^{\frac{-\eta q}{p}}\,dt \right)^{\frac{p}{q}}\\
+				&= c_1 x^{p - \eta - 1} \left( \int_0^x f^p(t) t^\eta\,dt \right),
+				\end{aligned}$$
+			$x^{p - \eta - 1} \to 0$ as $x \to 0$, since $\frac{-\eta q + p}{p} \cdot \frac{p}{q} = -\eta + \frac{p}{q} = -\eta + p - 1 > 0$. So
+				$$\begin{aligned}
+				\int_0^\infty (\int_0^x f(t)\,dt)^p\,d\mu(x)
+				&\leq \int_0^\infty c_1 x^{p - \eta - 1} \left( \int_0^x f^p(t) t^\eta\,dt \right) x^\alpha\,dx\\
+				&= c_1 \int_0^\infty x^{\alpha + p - \eta -1} \left( \int_0^x f^p(t) t^\eta\,dt \right) dx\\
+				&= c_1 \int_0^\infty f^p(t)\,t^\eta \int_t^\infty x^{\alpha + p - \eta -1} \,dx\,dt\\
+				&= c_1 \int_0^\infty f^p(t)\,t^\eta \, \frac{t^{\alpha + p - \eta}}{\alpha + p - \eta} \,dt\\
+				&= c \int_0^\infty f^p(x) \,d\nu(x),
+				\end{aligned}$$
+			$t^{\alpha + p - \eta} \to 0$ as $t \to \infty$ since $\alpha + p - \eta < 0$.\\
+
+		\item [(ii)]
+			If $p = 1$, then
+				$$\begin{aligned}
+				\int_0^\infty \int_x^\infty f(t)\,dt\,d\mu(x)
+				&= \int_0^\infty \int_x^\infty f(t)\,dt\,x^\alpha dx\\
+				&= \int_0^\infty f(t) \int_0^t x^\alpha \,dx\,dt\\
+				&= \int_0^\infty f(t) \, \frac{t^{\alpha+1}}{\alpha + 1} dt,
+				\quad \text{$t^{\alpha + 1} \to 0$ as $t \to 0$ since $\alpha > -1$}\\
+				&= c \int_0^\infty f(x)\,x^{\alpha + 1} dx\\
+				&= c \int_0^\infty f(x)\,d\nu(x)
+				\end{aligned}$$
+
+			If $1 < p < \infty$ and $\alpha > -1$, then $p - 1 > 0$. So $\exists\,\eta$ such that $p - \alpha > \eta > p - 1$, then $\alpha + p - \eta - 1 > -1$, $\alpha + p - \eta > 0$. Thus, we let $q$ such that $\frac{1}{p} + \frac{1}{q} = 1$, then by H\"older's inequality, we have
+				$$\begin{aligned}
+				\left( \int_x^\infty f(t)\,dt \right)^p
+				&= \left( \int_x^\infty f(t)\,t^{\frac{\eta}{p}}\,t^{\frac{-\eta}{p}}\,dt \right)^p\\
+				&\leq \left( \int_x^\infty f^p(t) \,t^\eta\,dt\right) \left(\int_x^\infty t^{\frac{-\eta q}{p}}\,dt \right)^{\frac{p}{q}}\\
+				&= c_1 x^{p - \eta - 1} \left( \int_x^\infty f^p(t) t^\eta\,dt \right),
+				\end{aligned}$$
+			$x^{p - \eta - 1} \to 0$ as $x \to \infty$, since $\frac{-\eta q + p}{p} \cdot \frac{p}{q} = -\eta + \frac{p}{q} = -\eta + p - 1 < 0$. So
+				$$\begin{aligned}
+				\int_0^\infty (\int_x^\infty f(t)\,dt)^p\,d\mu(x)
+				&\leq \int_0^\infty c_1 x^{p - \eta - 1} \left( \int_x^\infty f^p(t) t^\eta\,dt \right) x^\alpha\,dx\\
+				&= c_1 \int_0^\infty x^{\alpha + p - \eta -1} \left( \int_x^\infty f^p(t) t^\eta\,dt \right) dx\\
+				&= c_1 \int_0^\infty f^p(t)\,t^\eta \int_0^t x^{\alpha + p - \eta -1} \,dx\,dt\\
+				&= c_1 \int_0^\infty f^p(t)\,t^\eta \, \frac{t^{\alpha + p - \eta}}{\alpha + p - \eta} \,dt\\
+				&= c \int_0^\infty f^p(x) \,d\nu(x),
+				\end{aligned}$$
+			$t^{\alpha + p - \eta} \to 0$ as $t \to 0$ since $\alpha + p - \eta > 0$.\\
+
+	\end{enumerate}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 10.27
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 10.27}\\
+		\rule[1.5ex]{17cm}{0.5pt}\
+			If $\mu$ is a $\sigma$-finite regular Borel measure on $\mathbb{R}^n$, show that the class of continuous functions with compact support is dense in $L^p(d\mu)$, $1 \leq p < \infty$.\\
+			(By \textbf{EXERCISE 10.8}, it is enough to approximate $\chi_E$, where $E$ is a Borel set with finite measure. Given $\epsilon > 0$, as shown in Section 10.5 on p. 269, there exist open $G$ and closed $F$ with $F \subset E \subset G$ and $\mu(G-F) < \epsilon$. Now use Urysohn's lemma: if $F_1$ and $F_2$ are disjoint closed sets in $\mathbb{R}^n$, there is a continuous $f$ on $\mathbb{R}^n$ with $0 \leq f \leq 1$, $f = 1$ on $F_1$, $f = 0$ on $F_2$.)
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textit{\textbf {Proof.}}\\
+		Follow the hint, we approximate $\chi_E$ where $E$ is regular Borel set with $\mu(E) < \infty$.\\
+		Let $F \subset E \subset G$, $F$ is closed and $G$ is open such that $\mu(G \setminus F) < \epsilon$, $G^c$ is closed and $F \cap G^c = \phi$. Hence, we can apply Urysohn's lemma to find a continuous $f$ such that $0 \leq f \leq 1$ where $f = 1$ on $F$ and $f = 0$ on $G^c$. So
+			$$\begin{aligned}
+			\int_{\mathbb{R}^n} \left| f - \chi_E \right|^p \,d\mu
+			&= \int_F \left| f - \chi_E \right|^p \,d\mu
+			+ \int_{G \setminus F} \left| f - \chi_E \right|^p \,d\mu
+			+ \int_{G^c} \left| f - \chi_E \right|^p \,d\mu\\
+			&\leq 0 + \int_{G \setminus F} 1 \,d\mu + 0\\
+			&= \mu(G \setminus F) < \epsilon.
+			\end{aligned}$$
+		Let $S=$\{simple function on $E$\} to approximate $\chi_E$, where $E = \cup_{k = 1}^N E_k$ and $E_k$ is regular Borel set, then $S = \sum_{k=1}^N \,a_k\chi_{E_k}$, so we can find $F_k \subset E_k \subset G_k$ where $F_k$ is closed, $G_k$ is open and $\mu(G_k \setminus F_k) < \dfrac{\epsilon}{N\,a_k^p}$.\\
+		By above result, we can find a continuous function $f_k$ with compact support and $f_k = 1$ on $F_k$, $f_k = 0$ on $G_k^c$, then
+			$$\int_{\mathbb{R}^n} \left|a_k\,f_k - a_k\,\chi_{E_k}\right|^p\,d\mu
+			\leq a_k^p\,\mu(G_k \setminus F_k)
+			< \frac{\epsilon}{N}$$
+		So
+			$$\begin{aligned}
+			\int_{\mathbb{R}^n} \left|S - \chi_E\right|^p\,d\mu
+			&= \sum_{k=1}^N \left(
+			\int_{F_k} \left| f_k - \chi_{E_k} \right|^p \,d\mu
+			+ \int_{G_k \setminus F_k} \left| f_k - \chi_{E_k} \right|^p \,d\mu
+			+ \int_{G_k^c} \left| f_k - \chi_{E_k} \right|^p \,d\mu
+			\right)\\
+			&\leq \sum_{k=1}^N a_k\,\mu(G_k \setminus F_k)
+			< \epsilon.
+			\end{aligned}$$
+
+
+\end{document}
+

@@ -1,0 +1,260 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis \\ Homework 4}
+\author{Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+\item (Exercise 4.11)\\
+Let $f$ be defined on $\mathbb{R}^n$ and let $B(x)$ denote the open ball $\{ y:|x-y|<r\}$ with center $x$ and fixed radius $r$. Show that the function $g(x) = \sup \{ f(y):y \in B(x) \}$ is lsc and that the function $h(x) = \inf \{ f(y):y \in B(x) \}$ is usc on $\mathbb{R}^n$. Is the same true for the \textit{closed} ball $\{ y:|x-y| \leq r \}$?\\
+\newline
+\textit{\textbf {Proof.}}
+
+\begin{enumerate}
+
+\item
+Let $x_0$ be the limit point of $\mathbb{R}^n$.\\
+Since $g(x_0) = \sup\{ f(y) : y \in B(x_0) \}$, then there will exist $x_1 \in B(x_0)$ such that $f(x_1) > M$ for any $M < g(x_0)$.\\
+Let $\delta = r - |x_0 - x_1| > 0$, then for all $x \in B(x_0, \delta)$, we have $x_1 \in B(x)$.\\
+See the function $f$ in the ball $B(x)$, $f(x_1)$ may not be the superior value, therefore,
+$$g(x) = \sup \{ f(y) : y \in B(x)\} \geq f(x_1) > M,$$ 
+then
+$$\underset{x \to x_0}{\lim \inf} \hspace{0.1cm} g(x) \geq g(x_0).$$
+Hence, $g(x)$ is lsc.\\
+
+\item 
+Similarly, let $x_0'$ be the limit point of $\mathbb{R}^n$.\\
+Since $h(x_0') = \inf \{ f(y) : y \in B(x_0')\}$,then there will exist $x_1' \in B(x_0')$ such that $f(x_1') < M'$ for any $M' > h(x_0')$.\\
+Let $\delta = r - |x_0' - x_1'| > 0$, then for all $x \in B(x_0', \delta)$, we have $x_1' \in B(x)$.\\
+See the function $f$ in the ball $B(x)$, $f(x_1)$ may not be the inferior value, therefore,
+$$h(x) = \inf \{ f(y) : y \in B(x)\} \leq f(x_1') < M',$$ 
+then
+$$\underset{x \to x_0'}{\lim \sup} \hspace{0.1cm} h(x) \leq h(x_0').$$
+Hence, $h(x)$ is usc.\\
+
+\item
+False!\\
+Let $f$ be a function on $\mathbb{R}^1$ with $f(1) = 1, f(2) = 2 and f(x) = 0$ as $x \neq 1$ and $x \neq 2$.\\
+Let $r = 1$, then $g(1) = 2$ but $\underset{x \to 1^-}{\lim} g(x) = 1$, so $g$ is not lsc.\\
+Similarly, let $f$ be a function on $\mathbb{R}^1$ with $f(1) = -1, f(2) = -2 and f(x) = 0$ as $x \neq 1$ and $x \neq 2$.\\
+Let $r = 1$, then $h(1) = -2$ but $\underset{x \to 1^-}{\lim} h(x) = -1$, so $h$ is not usc.\\
+\end{enumerate}
+
+
+\item (Exercise 4.12)\\
+If $f(x), x \in \mathbb{R}^1$, is continuous at almost every point of an interval $[a,b]$, show that $f$ is measurable on $[a,b]$. Generalize this to functions defined in $\mathbb{R}^n$.  (For a constructive proof, use the subintervals of a sequence of partitions to define a sequence of simple measurable functions converging to $f$ a.e. in $[a,b]$. Use Theorem 4.12. See also the proof of Theorem 5.54.)\\
+\newline
+\textit{\textbf {Proof.}}
+
+\begin{enumerate}
+
+\item $f$ is measurable on $[a,b]$:\\
+
+\textbf{Note}: Part(a) is proved if part(b) has been proved.\\
+
+Let $E$ be the subset of $[a,b]$ such that $Z = [a,b] \setminus E$ then $Z$ is meausre zero.\\
+The set $E$ is also measurable since $[a,b]$ and $Z$ are measurable.\\
+For any $\alpha$ and $+\infty > \alpha > -\infty$, we then have
+$$\{ x \in [a,b] : f(x) > \alpha\} = \{ x \in E : f(x) > \alpha\} \cup \{ x \in Z : f(x) > \alpha\}$$
+$\{ x \in E : f(x) > \alpha\}$ is measurable since $E$ is measurable and $f$ is contiunous on $E \subseteq [a,b]$.\\
+Due to $\{ x \in Z : f(x) > \alpha\} \subseteq Z$ and $Z$ is measure zero, so $\{ x \in Z : f(x) > \alpha\}$ is also measurable (measurable zero).\\
+By the above, we know that $\{ x \in E : f(x) > \alpha\}$ and $\{ x \in Z : f(x) > \alpha\}$ are measurable, therefore, $\{ x \in [a,b] : f(x) > \alpha\}$ is also measurable.\\
+Hence, $f$ is measurable on the interval $[a,b]$.\\
+
+\item Generalize:\\
+
+Assume $f(x)$ is continuous at almost every point of an interval $I$ where $x \in \mathbb{R}^n$ \\and $f: \mathbb{R}^n \to \mathbb{R}^1$.\\
+Let $E$ be the subset of $I \subseteq \mathbb{R}^n$ such that $Z = I \setminus E$ then $Z$ is meausre zero.\\
+The set $E$ is also measurable since $I$ and $Z$ are measurable.\\
+For any $\alpha$ and $+\infty > \alpha > -\infty$, we then have
+$$\{ x \in I : f(x) > \alpha\} = \{ x \in E : f(x) > \alpha\} \cup \{ x \in Z : f(x) > \alpha\}$$
+$\{ x \in E : f(x) > \alpha\}$ is measurable since $E$ is measurable and $f$ is contiunous on $E \subseteq I$.\\
+Due to $\{ x \in Z : f(x) > \alpha\} \subseteq Z$ and $Z$ is measure zero, so $\{ x \in Z : f(x) > \alpha\}$ is also measurable (measurable zero).\\
+By the above, we know that $\{ x \in E : f(x) > \alpha\}$ and $\{ x \in Z : f(x) > \alpha\}$ are measurable, therefore, $\{ x \in I : f(x) > \alpha\}$ is also measurable.\\
+Hence, $f$ is measurable on the interval $I \subseteq \mathbb{R}^n$.\\
+
+
+\end{enumerate}
+
+
+
+\item (Exercise 4.14)\\
+Let $f(x,y)$ be as in Exercise 13. Show that given $\epsilon > 0$, there exists a closed $F \subset E$ with $|E - F| < \epsilon$ such that $f(x,y)$ converges uniformly for $x \in F$ to $f(x)$ as $y \to 0$. (Follow the proof of Egorov's theorem, using the sets $E_{\epsilon, 1/m}$ defined in Exercise 13 in place of the sets $E_m$ in the proof of Lemma 4.18.)\\
+\newline
+\textit{\textbf {Proof.}}\\
+By Exercise 4.13 and the hint, let
+$$E_{\epsilon, \frac{1}{m}} = \{ x \in E : |f(x,y) - f(x)| \leq \epsilon \hspace{0.1cm} \mathrm{for} \hspace{0.1cm} \mathrm{all} \hspace{0.1cm} y < \frac{1}{m}  \}$$ for $m \in \mathbb{Z}^+$.\\
+By Exercise 4.13, we also know that $\underset{y \to 0}{\lim} f(x,y)$, so there exists $M' \in \mathbb{Z}^+$ such that for $y < 1/M'$, we have $|f(x,y) - f(x)| \leq \epsilon$, then $E_{\epsilon, 1/m} \nearrow E$.\\
+By Lemma 3.26, since $E_{\epsilon, 1/m} \nearrow E$, then $|E_{\epsilon, 1/m}| \to |E|$.\\
+Follow the proof of Egorov's Theorem, for any $\epsilon > 0$, there exists $M \in \mathbb{Z}^+$ such that \\$|E - E_{\epsilon, 1/M}| < \epsilon 2^{-m-1}$.\\
+By Egorov's Theorem, since $E_{\epsilon,1/M}$ is measurable, there exists a closed set $F_m$ such that \\$F_m \subseteq E_{\epsilon,1/M}$ and $|E_{\epsilon,1/M} - F_m| < \epsilon 2^{-m-1}$.\\
+Hence
+$$|E - F_m| \leq |E - E_{\epsilon,1/M}| + |E_{\epsilon, 1/M} - F_m| < \epsilon 2^{-m}$$
+Let $F = \underset{m}{\cap} F_m$, then
+$$|E-F| \leq |E - \cap_{m=1}^{\infty} F_m| \leq | \cup_{m=1}^{\infty} (E - F_m)| \leq \sum_{m=1}^{\infty}|E - F_m| < \sum_{m=1}^{\infty} \epsilon 2^{-m} < \epsilon$$
+and also $f(x,y)$ converges uniformly to $f(x)$ on $F$ as $y \to 0$.\\
+
+
+
+\item (Exercise 4.15)\\
+Let $\{ f_k \}$ be a sequence of measurable functions defined on a measurable $E$ with $|E| < + \infty$. If $|f_k(x)| \leq M_x < + \infty$ for all $k$ for each $x \in E$, show that given $\epsilon > 0$, there is closed $F \subset E$ and a finite $M$ such that $|E - F| < \epsilon$ and $|f_k(x)| \leq M$ for all $k$ and all $x \in F$.\\
+\newline
+\textit{\textbf {Proof.}}\\
+Let $\epsilon > 0$ and $f(x) = \underset{k \in \mathbb{N}}{\sup} f_k(x)$.\\
+Since each $f_k$ is measurable, then $f$ is measurable and $f(x) \leq M_x$ for all $x \in E$.\\
+Since $f$ is measurable on $E$, by Lusin's Theorem, then for all $\epsilon > 0$, there will exist a closed $F \subseteq E$ such that $|E - F| < \epsilon$ and $f$ is continuous relative to $F$.\\
+Since $|E| < \infty$ and F is closed, we can find a compact set $F^* \subseteq F$ such that $|E - F^*| < \epsilon$.\\
+Since $f$ is continuous relative to $F$ and $F^*$, hence, $f$ will have the maximum, so there will exist a constant $M$ such that $f(x) \leq M$ for all $x \in F^* \subseteq F \subseteq E$.\\
+
+
+
+
+
+\item (Exercise 4.16)\\
+Prove that $f_k \overset{m}{\to} f$ on $E$ if and only if give $\epsilon > 0$, there exists $K$ such that $|\{ |f - f_k| > \epsilon \}| < \epsilon$ if $k > K$. Give an analogous Cauchy criterion.\\
+\newline
+\textit{\textbf {Proof.}}\\
+($\Rightarrow$)\\
+By definition, since $f_k \overset{m}{\to} f$, then for all $\epsilon, \delta > 0$, there will exist $K \in \mathbb{N}$ such that \\$|\{ x \in E : | f(x) - f_k(x)| > \delta \}| < \epsilon $ for all $k > K$.\\
+Take $\delta = \epsilon$, then $|\{ x \in E : | f(x) - f_k(x)| > \epsilon \}| < \epsilon $ if $k > K$.\\
+
+($\Leftarrow$)\\
+Given $\delta, \epsilon > 0$, then there will exist $K_{\delta}, K_{\epsilon} \in \mathbb{N}$ such that $|\{ x \in E : |f(x) - f_k(x)| > \delta \}| < \delta$ for all $k > K_{\delta}$ and $|\{ x \in E : |f(x) - f_k(x)| > \epsilon \}| < \epsilon$ for all $k > K_{\epsilon}$.\\
+Let $\eta = \min \{ \delta, \epsilon \}$ and take $K = \max \{ K_{\delta}, K_{\epsilon} \}$, we then have
+$$\{ x \in E : |f(x) - f_k(x)| > \epsilon\} \subseteq \{ x \in E : |f(x) - f_k(x)| > \eta\}$$
+That is
+$$|\{ x \in E : |f(x) - f_k(x)| > \epsilon \}| \leq |\{ x \in E : |f(x) - f_k(x)| > \eta\}| < \eta \leq \delta.$$
+Hence,
+$$f_k \overset{m}{\to} f \hspace{0.2cm} \mathrm{on} \hspace{0.1cm} E.$$\
+
+(Cauchy criterion)\\
+By the course's note, we know the Cauchy criterion is:\\
+$f_k \overset{m}{\to} f$ if and only if for all $\epsilon, \delta > 0$ there exists $K \in \mathbb{N}$ such that $|\{ x \in E : | f_k(x) - f_l(x) | > \delta \}| < \epsilon$ for all $k, l > K$.\\
+
+
+\item (Exercise 4.17)\\
+Suppose that $f_k \overset{m}{\to}$ and $g_k \overset{m}{\to} g$ on $E$. Show that $f_k + g_k \overset{m}{\to} f + g$ on $E$ and, if $|E| < +\infty$, that $f_kg_k \overset{m}{\to} fg$ on $E$. If, in addition, $g_k \to g$ on $E$, $g \neq 0$ a.e., and $|E| < +\infty$, show that $f_k/g_k \overset{m}{\to} f/g$ on $E$. (For the product $f_kg_k$, write $f_kg_k - fg = (f_k - f)(g_k - g) + f(g_k - g) + g(f_k - f)$. Consider each term separately, using the fact that a function that is finite on $E$, $|E| < +\infty$ is bounded outside a subset of $E$ with small measure.)\\
+\newline
+\textit{\textbf {Proof.}}
+
+\begin{enumerate}
+\item $f_k + g_k \overset{m}{\to} f + g$ on $E$:\\
+
+Since $f_k \overset{m}{\to}$ on $E$, then for all $\epsilon > 0$ there will exist $M_1 \in \mathbb{N}$ such that \\$|\{ x \in E : | f_k(x) - f(x) | > \epsilon / 2 \}| < \epsilon / 2$ for all $k \geq M_1$.\\
+Similarly, since $g_k \overset{m}{\to} g$ on $E$, then for all $\epsilon > 0$ there will exist $M_2 \in \mathbb{N}$ such that \\$|\{ x \in E : | g_k(x) - g(x) | > \epsilon / 2 \}| < \epsilon / 2$ for all $k \geq M_2$.\\
+Consider Triangle Inequality, we then have
+$$\begin{aligned}
+\{ x \in E : | (f_k(x) - f(x)) + (g_k(x) - g(x)) | < \epsilon \}
+&\subseteq \{ x \in E : |f_k(x) - f(x)| < \epsilon / 2 \}\\
+&\cup \{ x \in E : |g_k(x) - g(x)| < \epsilon / 2 \}.
+\end{aligned}$$
+So
+$$\begin{aligned}
+|\{ x \in E : | (f_k(x) - f(x)) + (g_k(x) - g(x)) | < \epsilon \}|
+&= |\{ x \in E : | (f_k(x) + g_k(x)) - (f(x) + g(x)) | < \epsilon \}|\\
+&\leq 
+\begin{aligned}
+&| \{ x \in E : |f_k(x) - f(x)| < \epsilon / 2 \} |\\ 
+&+ |\{ x \in E : |g_k(x) - g(x)| < \epsilon / 2 \}|\end{aligned}\\
+&< \epsilon / 2 + \epsilon / 2 = \epsilon
+\end{aligned}$$
+
+Take $k > M = \max\{ M_1, M_2\}$, then we will have
+$$f_k + g_k \overset{m}{\to} f + g \hspace{0.2cm} \mathrm{on} \hspace{0.1cm} E$$\
+
+
+\item $f_k g_k \overset{m}{\to} fg$ on $E$:\\
+
+Follow the hint, since $|E| < +\infty$, we can re-write $f_kg_k - fg$ as $$(f_k - f)(g_k - g) + f(g_k - g) + g(f_k - f)$$
+Since $f_k \overset{m}{\to}$ on $E$, then for all $\epsilon > 0$ there will exist $M_3 \in \mathbb{N}$ such that \\$|\{ x \in E : | f_k(x) - f(x) | > \sqrt{\epsilon} \}| < \epsilon / 2$ for all $k \geq M_3$.\\
+Similarly, since $g_k \overset{m}{\to} g$ on $E$, then for all $\epsilon > 0$ there will exist $M_4 \in \mathbb{N}$ such that \\$|\{ x \in E : | g_k(x) - g(x) | > \sqrt{\epsilon} \}| < \epsilon / 2$ for all $k \geq M_4$.\\
+Take $k > M = \max\{ M_3, M_4\}$, we then have
+$$\begin{aligned}
+|\{ |x \in E : (f_k(x) - f(x))(g_k(x) - g(x))| > \epsilon \}|
+&\leq |\{ x \in E : | f_k(x) - f(x) | > \sqrt{\epsilon} \}|\\
+&+ |\{ x \in E : | g_k(x) - g(x) | > \sqrt{\epsilon} \}|\\
+&< \epsilon
+\end{aligned}$$
+Hence, $(f_k - f)(g_k - g) \overset{m}{\to} 0$.\\
+
+Following, we will show that $f(g_k - g) \overset{m}{\to} 0$ and $g(f_k - f) \overset{m}{\to} 0$.\\
+By Exercise 4.15, for the sequence of measurable function $\{ f \}$, there is a closed $F \subseteq E$ and a finite $n$ such that $|E - F| < \epsilon / 2$ and $|f(x)| \leq n$ for all $x \in F$.\\
+Since $g_k \overset{m}{\to} g$ on $E$, then for all $\epsilon > 0$ there will exist $M_5 \in \mathbb{N}$ such that \\$|\{ x \in E : | g_k(x) - g(x) | > \epsilon / n \}| < \epsilon / 2$ for all $k \geq M_5$.\\
+So
+$$\begin{aligned}
+|\{x \in E : |f(g_k - g)| > \epsilon \}|
+&= |\{ x \in F : |f(g_k - g)| > \epsilon \}| + |\{ x \in E \setminus F : |f(g_k - g)| > \epsilon \}|\\
+& \leq |\{ x \in F : |g_k - g| > \epsilon / M \}| + |E \setminus F|\\
+& < \epsilon / 2 + \epsilon / 2 = \epsilon
+\end{aligned}$$
+for all $k > M_5$.\\
+Therefore, $f(g_k - g) \overset{m}{\to} 0$.\\
+Similarly, $g(f_k - f) \overset{m}{\to} 0$.\\
+Hence, by above all, we will know that $f_k g_k - fg \overset{m}{\to} 0$, that is
+$$f_k g_k \overset{m}{\to} fg \hspace{0.2 cm} \mathrm{on} \hspace{0.1cm} E.$$\
+
+\item $f_k / g_k \overset{m}{\to} f/g$ on $E$:\\
+
+Since part(b), it suffices to only show that $1 / g_k \overset{m}{\to} 1 / g$ on $E$.\\
+$g \neq 0$ a.e., then $1/g$ is measurable and finite a.e. in $E$.\\
+Since $g_k \to g$ on $E$ for sufficiently large $k$ then $g_k \neq 0$ a.e., so that $1/g_k$ is also measurable and finite a.e. in $E$.\\
+By Theorem 4.21, since $1 / g_k \to 1 / g$ a.e. on $E$ and $|E| < +\infty$, then $1 / g_k \overset{m}{\to} 1 / g$ on $E$.\\
+Hence, $f_k/g_k \overset{m}{\to} f/g$ on $E$.\\
+
+\end{enumerate}
+
+
+
+
+\item (Exercise 4.18)\\
+If $f$ is measurable on $E$, define $\omega_f(a) = |\{ f > a \}|$ for $-\infty<a<+\infty$. If $f_k \nearrow f$, show that $\omega_{f_k} \nearrow \omega_f$. If $f_k \overset{m}{\to} f$, show that $\omega_{f_k} \to \omega_f$ at each point of continuity of $\omega_f$. (For the second part, show that if $f_k \overset{m}{\to} f$, then $\lim \sup_{k \to \infty} \omega_{f_k} (a) \leq \omega_f (a - \epsilon)$ and $\lim \inf_{k \to \infty} \omega_{f_k} (a) \leq \omega_f (a + \epsilon)$ for every $\epsilon > 0$.)\\
+\newline
+\textit{\textbf {Proof.}}\\
+Since $\omega_f(a) = \{ f > a \} = \cup_{i=1}^{\infty} \{ f_i > a \}$ and $\{ f_i > a \} \subseteq \{ f_{i+1} > a \}$ for all $i$, then
+$$\{ f_k > a \} = \cup_{i=1}^k \{ f_i > a \} \nearrow \cup_{i=1}^{\infty} \{ f_i > a \} = \{ f > a \}$$
+as $k \to \infty$.\\
+Hence, $|\{ f_k > a \}| \to |\{ f > a\}|$ and $|\{ f_k > a \}| \leq |\{ f_{k+1} > a\}|$ for all $k$, so $\omega_{f_k} \nearrow \omega_f$.\\
+Suppose that $f_k \overset{m}{\to} f$.\\
+Let $a$ be a point of continuity of $\omega_f$.\\
+Given any $\epsilon, \eta > 0$, there exists $M_1 > 0$ such that for all $k \geq M_1$, we then have
+$$\begin{aligned}
+|\{ f_k > a\}|
+& \leq |\{ f_k > a\} - \{ f_k > a \} \cap \{ f > a - \epsilon \}| + |\{ f > a - \epsilon \}|\\
+& \leq |\{ |f - f_k| > \epsilon\}| + |\{ f > a - \epsilon \}|\\
+& \leq \eta + |\{ f > a - \epsilon \}|.
+\end{aligned}$$
+That is $\underset{k \to \infty}{\lim \sup} \hspace{0.1cm} \omega_{f_k}(a) \leq \omega_f (a - \epsilon)$, and there exists $M_2 > 0$ such that for all $k \geq M_2$, we then have
+$$\begin{aligned}
+|\{ f > a + \epsilon\}|
+& \leq |\{ f > a + \epsilon\} - \{ f > a + \epsilon \} \cap \{ f_k > a \}| + |\{ f_k > a \}|\\
+& \leq |\{ |f - f_k| > \epsilon\}| + |\{ f_k > a \}|\\
+& \leq \eta + |\{ f_k > a \}|.
+\end{aligned}$$
+That is $\underset{k \to \infty}{\lim \inf} \hspace{0.1cm} \omega_{f_k} (a) \geq \omega_f (a + \epsilon)$.\\
+Since $\omega_f$ is continuous at $a$, then we have
+$$\underset{k \to \infty}{\lim \sup} \hspace{0.1cm} \omega_{f_k}(a)
+\leq \underset{\epsilon \to 0}{\lim} \hspace{0.1cm} \omega_f (a - \epsilon)
+= \omega_f (a)
+= \underset{\epsilon \to 0}{\lim} \hspace{0.1cm} \omega_f (a + \epsilon)
+\leq \underset{k \to \infty}{\lim \inf} \hspace{0.1cm} \omega_{f_k}(a).$$
+Therefore, $\underset{k \to \infty}{\lim} \hspace{0.1cm} \omega_{f_k} (a) = \omega_f(a)$, so $\omega_{f_k} \to \omega_f$ at each point of contiunity of $\omega_f$.
+
+
+
+
+
+\end{enumerate}
+\end{document}
+
+
+
+

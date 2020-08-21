@@ -1,0 +1,318 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{mathrsfs} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis Homework\\ Chapter 1. Measure theory\\ Due Date: 10/2}
+\author{National Taiwan University, Department of Mathematics\\
+R06221012 \hspace{0.2cm} Yueh-Chou Lee}
+\date{October 2, 2019}
+\begin{document}
+\maketitle
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.1:}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Prove that the Cantor set $\mathcal{C}$ constructed in the text is totally disconnected and perfect. In other words, given two distinct points $x, y \in \mathcal{C}$, there is a point $z \notin \mathcal{C}$ that lies between $x$ and $y$, and yet $\mathcal{C}$ has no isolated points.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+\begin{enumerate}
+	\item \textbf{Disconnected:}
+
+	Let $x, y \in \mathcal{C}$ and $x \neq y$. Then $x, y \in \mathcal{C_k}$ for all $k \in \mathbb{N}$.
+
+	Since $x \neq y$, we can find $N \in \mathbb{N}$ such that $\dfrac{1}{3^N} < |x - y|$. Hence, $x$ and $y$ belong to different intervals of $\mathcal{C_N}$.
+
+	By the construction of the Cantor set, there must be at least one interval between $x$ and $y$ which does not belong to $\mathcal{C_N}$ , and so does not belong to $\mathcal{C}$.
+
+	Select one such interval. Choosing any point $z$ in this interval satisfies that $z$ lies between $x$ and $y$ and $z \notin \mathcal{C}$. Therefore, $\mathcal{C}$ is totally disconnected.\\
+
+
+	\item \textbf{Perfect:}
+
+	let $\varepsilon > 0$ be given and consider $B(x, \varepsilon)$ for any $x \in \mathcal{C}$. Let $I_k$ denote the interval to which $x$ belongs in $C_k$. We can find $N \in \mathbb{N}$ such that $I_N \subset B(x, \varepsilon)$.
+
+	Now, this interval must have two endpoints $a_N$ and $b_N$. By the construction of the Cantor set, we know that the endpoints of any interval are never removed, and so $a_N, b_N \in \mathcal{C}$. Furthermore, we have that $a_N, b_N \in I_N \subset B(x, \varepsilon)$. Therefore, $x$ is not isolated.\\\\
+\end{enumerate}
+
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.2(a):}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		The Cantor set $\mathcal{C}$ can also be described in terms of ternary expansions.\\
+
+		Every number in $[0,1]$ has a ternary expansion
+			$$x = \overset{\infty}{\underset{k = 1}{\sum}} a_k 3^{-k},
+			\quad \quad \quad \text{where } a_k = 0, 1, \text{or }2.$$
+		Prove that $x \in \mathcal{C}$ if and only if $x$ has a representation as above where every $a_k$ is either $0$ or $2$.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+$(\Rightarrow)$
+
+Let $x \in \mathcal{C}$. Consider $\mathcal{C}_1$. It must
+be that x belongs to one of $[0,\dfrac{1}{3}]$ or $[\dfrac{2}{3}, 1]$.
+
+Next, consider $\mathcal{C}_2$. The interval of $\mathcal{C}_1$ to which $x$ currently belongs will be divided into three subintervals, and so we append $0$ to the ternary expansion of $x$ if it belongs to the leftmost subinterval or $2$ if it belongs to the rightmost subinterval. 
+
+Continuing in this way, we see that $x$ has an associated ternary expansion containing only the digits $0$ and $2$.\\
+
+$(\Leftarrow)$
+
+Let
+	$$x = \overset{\infty}{\underset{k = 1}{\sum}} a_k 3^{-k},
+	\quad \quad \quad \text{where } a_k = 0\text{ or }2.$$
+
+If $a_1 = 0$, we choose the left subinterval of $\mathcal{C}_1$. If $a_1 = 2$, we choose the rightmost subinterval of $\mathcal{C}_1$.
+
+When we form $\mathcal{C}_2$, the interval we have just chosen will be subdivided into three subintervals. If $a_2 = 0$, we select the leftmost subinterval. If $a_2 = 2$, we select the rightmost subinterval.
+
+Continue in this way. Since the length of these intervals can be made arbitrarily small, we see that the ternary expansion of $x$ uniquely specifies its location on the real line.\\\\
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.2(b):}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		The \textbf{Cantor-Lebesgue function} is defined on $\mathcal{C}$ by
+			$$F(x) = \overset{\infty}{\underset{k = 1}{\sum}} \frac{b_k}{2^k}
+			\quad \quad \text{ if }
+			x = \overset{\infty}{\underset{k = 1}{\sum}} a_k 3^{-k},
+			\quad \text{ where } b_k = \frac{a_k}{2}.$$
+		In this definition, we choose the expansion of $x$ in which $a_k = 0$ or $2$.
+
+		Show that $F$ is well defined and continuous on $\mathcal{C}$, and moreover $F(0) = 0$ as well as $F(1) = 1$.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+Let $x, x' \in \mathcal{C}$ with $x = x'$. Denote the $k$-th digit of the ternary expansion of $x$ and $x'$ by $a_k$ and $a_k'$, respectively.\\
+
+Suppose $a_k \neq a_k'$ for all $k$. Then $a_N \neq a_N'$ for some $N$. From the construction in the part (a), we see that $x$ and $x'$ must belong to different subintervals in $\mathcal{C}_N$, and so $x \notin x'$, which is a construction.\\
+
+Now, let $b_k = \dfrac{a_k}{2}$ and $b_k' = \dfrac{a_k'}{2}$. Then $b_k = b_k'$ for all $k$. Hence
+	$$F(x)
+	= \overset{\infty}{\underset{k = 1}{\sum}} \frac{b_k}{2^k}
+	= \overset{\infty}{\underset{k = 1}{\sum}} \frac{b_k'}{2^k}
+	= F(x')$$
+and so $F$ is well-defined.\\
+
+To see that $F$ is continuous, let $\varepsilon > 0$ be given and $x, x' \in \mathcal{C}$ so that $|F(x) - F(x')| < \varepsilon$.
+
+Consider the binary expansion of $\varepsilon$. Consider $\delta > 0$ such that $\delta_k = 2 \varepsilon_k$ for all $k$. Let $N$ be the first nonzero digit of $\delta$ and $\varepsilon$. Then, $|x - x'| < \delta$ implies that the first $N - 1$ digits of $x$ and $x'$ agree.
+
+Hence, the first $N - 1$ digits of $F(x)$ and $F(x')$ agree, and so $|F(x) - F(x')| < \varepsilon$. Therefore, $F$ is continuous.\\
+
+By the construction in part (a), we know that $0$ is represented in ternary form by always choosing the leftmost subinterval, and so for $x = 0, b_k = \frac{0}{2} = 0$ for all $k$.
+
+Similarly, $1$ is represented in ternary form by always chosing the rightmost subinterval, and so for $x = 1, b_k = \frac{2}{2} = 1$ for all $k$. Hence
+	$$F(0)
+	= \overset{\infty}{\underset{k = 1}{\sum}} \frac{0}{2^k}
+	= 0,$$
+	$$F(1) = \overset{\infty}{\underset{k = 1}{\sum}} \frac{1}{2^k}
+	= \frac{1}{2} \overset{\infty}{\underset{k = 0}{\sum}} \frac{1}{2^k}
+	= \frac{\frac{1}{2}}{1 - \frac{1}{2}}
+	= 1.$$\\\\
+
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.2(c):}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Prove that $F: \mathcal{C} \to [0,1]$ is surjective, that is, for every $y \in [0,1]$ there exists $x \in \mathcal{C}$ such that $F(x) = y$.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+Let $y \in [0,1]$. Then $y$ has a corresponding binary expansion.
+
+Let $b_k$ denote the $k$-th digit of this expansion.
+
+Construct a string $s$ such that $s_k = 2b_k$ for all $k$, where $s_k$ denotes the $k$-th digit of $s$.  This construction uniquely identifies some ternary string using only $0$ and $2$. From part (a), we know that $s$ corresponding uniquely to some $x \in \mathcal{C}$. Now, it is clear from our construction of $x$ that $F(x) = y$.\\\\
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.2(d):}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		One can also extend F to be a continuous function on $[0, 1]$ as follows. Note that if $(a, b)$ is an open interval of the complement of $\mathcal{C}$, then $F(a) = F(b)$. Hence we may define $F$ to have the constant value $F(a)$ in that interval.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+A connected component of the complement of $\mathcal{C}$ is of the form
+	$$\left( \overset{n}{\underset{i = 1}{\sum}} a_i 3^{-i} + 3^{-n}, \overset{n}{\underset{i = 1}{\sum}} a_i 3^{-i} + 2 \cdot 3^{-n}  \right)$$
+
+for some $a_1, \dots, a_n \in \{0,2\}$.
+
+Write $r = \overset{n}{\underset{i = 1}{\sum}} a_i3^{-i} + 3^{-n}$ so the interval is $(r, r + 3^{-n})$.
+
+Note that
+	$$r = \overset{n}{\underset{i = 1}{\sum}} a_i 3^{-i} + \overset{\infty}{\underset{i = n+1}{\sum}} 2 \cdot 3^{-i} \in \mathcal{C}$$
+
+and
+	$$\begin{aligned}
+	F(r)
+	&= \overset{n}{\underset{i = 1}{\sum}} \left( \frac{a_i}{2} \right) 2^{-i} + \overset{\infty}{\underset{i = n+1}{\sum}} 2^{-i}
+	= \overset{n}{\underset{i = 1}{\sum}} \left( \frac{a_i}{2} \right) 2^{-i} + 2^{-n}\\
+	&= \overset{n - 1}{\underset{i = 1}{\sum}} \left( \frac{a_i}{2} \right) 2^{-i} + \frac{a_n + 2}{2} \cdot 2^{-n}
+	= F\left( \overset{n - 1}{\underset{i = 1}{\sum}} a_i 3^{-i} + (a_n + 2) 3^{-n} \right)\\
+	&= F\left( \overset{n}{\underset{i = 1}{\sum}} a_i 3^{-i} + 2 \cdot 3^{-n} \right)
+	= F(r + 3^{-n})
+	\end{aligned}$$
+
+as desired.\\\\
+
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.4(a):}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		\textbf{Cantor-like sets.}
+
+		 Construct a closed set $\hat{\mathcal{C}}$ so that at the $k$-th stage of the construction one removes $2^{k-1}$ centrally situated open intervals each of length $l_k$, with
+		 	$$l_1 + 2 l_2 + \cdots + 2^{k-1} l_k < 1.$$
+
+		 If $l_j$ are chosen small enough, then $\overset{\infty}{\underset{k = 1}{\sum}} 2^{k-1} l_k < 1$.  In this case, show that $m(\hat{\mathcal{C}}) > 0$, and in fact, $m(\hat{\mathcal{C}}) = 1 - \overset{\infty}{\underset{k = 1}{\sum}} 2^{k-1} l_k$.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+We begin by showing that we can choose the $l_j$ such that $\overset{\infty}{\underset{k = 0}{\sum}} 2^{k-1} l_k < 1$. This is clear if we choose $l_k \leq (2 + \varepsilon)^{-(k-1)}$ for any $\varepsilon > 0$ because then
+	$$\overset{\infty}{\underset{k = 0}{\sum}} 2^{k-1} l_k
+	\leq \overset{\infty}{\underset{k = 0}{\sum}} \left( \frac{2}{2 + \varepsilon} \right)^{k-1}$$
+
+and the sum on the right converges and is less than $1$ for $l_0 < \frac{1}{2}$. Next, we follow a process similar to the construction of the Cantor set in defining
+	$$\hat{\mathcal{C}} = \overset{\infty}{\underset{k = 0}{\cap}} I_k$$
+
+where $I_0 = [0,1],\ I_1 = [0, \frac{1 - l_0}{2}] \cup [\frac{1 + l_0}{2}, 1]$ and each subsequent $I_k$ is obtained by taking each of the pieces in the union of $I_{k-1}$ and removing the middle $l_k$. As before, repeating this procedure yields a sequence of nested compact sets $I_0 \supset I_1 \supset I_2 \supset \cdots$ and their intersection $\hat{\mathcal{C}} \neq \emptyset$. It then follows that $\hat{\mathcal{C}}$ is measurable.\\
+
+To find its measure, we instead compute the measure of $\hat{\mathcal{C}}^c$, which is also measurable because it's complement of a measurable set. We can see that
+	$$\hat{\mathcal{C}}^c = \overset{\infty}{\underset{k = 0}{\cup}} I_k^c.$$
+
+The complement of each $I_k$ is precisely the $2^{k-1}$ intervals of length $l_k$. Hence, themeasure of each of these $m(I_k) = 2^{k-1} l_k$. And so
+	$$m(\hat{\mathcal{C}}^c)
+	= m\left( \overset{\infty}{\underset{k = 0}{\cup}} I_k^c \right)
+	= \overset{\infty}{\underset{k = 0}{\sum}} m(I_k^c)
+	= \overset{\infty}{\underset{k = 0}{\sum}} 2^{k-1} l_k.$$
+
+Note that $[0,1] = \hat{\mathcal{C}} \cup \hat{\mathcal{C}}^c$ and so
+	$$m(\hat{\mathcal{C}}) = 1 - \overset{\infty}{\underset{k = 0}{\sum}}2^{k-1} l_k.$$\\\\
+
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.4(b):}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Show that if $x \in \hat{\mathcal{C}}$, then there exists a sequence of points $\{x_n\}_{n = 1}^\infty$ such that $x_n \notin \hat{\mathcal{C}}$, yet $x_n \to x$ and $x_n \in I_n$, where $I_n$ is a sub-interval in the complement of $\hat{\mathcal{C}}$ with $|I_n| \to 0$.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+Observe first that since $\overset{\infty}{\underset{k = 1}{\sum}} 2^{k-1} l_k < 1$, the tail of the series must go to zero. That is, for any $\varepsilon > 0$, there exists $N$ such that $l_n < \varepsilon$ for all $n \geq N$.\\
+
+Now let $x \in \hat{\mathcal{C}}$. Let $\hat{\mathcal{C}}_k$ denote the $k$ stage of the construction.\\
+
+For each $k, x$ belongs to some closed subset $S_k$ of $\hat{\mathcal{C}}_k$. Let $I_k$ be the open interval removed from $S_k$ to proceed to the next step of the construction.\\
+
+We take any $x_k \in I_k$ to form our sequence $\{x_n\}_{n = 1}^\infty$. Clearly, each $x_k$ belongs to an sub-interval in the complement of $\hat{\mathcal{C}}$. Furthermore, $|I_k| = l_k \to 0$. It remains to show that $x_n \to x$.\\
+
+From the construction of $\hat{\mathcal{C}}_k$ and our selection of $x_n$, it is clear that
+	$$|x - x_n| < |I_n| + |S_n|.$$
+
+By our previous observation, we know that $|I_n| = l_n \to 0$. Now
+	$$|S_n| - \frac{1 - \overset{n}{\underset{k = 1}{\sum}} 2^{k-1} l_k}{2^n}
+	\leq \frac{1}{2^n} \to 0
+	\quad \text{as } n \to \infty.$$
+
+Hence, $|x - x_n| \to 0$. That is, $\{x_n\}_{n=1}^\infty$ converges to $x$.\\\\\\
+
+
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.4(c):}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Prove as a consequence that $\hat{\mathcal{C}}$ is perfect, and contains no open interval.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+\begin{enumerate}
+
+	\item \textbf{Perfect:}
+
+		let $\varepsilon > 0$ be given and consider $B(x, \varepsilon)$ for any $x \in \hat{\mathcal{C}}$. We can find $N \in \mathbb{N}$ such that $S_N \subset B(x, \varepsilon)$.\\
+
+		Now, this interval must have two endpoints $a_N$ and $b_N$. By the construction of $\hat{\mathcal{C}}$, we know that the endpoints of any interval are never removed, and so $a_N, b_N \in \hat{\mathcal{C}}$. Furthermore, we have that $a_N, b_N \in S_N \subset B(x, \varepsilon)$. Therefore, $x$ is not isolated.\\
+
+	\item \textbf{No open interval:}
+
+		We try to prove by contradiction. Suppose that there exists an open interval $O \in \hat{\mathcal{C}}$. Then, for any $x \in O$, there exists $\varepsilon_0$ such that $B(x, \varepsilon_0) \subseteq O$.\\
+
+		Let $\varepsilon < \varepsilon_0$. Then, there can be no sequence $\{x_n\}_{n=1}^\infty$ of the type described in part (b) whose limit is $x$, since $B(x, \varepsilon_0) \subseteq \hat{\mathcal{C}}$ implies that $|x - x_n| > \varepsilon_0 > \varepsilon$ for all $n$.\\
+
+		This contradicts the conclusion of part (b), and so it must be that $\hat{\mathcal{C}}$ contains no open interval.\\\\
+
+
+\end{enumerate}
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.4(d):}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Show also that $\hat{\mathcal{C}}$ is uncountable.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+We try to prove by contradiction. Suppose that $\hat{\mathcal{C}}$ is countable and let $I_n$ be an enumeration of the set.
+
+$I_1$ belongs to exactly one of the two intervals in $\hat{\mathcal{C}}_1$, denote the interval which fails to contain $I_1$ by $F_1$.
+
+In $\hat{\mathcal{C}}_2$, 2 disjoint intervals $\subseteq F_1$, one of them say $F_2$ must fail to contain $I_2$.
+
+Repeating the process, we have decreasing sequence of closed interval $F_n$ of length $f_n$ s.t. $I_n$ not belongs to $F_n$ and
+	$$\emptyset \neq \overset{\infty}{\underset{n = 1}{\cap}} F_n \subseteq S.$$
+
+Hence
+	$$\exists I \in \hat{\mathcal{C}}
+	\quad \text{and} \quad I \neq I_n,\ \forall n \in \mathbb{N}.$$
+
+We have a contradiction.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% \begin{flushleft}
+	% 	\rule[-0.5ex]{17cm}{2pt}\\
+	% 		\textbf{Theorem}\\
+	% 	\rule[1.5ex]{17cm}{0.5pt}
+			
+	% 	\rule[1.0ex]{17cm}{0.5pt}\
+	% \end{flushleft}
+	% \textbf{\textit{Proof.}}\\
+
+\end{document}
+
+
+
+
+
+

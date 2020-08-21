@@ -1,0 +1,296 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis \\ Homework 8}
+\author{Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+ \begin{enumerate}
+ 	\item (Exercise 6.7)\\
+ 		Let $F$ be a closed subset of $\mathbb{R}^1$ and let $\delta(x) = \delta(x,F)$ be the corresponding distance function. If $\lambda > 0$ and $f$ is nonnegative and integrable over the complement of $F$, prove that the function
+ 		$$\int_{\mathbb{R}^1} \frac{\delta^{\lambda} (y) f(y)}{\left| x - y \right|^{1+\lambda}} \hspace{0.1cm} dy$$
+ 		is integrable over $F$ and so is finite a.e. in $F$. (In case $f = \chi_{(a,b)}$, this reduces to Theorem 6.17.)\\
+
+ 		\textit{\textbf {Proof.}}\\
+
+ 		$$\begin{aligned}
+ 		\int_F \left[ \int_{\mathbb{R}^1} \frac{\delta^{\lambda} (y) f(y)}{\left| x - y \right|^{1+\lambda}} \hspace{0.1cm} dy \right] dx
+ 		&= \int_{\mathbb{R}^1 - F} \left[ \int_F \frac{\delta^{\lambda} (y) f(y)}{\left| x - y \right|^{1+\lambda}} \hspace{0.1cm} dx \right] dy\\
+ 		&= \int_{\mathbb{R}^1 - F} \delta^{\lambda} (y) f(y) \left[ \int_F \frac{1}{\left| x - y \right|^{1+\lambda}} \hspace{0.1cm} dx \right] dy\\
+ 		&\leq \int_{\mathbb{R}^1 - F} \delta^{\lambda} (y) f(y) \left[ \int_{\{x:\delta(y) \leq |x-y|\}} \frac{1}{\left| x - y \right|^{1+\lambda}} \hspace{0.1cm} dx \right] dy\\
+ 		&= 2 \int_{\mathbb{R}^1 - F} \delta^{\lambda} (y) f(y) \left[ \int_{\delta(y)}^\infty \frac{1}{t^{1+\lambda}} \hspace{0.1cm} dt \right] dy\\
+ 		&= 2 \lambda^{-1} \int_{\mathbb{R}^1 - F} f(y) \hspace{0.1cm} dy
+ 		\end{aligned}$$
+
+ 		is integrable since $f$ is integrable over the complement of $F$, and so is finite a.e. in $F$.\\
+
+
+
+
+ 	\item (Exercise 6.8)\\
+ 		Under the hypothese of Theorem 6.17 and assuming that $b - a < 1$, prove that the function
+ 		$$M_0(x) = \int_a^b \left[ \log \frac{1}{\delta (y)}\right]^{-1} \left| x - y \right|^{-1} \hspace{0.1cm} dy$$
+ 		is finite a.e. in $F$.\\
+ 	
+ 		\textit{\textbf {Proof.}}\\
+
+ 		Since $b - a < 1$, then $\log (\frac{1}{\delta(y)}) > 0$.\\
+ 		Hence $M_0 (x)$ is nonnegative and the integral $\int_F M_0 (x)$ exists, then
+ 		$$\begin{aligned}
+ 		\int_F M_0(x) \hspace{0.1cm} dx
+ 		&= \int_F \left\{ \int_a^b \left[ \log \frac{1}{\delta (y)}\right]^{-1} \left| x - y \right|^{-1} \hspace{0.1cm} dy \right\} \hspace{0.1cm} dx\\
+ 		&= \int_a^b \left\{ \int_F \left[ \log \frac{1}{\delta(y)} \right]^{-1} |x-y|^{-1} dx \right\} dy\\
+ 		&\leq \int_a^b \left\{ \int_{\{ x:\delta(y) \leq |x - y| \leq 1 \}} \left[ \log \frac{1}{\delta(y)} \right]^{-1} |x-y|^{-1} dx \right\} dy\\
+ 		&= \int_a^b \left[ \log \frac{1}{\delta(y)} \right]^{-1} \left[ \int_{\{ x:\delta(y) \leq |x - y| \leq 1 \}} |x-y|^{-1} dx \right] dy\\
+ 		&\leq \int_a^b \left[ \log \frac{1}{\delta(y)} \right]^{-1} \left[ 2 \int_{\delta(y)}^1 t^{-1} dt \right] dy\\
+ 		&= \int_a^b \left[ \log \frac{1}{\delta(y)} \right]^{-1} [-2 \log \delta (y)] dy\\
+ 		&= 2 (b-a)
+ 		\end{aligned}$$
+
+ 		So $M_0$ is finite a.e. in $F$.\\
+
+
+
+
+
+ 	\item (Exercise 6.9)
+ 		\begin{enumerate}
+ 			\item [(a)] Show that $M_{\lambda} (x;F) = +\infty$ if $x \notin F$, $\lambda > 0$.
+
+ 			\item [(b)] Let $F = [c,d]$ be a closed subinterval of a bounded open interval $(a,b) \subset \mathbb{R}^1$, and let $M_{\lambda}$ be the corresponding Marcinkiewicz integral, $\lambda > 0$. Show that $M_{\lambda}$ is finite for every $x \in (c,d)$ and that $M_{\lambda}(c) = M_{\lambda}(d) = \infty$. Show also that $\int_F M_{\lambda} \leq \lambda^{-1} |G|$, where $G = (a,b) - [c,d]$.
+ 		\end{enumerate}
+ 	
+ 		\textit{\textbf {Proof.}}
+
+ 		\begin{enumerate}
+ 			\item [(a)]
+	 			Let $x \notin F$ and $\lambda > 0$. For any $\epsilon > 0$, then $\delta(y) \in B(\delta(x), \epsilon)$ for all $y \in B(x,\epsilon)$, thus
+	 			$$\begin{aligned}
+	 			M_\lambda (x;F)
+	 			&= \int_a^b \frac{\delta^\lambda (y)}{|x - y|^{1+\lambda}} dy\\
+	 			&= \int_a^{x-\epsilon} \frac{\delta^\lambda (y)}{|x - y|^{1+\lambda}} dy + \int_{x-\epsilon}^{x+\epsilon} \frac{\delta^\lambda (y)}{|x - y|^{1+\lambda}} dy + \int_{x+\epsilon}^b \frac{\delta^\lambda (y)}{|x - y|^{1+\lambda}} dy\\
+	 			&\geq \int_{x-\epsilon}^{x+\epsilon} \frac{\delta^\lambda (y)}{|x - y|^{1+\lambda}} dy\\
+	 			&\geq \int_{x-\epsilon}^{x+\epsilon} \frac{\delta^\lambda (x) - \epsilon}{\epsilon^{1+\lambda}} dy\\
+	 			&= \frac{2 \delta^\lambda (x) - 2 \epsilon}{\epsilon^\lambda}
+	 			\end{aligned}$$
+
+	 			Let $\epsilon_n$ be a sequence on $(0,1)$ with $\epsilon_n \to 0$ as $n \to \infty$, then
+	 			$$\frac{(2\delta^\lambda(x) - 2 \epsilon_n)}{\epsilon_n^\lambda} \to \infty \hspace{0.2cm} \mbox{ as } n \to \infty$$
+
+	 			So $M_\lambda (x; F) = +\infty$ if $x \notin F$, $\lambda > 0$.\\
+
+
+ 			\item [(b)]
+ 				$$M_\lambda(x;F) = \int_a^b \frac{\delta^\lambda(y)}{|x-y|^{1+\lambda}} dy$$
+ 				\begin{enumerate}
+ 					\item
+ 						For any $\epsilon > 0$ and $M = \max{\{ d-a, b-c \}}$, we have
+ 						$$\begin{aligned}
+ 						\int_a^b \frac{\delta^\lambda (y)}{|x - y|^{1 + \lambda}} dy
+ 						&= \int_{a}^{c + \epsilon} \frac{\delta^\lambda (y)}{|x - y|^{1 + \lambda}} dy + \int_{d - \epsilon}^{b} \frac{\delta^\lambda (y)}{|x - y|^{1 + \lambda}} dy\\
+ 						&\leq \int_{a}^{c + \epsilon} \frac{\delta^\lambda (y)}{\epsilon^{1 + \lambda}} dy + \int_{d - \epsilon}^{b} \frac{\delta^\lambda (y)}{\epsilon^{1 + \lambda}} dy\\
+ 						&\leq \frac{(b-a)^\lambda}{\epsilon^{1+\lambda}} \cdot (c + \epsilon - a) + \frac{(b-c)^\lambda}{\epsilon^{1+\lambda}} \cdot (b - d + \epsilon)\\
+ 						&\leq \frac{M^\lambda}{\epsilon^{1+\lambda}} \cdot (c + \epsilon - a) + \frac{M^\lambda}{\epsilon^{1+\lambda}} \cdot (b - d + \epsilon)\\
+ 						&= \frac{M^\lambda}{\epsilon^{1+\lambda}} \cdot (c + \epsilon - a + b - d + \epsilon)\\
+ 						&= \frac{M^\lambda}{\epsilon^{1+\lambda}} \cdot (|G| + 2\epsilon) \hspace{0.2cm} \mbox{ is finite, since $\epsilon \neq 0$}
+ 						\end{aligned}$$
+
+ 						Hecne, $M_{\lambda}$ is finite for every $x \in (c,d)$.\\
+
+					\item
+						$$\begin{aligned}
+						M_\lambda (c)
+						&= \int_a^b \frac{\delta^\lambda (y)}{|c - y|^{1+\lambda}} dy\\
+						&= \int_a^c \frac{\delta^\lambda (y)}{(c - y)^{1+\lambda}} dy + \int_d^b \frac{\delta^\lambda (y)}{(y - c)^{1+\lambda}} dy\\
+						&= \int_a^c \frac{(c-y)^\lambda}{(c-y)^{1+\lambda}} dy + \int_d^b \frac{(y-d)^{\lambda}}{(y-c)^{1+\lambda}}dy\\
+						&> \int_a^c \frac{1}{c-y} dy\\
+						&= \underset{t \to c}{\lim} \left[ - \ln (c-y) \right]_{y=a}^{t}\\
+						&= \infty
+						\end{aligned}$$
+
+						$$\begin{aligned}
+						M_\lambda (d)
+						&= \int_a^b \frac{\delta^\lambda (y)}{|d - y|^{1+\lambda}} dy\\
+						&= \int_a^c \frac{\delta^\lambda (y)}{(d - y)^{1+\lambda}} dy + \int_d^b \frac{\delta^\lambda (y)}{(y - d)^{1+\lambda}} dy\\
+						&= \int_a^c \frac{(c-y)^\lambda}{(d-y)^{1+\lambda}} dy + \int_d^b \frac{(y-d)^{\lambda}}{(y-d)^{1+\lambda}}dy\\
+						&> \int_d^b \frac{1}{y-d} dy\\
+						&= \underset{t \to d}{\lim} \left[  \ln (y-d) \right]_{y=t}^{b}\\
+						&= \infty
+						\end{aligned}$$
+
+					\item
+						If $y \in F$, then $\delta(y) = 0$, thus
+		 				$$\begin{aligned}
+		 				\int_F M_\lambda (x;F) dx
+		 				&= \int_F \left[ \int_a^b \frac{\delta^\lambda(y)}{|x-y|^{1+\lambda}} dy \right] dx\\
+		 				&= \int_F \left[ \int_G \frac{\delta^\lambda(y)}{|x-y|^{1+\lambda}} dy \right] dx\\
+		 				&= \int_G \left[ \int_F \frac{\delta^\lambda(y)}{|x-y|^{1+\lambda}} dx \right] dy\\
+		 				&= \int_G \delta^\lambda(y) \left[ \int_F \frac{1}{|x-y|^{1+\lambda}} dx \right] dy\\
+		 				&\leq \int_G \delta^\lambda(y) \left[ \int_{\{ x: \delta(y) \leq |x-y| \}} \frac{1}{|x-y|^{1+\lambda}} dx \right] dy\\
+		 				&\leq \int_G \delta^\lambda(y) \left[ \int_{\delta(y)}^a \frac{1}{t^{1+\lambda}} dt \right] dy\\
+		 				&= \int_G \delta^\lambda(y) \left[ \frac{-1}{\lambda} (a^\lambda - \delta^\lambda (y)) \right] dy\\
+		 				&\leq \frac{1}{\lambda} \int_G 1 \hspace{0.1cm} dy \\
+		 				&= \frac{|G|}{\lambda}
+		 				\end{aligned}$$
+
+				\end{enumerate}
+
+ 		\end{enumerate}
+
+
+
+
+
+ 	\item (Exercise 7.2)\\
+ 		Let $\phi (x)$, $x \in \mathbb{R}^n$, be a bounded measurable function such that $\phi (x) = 0$ for $|x| \geq 1$ and $\int \phi = 1$. For $\epsilon > 0$, let  $\phi_{\epsilon} (x) = \epsilon^{-n} \phi (x/\epsilon)$. ($\phi_\epsilon$ is called an \textit{approximation to the identity}.) If $f \in L(\mathbb{R}^n)$, show that
+ 		$$\underset{\epsilon \to 0}{\lim} (f * \phi_\epsilon ) (x) = f(x)$$
+ 		in the Lebesgue set of $f$. (Note that $\int \phi_\epsilon = 1$, $\epsilon > 0$, so that
+ 		$$(f * \phi_\epsilon) (x) - f(x) = \int \left[ f(x-y) - f(x) \right] \phi_\epsilon (y) \hspace{0.1cm} dy$$
+ 		Use Theorem 7.16.)\\
+
+ 		\textbf{Recall Exercise 5.20:}\\
+ 		Let $\mathbf{y} = T \mathbf{x}$ be a nonsingular linear transformation of $\mathbb{R}^n$. If $\int_E f(\mathbf{y}) d \mathbf{y}$ exists, then
+ 		$$\int_E f(\mathbf{y}) \hspace{0.1cm} d\mathbf{y}
+ 		= |\det T| \int_{T^{-1}E} f(T \mathbf{x}) \hspace{0.1cm} d \mathbf{x}$$
+ 	
+ 		\textbf{Recall Theorem 7.16:}\\
+ 		Let $f$ be locally integrable in $\mathbb{R}^n$, then at every point $\mathbf{x}$ of the Lebesgue set of $f$,
+ 		$$\frac{1}{|S|} \int_S |f(\mathbf{y}) - f(\mathbf{x})| \hspace{0.1cm} d \mathbf{y} \to 0$$
+ 		for any family $\{ S \}$ that shrinks regularly to $\mathbf{x}$. Thus, also
+ 		$$\frac{1}{|S|} \int_S f(\mathbf{y}) \hspace{0.1cm} d \mathbf{y} \to f(\mathbf{x}) \hspace{0.2cm} \mbox{a.e.}$$
+
+ 		\textit{\textbf {Proof.}}\\
+
+ 		First, we will show that $\int \phi_\epsilon = 1$.\\
+ 		For $\epsilon > 0$, then
+ 		$$\int_{\mathbb{R}^n} \phi_\epsilon(\mathbf{x}) \hspace{0.1cm} d\mathbf{x}
+ 		= \int_{\mathbb{R}^n} \epsilon^{-n} \phi(\mathbf{x}/\epsilon) \hspace{0.1cm} d\mathbf{x}
+ 		= \int_{\{ |\mathbf{x}| < \epsilon \}} \epsilon^{-n} \phi(\mathbf{x}/\epsilon) \hspace{0.1cm} d\mathbf{x}$$
+ 		since $\phi(\mathbf{x}) = 0$ for all $|\mathbf{x}| \geq 1$.\\
+
+ 		Let $\mathbf{y} = T \mathbf{x} = \frac{\mathbf{x}}{\epsilon}$ be a linear transformation of $\mathbb{R}^n$, and $T = \mbox{diag} (\frac{1}{\epsilon}, ..., \frac{1}{\epsilon})$ so that $|\det T| = \epsilon^{-n}$.\\
+ 		If $E = \{x \in \mathbb{R}^n : |\mathbf{x}| < 1 \}$, then $T^{-1} E = \{ \mathbf{x} \in \mathbb{R}^n : |\mathbf{x}| < \epsilon\}$, thus by Exercise 5.20
+
+ 		$$\int_E f(\mathbf{y}) \hspace{0.1cm} d \mathbf{y}
+ 		= |\det T| \int_{T^{-1} E} f(T \mathbf{x}) \hspace{0.1cm} \mathbf{x}$$
+
+ 		Then
+ 		$$\begin{aligned}
+ 		\int_{\mathbb{R}^n} f(\mathbf{x}) \hspace{0.1cm} d \mathbf{x}
+ 		&= \epsilon^{-n} \int_{T^{-1} E} \phi (T \mathbf{x}) \hspace{0.1cm} \mathbf{x}\\
+ 		&= \epsilon^{-n} \cdot \frac{1}{|\det T|} \int_E \phi (\mathbf{y}) \hspace{0.1cm} d\mathbf{y}\\
+ 		&= \int_{\{ |\mathbf{y}|<1 \}} \phi(\mathbf{y}) \hspace{0.1cm} \mathbf{y}\\
+ 		&= \int_{\mathbb{R}^n} \phi (\mathbf{y}) \hspace{0.1cm} d\mathbf{y}\\
+ 		&= 1
+ 		\end{aligned}$$
+ 		Following,
+ 		$$\begin{aligned}
+ 		(f*\phi_\epsilon) (\mathbf{x}) - f(\mathbf{x})
+ 		&= \int_{\mathbb{R}^n} f(\mathbf{x} - \mathbf{y}) \hspace{0.1cm} d\mathbf{y} - \int_{\mathbb{R}^n} f(\mathbf{x}) \phi_\epsilon (\mathbf{y}) \hspace{0.1cm} d\mathbf{y}\\
+ 		&= \int_{\mathbb{R}^n} \left[ f(\mathbf{x} - \mathbf{y}) - f(\mathbf{x}) \right] \phi_\epsilon (\mathbf{y}) \hspace{0.1cm} d \mathbf{y}\\
+ 		&= \frac{1}{\epsilon^n} \int_{\{ |\mathbf{y}| \leq \epsilon \}} \left[ f(\mathbf{x} - \mathbf{y}) - f(\mathbf{x}) \right] \phi(y/\epsilon) \hspace{0.1cm} d \mathbf{y}
+ 		\end{aligned}$$
+
+ 		Since $\phi(\mathbf{x})$ is a bounded function on $\mathbb{R}^n$, then for some $M > 0$, we have $|\phi(\mathbf{x})| \leq M$ and let $Q_{2\epsilon}(x)$ be the cube centered at $\mathbf{x}$ with edge length $2 \epsilon$, then
+ 		$$\begin{aligned}
+ 		|(f*\phi_\epsilon) (x) - f(x)|
+ 		&\leq \frac{M}{\epsilon^n} \int_{\{|\mathbf{y}| \leq \epsilon\}} |f(\mathbf{x} - \mathbf{y}) - f(\mathbf{x})| \hspace{0.1cm} d \mathbf{y}\\
+ 		&= \frac{M}{\epsilon^n} \int_{\{ |\mathbf{y} - \mathbf{x}| \leq \epsilon \}} |f(\mathbf{y}) - f(\mathbf{x})| \hspace{0.1cm} d\mathbf{y}\\
+ 		&\leq \frac{M}{\epsilon^n} \int_{Q_{2\epsilon} (\mathbf{x})} |f(\mathbf{y}) - f(\mathbf{x})| \hspace{0.1cm} d\mathbf{y}\\
+ 		&\leq \frac{2^n M}{|Q_{2 \epsilon} (\mathbf{x})|} \int_{Q_{2 \epsilon} (\mathbf{x})} |f(\mathbf{y}) - f(\mathbf{x})| \hspace{0.1cm} d\mathbf{y}\\
+ 		&\mbox{($|Q_{2\epsilon}(\mathbf{x})| = 2^n \epsilon^n$)}
+ 		\end{aligned}$$
+
+ 		Since $f \in L(\mathbb{R}^n)$, by Theorem 7.16, for all points $\mathbf{x}$ of the Lebesgue set of $f$, we have
+ 		$$\frac{1}{|Q_{2\epsilon} (\mathbf{x})|} \int_{Q_{2\epsilon}(\mathbf{x})} |f(\mathbf{y}) - f(\mathbf{x})| \hspace{0.1cm} d \mathbf{y} \to 0 \hspace{0.2cm} \mbox{as } \epsilon \to 0$$
+ 		Hence,
+ 		$$\underset{\epsilon \to 0}{\lim} |(f*\phi_\epsilon)(\mathbf{x}) - f(\mathbf{x})| = 0$$, which implies
+ 		$$\underset{\epsilon \to 0}{\lim} (f*\phi_\epsilon) (\mathbf{x}) = f(\mathbf{x})$$
+ 		in the Lebesegue set of $f$.\\
+
+
+
+
+
+
+
+ 	\item (Exercise 7.6)\\
+ 		Show that if $\alpha > 0$, then $x^\alpha$ is absolutely continuous on every bounded subinterval of $[0,\infty)$.\\
+
+ 		\text{\textbf{Recall Theorem 7.6:}}\\
+ 		A function $f$ is absolutely continuous an $[a,b]$ if and only if $f'$ exists a.e. in $[a,b]$, $f'$ is integrable on $[a,b]$, and
+ 		$$f(x) - f(a) = \int_a^x f' \mbox{, } \hspace{0.2cm} a \leq x \leq b$$
+ 	
+ 		\textit{\textbf {Proof.}}\\
+ 		Let $f(x) = x^\alpha$.\\
+ 		Since
+ 		$$f'(x) =
+ 		\begin{cases}
+ 		\alpha x^{\alpha - 1}, \hspace{0.2cm} \mbox{if } x \in (0,\infty)\\
+ 		\underset{x \to 0}{\lim} \frac{x^\alpha - 0^\alpha}{x - 0} = 0, \hspace{0.2cm} \mbox{if } x = 0
+ 		\end{cases}$$
+ 		$f(x) = x^\alpha$ is differentiable on $[0,\infty)$, then $f(x) = x^\alpha$ is also differentiable on every bounded subinterval $[a,b]$.\\
+
+ 		Since $f'$ is a polynomial function, $f'$ is continuous on $[a,b]$.\\
+ 		Since $f'$ is continuous and also bounded on $[a,b]$, then $f'$ is Reimann integrable on $[a,b]$.\\
+
+ 		If $a \leq x \leq b$, then we have
+ 		$$\int_a^x f'(y) dy
+ 		= \int_a^x \alpha y^{\alpha - 1} dy
+ 		= x^\alpha - a^\alpha = f(x) - f(a)$$
+
+ 		By Theorem 7.6, then we know that $f(x) = x^\alpha$ is absolutely continuous on every bounded subinterval of $[0,\infty)$.\\
+
+
+
+
+
+
+ 	\item (Exercise 7.7)\\
+ 		Prove that $f$ is absolutely continuous on $[a, b]$ if and only if given $\epsilon > 0$, there exists $\delta > 0$ such that $\left| \sum \left[ f(b_i) - f(a_i) \right] \right| < \epsilon$ for every \textit{finite} collection $\left\{ [a_i, b_i] \right\}$ of nonoverlapping subintervals of $[a,b]$ with $\sum (b_i - a_i) < \delta$.\\
+
+ 		\textit{\textbf {Proof.}}\\
+
+ 		$(\Rightarrow)$\
+
+ 		Since $\left| \sum \left[ f(b_i) - f(a_i) \right] \right| < \sum \left| f(b_i) - f(a_i) \right|$, the definition of an absolutely continuous function $f$ immediately leads to this implication.\\
+
+ 		$(\Leftarrow)$\
+
+ 		For any collection $\{ [a_i, b_i] \}$ be a sequence of nonoverlapping subintervals of $[a,b]$ with\\ $\sum (b_i - a_i) < \delta$, we have
+
+ 		$$\sum |f(b_i) - f(a_i)|
+ 		= \sum [f(b_i) - f(a_i)]^+ + \sum \left[ f(b_i) - f(a_i) \right]^-
+ 		< 2\epsilon$$
+
+ 		Hence $f$ is absolutely continuous on $[a, b]$.
+
+
+
+ \end{enumerate}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

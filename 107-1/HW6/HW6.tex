@@ -1,0 +1,275 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis \\ Homework 6}
+\author{Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+\item (Exercise 5.14)\\
+ Prove the following result (which is obvious if $|E| < +\infty$), describing the behavior of $a^p \omega (a)$ as $a \to 0+$. If $f \in L^p(E)$, then $\underset{a \to 0+}{\lim} a^p \omega(a) = 0$. (If $f \geq 0, \epsilon > 0$, choose $\delta > 0$ so that $\int_{\{ f \leq \delta \}} f^p < \epsilon$. Thus, $a^p [ \omega(a) - \omega(\delta) ] \leq \int_{\{ a < f \leq \delta \}} f^p < \epsilon$ for $0 < a < \delta$. Now let $a \to 0$.)\\
+ \newline
+ \textit{\textbf {Proof.}}\\
+ 
+ Since $\cap_{k=1}^{\infty} \mathrm{R}(f^p, \{ 0 \leq f \leq \frac{1}{k} \}) = \mathrm{R} (f^p, \{ f = 0 \})$ and $|\mathrm{R} (f^p, \{ 0 \leq f \leq 1 \})| < \infty$, then
+ $$\int_{\{ 0 \leq f \leq \frac{1}{k} \}} f^p
+ = |\mathrm{R}(f^p, \{ 0 \leq f \leq \frac{1}{k} \})|
+ \to |\mathrm{R}(f^p, \{ f = 0 \})| = 0$$
+
+ There exists $k_0$ such that $\int_{\{ 0 \leq f \leq \frac{1}{k_0}\}} f^p < \epsilon$ for any $\epsilon > 0$.\\
+ Thus, for any $a < 1/k_0$, we have
+ $$a^p [\omega(a) - \omega(\frac{1}{k_0})]
+ \leq \int_{\{ a < f \leq \frac{1}{k_0} f^p \}}
+ < \epsilon$$
+ So $$\underset{a \to 0+}{\lim} a^p \omega(a) = 0$$\
+
+
+
+
+
+
+\item (Exercise 5.15)\\
+ Suppose that $f$ is nonnegative and measurable on $E$ and that $\omega$ is finite on $(0, \infty)$. If $\int_{0}^{\infty} \alpha^{p-1} \omega(\alpha) d\alpha$ is finite, show that $\underset{a \to 0+}{\lim} a^p \omega(a) = \underset{b \to +\infty}{\lim} b^p \omega(b) = 0$. (Consider $\int_{a/2}^{a} and \int_{b/2}^{b}$.)\\
+ \textbf{Recall:}\\
+ $$\omega(\alpha) = |\{ x \in E : f(x) > \alpha \}|$$
+ \newline
+ \textit{\textbf {Proof.}}\\
+
+ For every $a$, the integral
+ $$\int_{a/2}^{a} \alpha^{p-1} \omega (\alpha) d \alpha \geq \omega (\alpha) \int_{a/2}^{a} \alpha^{p-1} d \alpha \geq \frac{1}{p} \left( \frac{\alpha}{2} \right)^p \omega(\alpha) \geq 0$$
+
+ Since $\int_{0}^{\infty} \alpha^{p-1} \omega(\alpha) d\alpha$ is finite, then we know that $\int_{a/2}^{a} \alpha^{p-1} \omega (\alpha) d \alpha \to 0$ as $a \to 0$ or $a \to +\infty$.\\
+ Hence
+ $$\underset{a \to 0+}{\lim} a^p \omega(a) = 0$$
+ and
+ $$\underset{b \to +\infty}{\lim} b^p \omega(b) = 0.$$\\
+
+
+
+
+
+
+\item (Exercise 5.16)\\
+ Suppose that $f$ is nonnegative and measurable on $E$ and that $\omega$ is finite on $(0, \infty)$. Show that Theorem 5.51 holds without any further restrictions (i.e., $f$ need not be in $L^p(E)$ and $|E|$ need not be finite) if we interpret $\int_0^\infty \alpha^p d\omega(\alpha) = \underset{b \to 0+}{ \underset{a \to +\infty}{\lim}} \int_b^a$. (For the first part, use the sets $E_{ab}$ to obtain the relation $\int_E f^p = - \int_{0}^{\infty} \alpha^p d\omega(\alpha)$. If either $\int_0^\infty \alpha^p d\omega(\alpha)$ or $\int_0^\infty \alpha^{p-1} \omega(\alpha) d\alpha$ is finite, use Lemma 5.50 and the results of Exercises 14 or 15 to integrate by parts.)\\
+ 
+
+ \textbf{Recall (Theorem 5.50):}\\
+ If $0 < p < \infty$ and $f \in L^p(E)$, then
+ $$\underset{\alpha \to +\infty}{\lim} \alpha^p \omega(\alpha) = 0$$
+
+ \textbf{Recall (Theorem 5.51):}\\
+ If $0 < p < \infty$, $f \geq 0$, and $f \in L^p(E)$, then
+ $$\int_E f^p = - \int_0^\infty \alpha^p d \omega(\alpha) = p \int_0^\infty \alpha^{p-1} \omega(\alpha) d \alpha$$
+ where the last integral may be interpreted as either a Lebesgue or an improper Riemann integral.\\
+ \newline
+ \textit{\textbf {Proof.}}\\
+
+ Let $E_{ab} = \{ x \in E : a < f(x) \leq b \}$ for $0 < a < b < \infty$.\\
+ $|E_{ab}|$ is finite since $\omega$ is finite on $(0,\infty)$, then we will have
+ $$\int_{E_{ab}} f^p = -\int_a^b \alpha^p d \omega(\alpha)$$
+ Thus
+ $$\int_E f^p
+ = \underset{b \to +\infty}{\underset{a \to 0+}{\lim}} \int_{E_{ab}} f^p 
+ = \underset{b \to +\infty}{\underset{a \to 0+}{\lim}} -\int_a^b \alpha^p d \omega(\alpha)
+ = - \int_0^\infty \alpha^p d \omega(\alpha)$$
+
+ If $\int_0^\infty \alpha^p d \omega(\alpha)$ and $\int_0^\infty \alpha^{p-1} \omega(\alpha) d \alpha$ are infinte, then the integral $-\int_0^\infty \alpha^p d \omega(\alpha) = p \int_0^\infty \alpha^{p-1} \omega(\alpha) d \alpha$.\\
+
+ If $\int_0^\infty \alpha^p d \omega(\alpha)$ is finite, then $f \in L^p(E)$.\\
+
+ By Theorem 5.50, we know
+ $$\underset{\alpha \to +\infty}{\lim} \alpha^p \omega(\alpha) = 0$$
+ By Exercise 5.14, we also know
+ $$\underset{\alpha \to 0+}{\lim} \alpha^p \omega(\alpha) = 0$$
+
+ Using integrate by parts, we then have
+ $$\begin{aligned}
+ - \int_0^\infty \alpha^p d \omega(\alpha)
+ &= \underset{\alpha \to +\infty}{\lim} - \alpha^p \omega(\alpha)
+ + \underset{\alpha \to 0+}{\lim} \alpha^p \omega(\alpha)
+ + p \int_0^\infty \alpha^{p-1} \omega(\alpha) d \alpha\\
+ &= p \int_0^\infty \alpha^{p-1} \omega(\alpha) d \alpha
+ \end{aligned}$$
+
+ If $\int_0^\infty \alpha^{p-1} \omega(\alpha) d \alpha$ is finite.\\
+ By Exercise 5.15, we know 
+ $$\underset{\alpha \to +\infty}{\lim} \alpha^p \omega(\alpha) = 0$$
+ and
+ $$\underset{\alpha \to 0+}{\lim} \alpha^p \omega(\alpha) = 0$$
+ then 
+ $$- \int_0^\infty \alpha^p d \omega(\alpha)
+ = p \int_0^\infty \alpha^{p-1} \omega(\alpha) d \alpha$$
+
+ Hence
+ $$\int_E f^p = - \int_0^\infty \alpha^p d \omega(\alpha) = p \int_0^\infty \alpha^{p-1} \omega(\alpha) d \alpha$$\\
+
+
+
+
+
+\item (Exercise 5.17)\\
+ If $f \geq 0$ and $\omega(\alpha) \leq c(1 + \alpha)^{-p}$ for all $\alpha > 0$, show that $f \in L^r$, $0 < r < p$.\\
+ \newline
+ \textit{\textbf {Proof.}}\\
+
+ If $r = 1$, then
+ $$\begin{aligned}
+ \int_E f^r
+ = r \int_0^\infty f^{(r-1)} \omega (\alpha) d \alpha
+ &= \int_0^\infty \omega(\alpha) d\alpha\\
+ &\leq \int_0^\infty \frac{c}{(1+\alpha)^p} d \alpha\\
+ &= \underset{\alpha \to +\infty}{\lim} c(-p+1)(1+\alpha)^{-p+1}
+ - \underset{\alpha \to 0+}{\lim} c(-p+1)(1+\alpha)^{-p+1}
+ \end{aligned}$$
+
+ Since $r = 1 < p$,
+ $$\underset{\alpha \to +\infty}{\lim} c(-p+1)(1+\alpha)^{-p+1} = 0$$
+ and
+ $$\underset{\alpha \to 0+}{\lim} c(-p+1)(1+\alpha)^{-p+1} = c$$
+ 
+ Then
+ $$\int_E f 
+ \leq \underset{\alpha \to +\infty}{\lim} c(-p+1)(1+\alpha)^{-p+1}
+ - \underset{\alpha \to 0+}{\lim} c(-p+1)(1+\alpha)^{-p+1}
+ = -c < \infty$$
+
+ Hence $f \in L$\\
+
+
+ If $r \neq 1$, then
+ $$\begin{aligned}
+ \int_E f^r
+ &= r \int_0^\infty \alpha^{r-1} \omega(\alpha) d \alpha\\
+ &\leq r \int_0^\infty \alpha^{r-1} c \cdot (1+\alpha)^{-p} d \alpha\\
+ &= rc \int_0^\infty \frac{\alpha^{r-1}}{(1+\alpha)^p} d \alpha\\
+ &= rc \left( \int_0^1 \frac{\alpha^{r-1}}{(1+\alpha)^p} d \alpha 
+ + \int_1^\infty \frac{\alpha^{r-1}}{(1+\alpha)^p} d \alpha \right)\\
+ &\leq rc \left( \int_0^1 \alpha^{r-1} d \alpha 
+ + \int_1^\infty \alpha^{r - p - 1} d \alpha \right)\\
+ &\leq rc \left( \frac{1}{r} + \frac{1}{r - p} \right)\\
+ &< \infty
+ \end{aligned}$$
+
+ Hence $f \in L^r$.\\
+
+
+
+
+\item (Exercise 5.18)\\
+ If $f \geq 0$, show that $f \in L^p$ if and only if $\sum_{k = -\infty}^{+\infty} 2^{kp} \omega(2^k) < +\infty$. (Use Exercise 16.)\\
+ \newline
+ \textit{\textbf {Proof.}}\\
+
+ If $f \geq 0$.\\
+
+ $(\Rightarrow)$\\
+ Suppose that $f \in L^p$.\\
+ By Exercise 5.16, then
+ $$\begin{aligned}
+ \int_E f^p
+ &= p \int_0^\infty \alpha^{p-1} \omega(\alpha) d \alpha\\
+ &= p \overset{+\infty}{\underset{k = -\infty}{\sum}} \int_{2^{k}}^{2^k+1} \alpha^{p-1} \omega(\alpha) d \alpha\\
+ &\geq p \overset{+\infty}{\underset{k = -\infty}{\sum}} 2^{k(p-1)} \omega(2^k) \cdot 2^k\\
+ &= p \overset{+\infty}{\underset{k = -\infty}{\sum}} 2^{kp} \omega(2^k)
+ \end{aligned}$$
+ Then
+ $$\frac{1}{p} \int_E f^p \geq \overset{k = +\infty}{\underset{k = -\infty}{\sum}} 2^{kp} \omega(2^k)$$
+ 
+ $\int_E f^p < +\infty$ since $f \in L^p$, hence
+ $$+\infty > \frac{1}{p} \int_E f^p \geq \overset{k = +\infty}{\underset{k = -\infty}{\sum}} 2^{kp} \omega(2^k)$$
+
+
+
+ $(\Leftarrow)$\\
+ By Exercise 5.16, then
+ $$\begin{aligned}
+ \int_E f^p
+ &= p \int_0^\infty \alpha^{p-1} \omega(\alpha) d \alpha\\
+ &= p \overset{+\infty}{\underset{k = -\infty}{\sum}} \int_{2^{k-1}}^{2^k} \alpha^{p-1} \omega(\alpha) d \alpha\\
+ &\leq p \overset{+\infty}{\underset{k = -\infty}{\sum}} 2^{k(p-1)} \omega(2^k) \cdot 2^k\\
+ &= p \overset{+\infty}{\underset{k = -\infty}{\sum}} 2^{kp} \omega(2^k)\\
+ &< +\infty
+ \end{aligned}$$
+
+ Hence $f \in L^p$.\\
+
+
+
+
+
+\item (Exercise 5.20)\\
+ Let $\mathbf{y} = T \mathbf{x}$ be a nonsingular linear transformation of $\mathbb{R}^n$. If $\int_{E} f(\mathbf{y}) d \mathbf{y}$ exists, show that
+ $$\int_{E} f(\mathbf{y}) d \mathbf{y} = |\det T| \int_{T^{-1} E} f(T \mathbf{x}) d \mathbf{x}$$
+ (The case when $f = \chi_{E_1}$, $E_1 \subset E$, follows from integrating the formula $\chi_{E_1} (T \mathbf{x}) = \chi_{T^{-1} E_1} (\mathbf{x})$ over $T^{-1}E$ and then applying Theorem 3.35.)\\
+ \newline
+ \textit{\textbf {Proof.}}\\
+
+ If $f$ is nonnegative simple function, let
+ $$f = \sum_{i = 1}^n a_i \chi_{E_i}$$
+
+ Then
+ $$\int_E f(y) dy
+ = \sum_{i=1}^n a_i |E_i|
+ = |\det T| \sum_{i=1}^n a_i |T^{-1} E_i|
+ = |\det T| \int_{T^{-1} E} f(Tx) dx$$\
+
+ If $f$ is nonnegative function, there exist $\{ f_k \}$ is a sequence of nonnegative simple function such that $f_k \nearrow f$, then
+ $$\begin{aligned}
+ \int_E f(y) dy
+ &= \underset{k \to \infty}{\lim} \int_E f_k (y) dy\\
+ &= |\det T| \underset{k \to \infty}{\lim} \int_{T^{-1} E} f_k (Tx) dx\\
+ &= |\det T| \int_{T^{-1} E} f(Tx) dx
+ \end{aligned}$$
+
+ In general, $f = f^+ - f^-$, then
+ $$\begin{aligned}
+ \int_E f(y) dy
+ &= \int_E f^+ (y) dy - \int_E f^- (y) dy\\
+ &= |\det T| (\int_{T^{-1} E} f^+ (Tx) dx - \int_{T^{-1} E} f^- (Tx) dx)\\
+ &= |\det T| \int_{T^{-1} E} f(Tx) dx
+ \end{aligned}$$\
+
+
+
+
+
+
+\item (Exercise 5.21)\\
+ If $\int_A f = 0$ for every measurable subset $A$ of a measurable set $E$, show that $f = 0$ a.e. in $E$.\\
+ \newline
+ \textit{\textbf {Proof.}}\\
+
+ For any $k \in \mathbb{Z}^+$, the
+ $$0 = \int_{\{ f > \frac{1}{k} \}} f
+ \geq \int_{\{ f > \frac{1}{k} \}} \frac{1}{k}
+ = \frac{1}{k} |\{ f > \frac{1}{k} \}|
+ \geq 0$$
+ and
+ $$0 = \int_{\{ f < -\frac{1}{k} \}} f
+ \leq \int_{\{ f < -\frac{1}{k} \}} -\frac{1}{k}
+ = -\frac{1}{k} |\{ f < -\frac{1}{k} \}|
+ \leq 0$$
+ 
+ Then $\{ f > \frac{1}{k} \}$ and $\{ f < -\frac{1}{k} \}$ are measure zero for all $k$.\\
+ This implies that
+ $$\{ f > 0 \} \cup \{ f < 0 \}
+ = \underset{k = 1}{\overset{\infty}{\cup}} \{ f > \frac{1}{k} \} \cup \{ f < -\frac{1}{k} \}$$
+ is measure zero.\\
+ Hence $f = 0$ a.e. in $E$.
+
+
+
+
+\end{enumerate}
+\end{document}
+
+
+

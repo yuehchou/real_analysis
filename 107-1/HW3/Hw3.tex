@@ -1,0 +1,362 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis \\ Homework 3}
+\author{Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+\item (Exercise 4.2)
+Let $f$ be a simple function, taking its distinct values on disjoint sets $E_1, ..., E_N$. Show taht $f$ is measurable if and only if $E_1, ..., E_N$ are measurable.\\
+\newline
+\textit{\textbf {Proof.}}\\
+By the statement in Exercise 4.2, we may assume that $f$ is a simple function and takes its distinct values $a_i \in \mathbb{R}$ on disjoint sets $E_i$ for all $i \in \{ 1,2,...,N \}$, then
+$$E_i = \{ x \in \cup_{i=1}^{N} E_i \hspace{0.1cm} | \hspace{0.1cm} f(x) = a_i \},
+\hspace{0.2 cm} \mathnormal{for} \hspace{0.1cm} \mathnormal{all} \hspace{0.1cm} i \in \{ 1,2,...,N \}$$
+($\Rightarrow$)\\
+Since $f$ is measurable, then for all $a_i \in \mathbb{R}$ and any $\epsilon > 0$ such that
+$\{ x \in  \cup_{i=1}^{N} E_i \hspace{0.1cm} | \hspace{0.1cm} f(x) > a_i + \epsilon \}$
+and
+$\{ x \in  \cup_{i=1}^{N} E_i \hspace{0.1cm} | \hspace{0.1cm} f(x) > a_i - \epsilon \}$
+are measurable for all $i \in \{ 1,2,...,N \}$.\\
+Futhermore, for all $i \in \{ 1,2,...,N \}$, we know that 
+$$\begin{aligned}
+E_i
+&= \{ x \in \cup_{i=1}^{N} E_i \hspace{0.1cm} | \hspace{0.1cm} f(x) = a_i \}\\
+&= \{ x \in  \cup_{i=1}^{N} E_i \hspace{0.1cm} | \hspace{0.1cm} f(x) > a_i - \epsilon \}
+- \{ x \in  \cup_{i=1}^{N} E_i \hspace{0.1cm} | \hspace{0.1cm} f(x) > a_i + \epsilon \}
+\end{aligned}$$
+Hence, $E_i$ is also measurable for all $i \in \{ 1,2,...,N \}$.\\
+
+($\Leftarrow$)\\
+To prove $f$ is measurable function, that is to prove for any $a \in \mathbb{R}$, the set $\{ x \in \cup_{i = 1}^{N} E_i \hspace{0.1cm} | \hspace{0.1 cm} f(x) > a \}$ is measurable.\\
+Take $a \in \mathbb{R}$.
+
+\begin{enumerate}
+\item If $a > a_1, ..., a_N$, then there is NO $x \in \cup_{i = 1}^{N} E_i$ such that $f(x) > a$, so the set $\{ x \in \cup_{i = 1}^{N} E_i \hspace{0.1cm} | \hspace{0.1 cm} f(x) > a \}$ is measure zero and also measurable.\\
+
+\item If $a < a_1, ..., a_N$, then for all $x \in \cup_{i = 1}^{N} E_i$ such that $f(x) > a$, so the set
+$$\{ x \in \cup_{i = 1}^{N} E_i \hspace{0.1cm} | \hspace{0.1 cm} f(x) > a \}
+= \{ x \in \cup_{i = 1}^{N} E_i \hspace{0.1cm} | \hspace{0.1 cm} f(x) = a_1, a_2, ..., a_N \}
+= \cup_{i = 1}^{N} E_i$$
+is measurable.
+
+\item If $a_{i_1} < a_{i_2} < ... < a_{i_k} \leq a < a_{j_1} < a_{j_2} < ... < a_{j_l}$ where $k, l \in \mathbb{N}$ and $k+l = N$, then
+$$\{ x \in \cup_{i = 1}^{N} E_i \hspace{0.1cm} | \hspace{0.1 cm} f(x) > a \}
+= \{ x \in \cup_{i = 1}^{N} E_i \hspace{0.1cm} | \hspace{0.1 cm} f(x) =  a_{j_1}, ..., a_{j_l} \}
+= \cup_{i = j_1, ..., j_l} E_i$$
+is measurable.
+\end{enumerate}
+
+By above (a), (b) and (c), we know that for any $a \in \mathrm{R}$,the set 
+$\{ x \in \cup_{i = 1}^{N} E_i \hspace{0.1cm} | \hspace{0.1 cm} f(x) > a \}$ is measurable, therefore, $f$ is measurable.
+\newline
+
+
+
+
+
+
+
+\item (Exercise 4.3)
+Theorem 4.3 can be used to define measurability for vector-valued (e.g.,
+complex-valued) functions. Suppose, for example, that $f$ and $g$ are realvalued
+and finite in $\mathbb{R}^n$, and let $F(x) = (f(x), g(x))$. Then $F$ is said to be measurable if $F^{-1}(G)$ is measurable for every open $G \in \mathbb{R}^2$. Prove that $F$ is measurable if and only if both $f$ and $g$ are measurable in $\mathbb{R}^n$.\\
+\newline
+\textit{\textbf {Proof.}}\\
+($\Rightarrow$)\\
+Suppose that $F$ is measurable. Then $F^{-1}((a,\infty) \times \mathrm{R}) = \{ f > a \}$ and $F^{-1}(\mathrm{R} \times (b,\infty)) = \{ g > b \}$ are measurable for $a,b \in \mathrm{R}$, hence, $f$ and $g$ are measurable.\\
+
+($\Leftarrow$)\\
+Suppose that $f$ and $g$ are measurable. Then
+$$\{ a \leq f \leq b \} \hspace{0.5 cm} \mathnormal{and} \hspace{0.5cm} \{ c \leq g \leq d \}$$
+are measurable for all real $a,b,c$ and $d$.\\\\
+\textbf{Recall: }\\
+.\hspace{1cm} All open sets in $\mathrm{R}^2$ can be written as a union of nonoverlapping closed rectangles.\\
+Then, if $G$ is an open set in $\mathrm{R}^2$, we have\\
+$$\begin{aligned}
+F^{-1}(G) 
+&= F^{-1} \left( \cup_{k=1}^{\infty} [a_k,b_k] \times [c_k,d_k] \right)\\
+&= \cup_{k=1}^{\infty} F^{-1} ([a_k,b_k] \times [c_k,d_k])\\
+&= \cup_{k=1}^{\infty} (\{ a_k \leq f \leq b_k\}) \cap (\{ c_k \leq g \leq d_k \})
+\end{aligned}$$
+This is a countable union of measurable sets, hence $F$ is measurable.
+\newline
+
+
+
+
+
+
+\item (Exercise 4.4)
+Let $f$ be defined and measurable in $\mathrm{R}^n$. If $T$ is a nonsingular linear transformation of $\mathbb{R}^n$, show that $f(Tx)$ is measurable. (If $E_1 = \{ x:f(x) >a\}$ and $E_2 = \{ x:f(Tx) >a \}$, show that $E_2=T^{-1}E_1$.)\\
+\newline
+\textit{\textbf {Proof.}}\\
+Since $f$ is defined and measurable in $\mathrm{R}^n$, then $E_1$ is measurable.\\
+Follow the hint, let $E_1 = \{ x:f(x) >a\}$ and $E_2 = \{ x:f(Tx) >a \}$, we continue to show that $E_2=T^{-1}E_1$.
+
+\begin{enumerate}
+
+\item For every $x \in E_2$, there will exist $y$ such that $Tx = y$, then $y \in E_1$ and $x = T^{-1}y$. Hence, $x \in T^{-1} E_1$.
+
+\item Futhermore, for every $x \in T^{-1} E_1$, there will exist $y \in E_1$ such that $x = T^{-1}y$, then $Tx = y$. Hence, $x \in E_2$.
+
+\end{enumerate}
+
+By above (a) and (b), we know that $E_2=T^{-1}E_1$. Since $T$ is a nonsingular linear transformation, $T^{-1}$ will also be a linear transformation.\\
+By Theorem 3.33 in the textbook, since $E_1$ is measurable and $E_2=T^{-1}E_1$, then $T^{-1}$ will map the measurable set $E_1$ into the measurable set $E_2$.\\
+Hence, $E_2$ is measurable, and so is $f(Tx)$.
+\newline
+
+
+
+\newpage
+
+
+
+
+\item (Exercise 4.5)
+Give an example to show that $\phi (f(x))$ may not be measurable if $\phi$ and $f$ are measurable and finite. (Let $F$ be the Cantor–Lebesgue function and let $f$ be its inverse, suitably defined. Let $\phi$ be the characteristic function of a set of measure zero whose image under $F$ is not measurable.) Show that the same may be true even if $f$ is continuous. (Let $g(x) = x + F(x)$, where $F$ is the Cantor–Lebesgue function, and consider $f = g^{-1}$.)\\
+\newline
+\textit{\textbf {Proof.}}
+
+\begin{enumerate}
+
+\item
+Follow the hint, let $F$ be the Cantor–Lebesgue function and let $f$ be its inverse, suitably defined, where $f$ be defined as
+$$f(x) = \inf \{ a \in [0,1]: F(a) = x \}$$
+for $x \in [0,1]$, then we will have $f(F(x)) = F(f(x))$ for all $x \in C'$, where $C'$ is the Cantor-Lebesgue set removed all right end-points of every subinterval. Hence, $f$ is the inverse of $F$ restricted to $C'$.\
+
+See the proof in Exercise 3.17 (in Hw2), the above statement implies $F(C') = [0,1]$. Since $|[0,1]| = 1 > 0$, there exists $B \subseteq F(C')$ such that $B$ is a non-measurable set.\\
+Let
+$$A = \{ x \in C' | F(x) \in B \}$$
+However, $C'$ is measure zero and $A \subseteq C'$, therefore, $A$ is also measurable zero.\\
+Define characteristic function $\phi(x)$ as the same as the function in the textbook,
+$$\phi(x) = \chi_A(x) = \left\{\begin{array}{ll}
+1, & \mbox{if $x \in A$} \\
+0, & \mbox{if $x \notin A$}
+\end{array} \right.$$
+Then 
+$$\begin{aligned}
+\{ x \in C': \phi (f(x)) = 1 \}
+&= f^{-1}(\phi^{-1} (1))\\
+&= F(\phi^{-1} (1))\\
+&= F(A)
+\end{aligned}$$
+By above, we know that $F(x \in A) \in B$ and $B$ is non-measurable, therefore,\\$\{ x \in C': \phi (f(x)) = 1 \}$ is non-measurable, which implies $\phi (f(x))$ is also non-measurable.\\
+
+\item
+Follow the hint, let $g(x) = x + F(x)$, where $F$ is the Cantor–Lebesgue function, $x \in C$ where $C$ is the Cantor set and consider $f = g^{-1}$. Then $g:[0,1] \to [0,2]$ is strictly monotone and continuous, thus it has a continuous inverse.\
+
+We claim that $|g(C)| = 1$, since $F$ is constant on every interval in $[0,1] \setminus C$, so $g$ maps such an interval to an interval of the same length, therefore $|g([0,1]) \setminus C| = 1$. Since $|g([0,1])| = |[0,2]| = 2$, this proves the claim that $|g(C)| = 1$.\
+
+Similarly in (a), there exists $B \subseteq g(C)$ such that $B$ is a non-measurable set.\\
+Let
+$$A = \{ x \in C' | g(x) \in B \},$$
+then $A$ is measure zero.\\
+Define $\phi(x) = \chi_A(x)$, then
+$$f^{-1}(\phi^{-1} (0,2) ) = f^{-1}(A) = g(A)$$
+By above, we know that $g(x \in A) \in B$ and $B$ is non-measurable, therefore, $\phi (f(x))$ is also non-measurable.\\
+
+\end{enumerate}
+
+
+
+\newpage
+
+
+
+\item (Exercise 4.7)
+Let $f$ be usc and less than $+\infty$ on a compact set $E$. Show that $f$ is bounded above on $E$. Show also that $f$ assumes its maximum on $E$, that is, that there exists $x_0 \in E$ such that $f(x_0) \geq f(x)$ for all $x \in E$.\\
+\newline
+\textit{\textbf {Proof.}}
+
+\begin{enumerate}
+\item
+Suppose that $x_1, x_2, ..., x_N$ are the limit points of $E$.\\
+$f$ is usc and less than $+\infty$ on the set $E$, so for all $x_i$ where $i \in \{ 1,2,...,N \}$, then $f(x_i)$ will also be finite and usc at $x_i$.\\
+Therefore, for all $M \in \mathrm{R}$ such that $f(x_i) < M$, then there must exist $\delta_{x_i} > 0$ such that $f(x) < M$ where $x \in  B(x_i, \delta_{x_i}) \cap E$.\\
+Pick $M = max \{ f(x_1), f(x_2), ..., f(x_N) \} + 1$.\\
+Futhermore, $E$ is compact so we will have $\cup_{i=1}^{N} B(x_i, \delta_{x_i}) \supset E$.\\
+Hence, $f$ is bounded above by $M$ on $E$.
+
+\item
+By above, since $f$ is bounded above on the set $E$, so there must exist the sequence {$f(x_k)$} such that $f(x_k) \to \sup f(E)$.\\
+Hence, it has convergent subsequence $\{ x_{k_i} \}$ in $\{ x_k \}$. Let $x_{k_i} \to x_0$, then for every $\epsilon > 0$, there exists an integer $n > 0$ such that for $i \geq n$, we have
+$$f(x_{k_i}) < f(x_0) + \epsilon$$
+Thus that
+$$\sup f(E) \leq f(x_0) + \epsilon$$
+for any $\epsilon > 0$.\\
+Since $\epsilon$ is arbitrary chosen then $\sup f(E) \leq f(x_0)$.\\
+Hence, $f$ has its maximum on $E$.\\
+\end{enumerate}
+
+
+
+
+
+\item (Exercise 4.8)
+\begin{enumerate}
+
+\item  Let $f$ and $g$ be two functions that are usc at $x_0$. Show that $f+g$ is usc at $x_0$. Is $f-g$ usc at x0? When is $fg$ usc at $x_0$?
+
+\item If $\{ f_k \}$ is a sequence of functions that are usc at $x_0$, show that $\inf_k f_k(x)$ is usc at $x_0$.
+
+\item If $\{ f_k \}$ is a sequence of functions that are usc at $x_0$ and converge uniformly near $x_0$, show that $\lim f_k$ is usc at $x_0$.\\
+
+\end{enumerate}
+\textit{\textbf {Proof.}}
+
+\begin{enumerate}
+
+\item
+\begin{enumerate}
+
+\item
+Since $f$ and $g$ are two functions that are usc at $x_0$, we will have\\
+$$\begin{aligned}
+{\lim \sup}_{x \to x_0, \hspace{0.1cm} x \in E} ( f(x) + g(x) )
+& \leq {\lim \sup}_{x \to x_0, \hspace{0.1cm} x \in E} f(x) + {\lim \sup}_{x \to x_0, \hspace{0.1cm} x \in E} g(x)\\
+& \leq f(x_0) + g(x_0)
+\end{aligned}$$
+Hence, $f + g$ is usc at $x_0$.\\
+
+\item
+Since $f$ is usc at $x_0$, then
+$${\lim \sup}_{x \to x_0, \hspace{0.1cm} x \in E} f(x) \leq f(x_0).$$
+Since $g$ is usc at $x_0$, then
+$${\lim \sup}_{x \to x_0, \hspace{0.1cm} x \in E} g(x) \leq g(x_0)
+\Rightarrow
+{\lim \inf}_{x \to x_0, \hspace{0.1cm} x \in E} (-g(x)) \geq (-g(x_0))$$
+There is "NOT" sufficient to say that
+$${\lim \sup}_{x \to x_0, \hspace{0.1cm} x \in E} [f(x) + (-g(x))] \leq f(x) + (-g(x)) = f(x) - g(x)$$
+Hence, $f - g$ is "NOT" usc at $x_0$.\\
+
+\item Since $f$ and $g$ are usc at $x_0$, then
+$$\begin{aligned}
+{\lim \sup}_{x \to x_0, \hspace{0.1cm} x \in E} (fg)(x)
+& \leq ({\lim \sup}_{x \to x_0, \hspace{0.1cm} x \in E} f(x) )
+({\lim \sup}_{x \to x_0, \hspace{0.1cm} x \in E} g(x))\\
+& \leq f(x_0)g(x_0)
+\end{aligned}$$
+Hence, $fg$ is usc at $x_0$.\\
+
+\end{enumerate}
+
+\item Let $f(x) = \inf_{k \in \mathrm{N}}f_k(x)$, then
+$${\lim \sup}_{x \to x_0} f(x) 
+= {\lim \sup}_{x \to x_0} (\inf_{k \in \mathrm{N}}f_k(x))
+\leq {\lim \sup}_{x \to x_0}f_k(x) \leq f_k(x_0)$$
+for all $k \in \mathrm{N}$.\\
+Then
+$${\lim \sup}_{x \to x_0} f(x)
+\leq \inf_{k \in \mathrm{N}}f_k(x_0) = f(x_0)$$
+Hence, $f(x) = \inf_k f_k(x)$ is usc at $x_0$.\\
+
+
+\item 
+By definition of uniformly convergence, let $f(x) = \lim_{k \to \infty} f_k(x)$, then for $\epsilon > 0$, there exists a $k \in \mathrm{N}$ such that $\sup_{x \in E} \{ | f(x) - f_k(x)| \} < \epsilon$.\\
+Since $\{ f_k \}_{k=1}^{\infty}$ converge uniformly and are usc at $x_0$, we have
+$$
+{\lim \sup}_{x \to x_0} f(x) < {\lim \sup}_{x \to x_0} f_k(x) + \epsilon
+\leq f_k(x_0) + \epsilon < f(x_0) + 2\epsilon$$
+for any $\epsilon > 0$.\\
+However, $\epsilon$ is arbitrary chosen, hence, $f(x) = \lim_{k \to \infty} f_k(x)$ is usc at $x_0$.\\
+\end{enumerate}
+
+
+
+
+
+
+\item (Exercise 4.9)
+\begin{enumerate}
+
+\item Show that the limit of a decreasing (increasing) sequence of functions usc (lsc) at $x_0$ is usc (lsc) at $x_0$. In particular, the limit of a decreasing (increasing) sequence of functions continuous at $x_0$ is usc (lsc) at $x_0$.
+
+\item Let $f$ be usc and less than $+\infty$ on $[a,b]$. Show that there exist continuous $f_k$ on $[a,b]$ such that $f_k \searrow f$. (First show that there are usc step functions $f_k \searrow f$.)\\
+
+\end{enumerate}
+\textit{\textbf {Proof.}}
+
+\begin{enumerate}
+
+\item
+\begin{enumerate}
+\item
+Let $\{ f_k \}_{k=1}^{\infty}$ be the decreasing sequence such that $f_k \searrow f$, then
+$$\lim_{x \to x_0} \sup_{ x \in E} f(x)
+\leq \lim_{x \to x_0} \sup_{ x \in E} f_k(x)
+\leq f_k(x_0).$$
+Since $f_k(x_0) \searrow f(x_0)$, we will have
+$$\lim_{x \to x_0} \sup_{ x \in E} f(x) \leq f(x_0)$$
+Hence, $f$ is usc at $x_0$.\\
+
+\item
+Let $\{ f_k \}_{k=1}^{\infty}$ be the increasing sequence such that $f_k \nearrow f$, then $-f_k \searrow -f$, therefore,
+$$\lim_{x \to x_0} \sup_{ x \in E} -f(x) \leq -f(x_0)
+\Rightarrow
+\lim_{x \to x_0} \inf_{ x \in E} f(x) \geq f(x_0).$$
+Hence, $f$ is lsc at $x_0$.\\
+
+\item
+In particular, if every $f_k$ is continuous at $x_0$, it follows that $|f(x_0)| < +\infty$ and $f$ is both usc and lsc at $x_0$.\\
+If $f_k \searrow f$, then $f$ is usc at $x_0$.\\
+If $f_k \nearrow f$, then $f$ is lsc at $x_0$.\\
+
+\end{enumerate}
+
+\newpage
+
+\item
+First, we assume $f \leq 0$ and finite-valued, then let $f_n:[a,b] \to \mathrm{R}$ with
+$$f_n(x) = \sup\{ f(t) - n|x - t| | t \in[a,b] \}.$$
+Then for all $n$,
+$$\begin{aligned}
+f_n(x) 
+& = \sup \{ f(t) - n |x - t| | t \in [a,b] \}\\
+& \leq f(x) - n|x-x|\\
+& = f(x)
+\end{aligned}$$
+and for every $\epsilon > 0$ and $x, y \in [a,b]$ with $|x - y| < \frac{\epsilon}{n}$,
+$$\begin{aligned}
+|f_n(x) - f_n(y)|
+& \leq |\sup\{ f(t) - n|x - t| - f(t) + n|y-t| | t \in [a,b] \}|\\
+& \leq n |x - y|\\
+& < \epsilon
+\end{aligned}$$
+For every $\epsilon > 0$, for each $n$ we can choose $t_n \in [a,b]$ such that
+$$f(x)
+\leq f_n(x)
+< f(t_n) - n|x - t_n| + \frac{\epsilon}{2} \leq -n|x-t_n| + \frac{\epsilon}{2}$$
+Then $|x - t_n| \to 0$ as $n \to \infty$. Since $f$ is usc, then $\lim_{n \to \infty} \sup f(t_n) \leq f(x)$. There is $M > 0$ such that for all $n \geq M$, we have $f(t_n) < f(x) + \epsilon$.\\
+For $n \geq M$, then
+$$\begin{aligned}
+f_n(x) - f(x)
+& < f(t_n) - n|x - t_n| + \frac{\epsilon}{2} - f(x)\\
+& \leq f(t_n) + \frac{\epsilon}{2} - f(x)\\
+&< f(x) + \frac{\epsilon}{2} + \frac{\epsilon}{2} - f(x)\\
+&= \epsilon
+\end{aligned}$$
+
+Thus $\{ f_n \}$ is decreasing sequence of continuous functions with $f_n \searrow f$. In general $f$, let $h(x) = -\frac{1}{2} + \arctan x$, $x \in \bar{\mathrm{R}}$, then $hf$ is finite-valued, usc and $f \leq 0$. So we can find contiuous function $g_n \searrow hf$.\\
+Let $f_n = h^{-1}g_n$, then $f_n \searrow f$.
+
+\end{enumerate}
+
+
+
+\end{enumerate}
+\end{document}
+
+
+
+

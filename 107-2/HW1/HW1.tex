@@ -1,0 +1,258 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis \\ Homework 1}
+\author{Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\item (Exercise 8.4)\\
+		Let $f$ and $g$ be real-valued and not identically 0 (i.e., neither function equals 0 a.e.), and let $1 < p < \infty$. Prove that equality holds in the inequality $|\int fg| \leq ||f||_p ||g||_{p'}$ if and only if $fg$ has constant sign a.e. and $|f|^p$ is a multiple of $|g|^{p'}$ a.e. If $||f+g||_p = ||f||_p + ||g||_p$ and $g \neq 0$ in Minkowski’s inequality, show that $f$ is a multiple of $g$. Find analogues of these results for the spaces $l^p$.\\
+	\newline
+	\textit{\textbf {Proof.}}\\
+	\begin{enumerate}
+		\item [(i)]
+			$(\Leftarrow)$\\
+			Let $|f|^p = c|g|^{p'}$ and $1/p + 1/p' = 1$, then
+				$$||f||_p ||g||_{p'}
+				= \left( \int |f|^p \right)^{1/p} (\int |g|^{p'})^{1/p'}
+				= c^{1/p} \int |g|^{p'}$$
+			and
+				$$|fg| = |f||g| = c^{1/p}|g|^{p'}$$
+			Since $f$ and $g$ be real-valued and not identically 0, then
+				$$|\int fg| = \int|f||g| = c^{1/p} \int |g|^{p'} = ||f||_p ||g||_{p'}$$
+
+			$(\Rightarrow)$\\
+			If $|\int fg| = ||f||_p ||g||_{p'}$, $1/p + 1/p' = 1$, $f$ and $g$ be real-valued and not identically 0, then
+				$$|\int fg| = \int |fg| = ||f||_p ||g||_{p'}
+				\Rightarrow \frac{\int |fg|}{||f||_p ||g||_{p'}}
+				= \int \frac{|f|}{||f||_p} \frac{|g|}{||g||_{p'}}
+				= 1$$
+			Let $F = \frac{|f|}{||f||_p}$ and $G = \frac{|g|}{||g||_{p'}}$, then
+				$$\int F^p = 1 \hspace{0.2 cm} \text{and} \hspace{0.2cm} \int G^{p'} = 1$$
+			So
+				$$\frac{1}{p} + \frac{1}{p'} = 1
+				= \frac{1}{p} \int F^p + \frac{1}{p'} \int G^{p'}
+				= \int FG
+				\Rightarrow \int \left( \frac{1}{p} F^p + \frac{1}{p'} G^{p'} - FG \right)
+				= 0$$
+			Hence
+				$$FG = \frac{F^p}{p} + \frac{G^{p'}}{p'}$$
+			By Young's inequality, we know that the equality holds in
+				$$FG \leq \frac{F^p}{p} + \frac{G^{p'}}{p'}$$
+			if only if
+				$$F^p = G^{p'}$$
+			So
+				$$\frac{|f|^p}{||f||_p^p} = \frac{|g|^{p'}}{||g||_{p'}^{p'}}
+				\Rightarrow |f|^p = \frac{||f||_p^p}{||g||_{p'}^{p'}}|g|^{p'} = c \hspace{0.1cm} |g|$$
+			where $c$ is the constant and $c = \frac{||f||_p^p}{||g||_{p'}^{p'}}$
+
+
+		\item [(ii)]
+			$$\begin{aligned}
+			||f + g||_p^p
+			&= \int |f + g|^p = \int |f + g| \cdot |f + g|^{p-1}\\
+			&\leq \int (|f| + |g|) \cdot |f + g|^{p-1}\\
+			&= \int |f| |f+g|^{p-1} + \int |g| |f+g|^{p-1}\\
+			\text{By H$\ddot{o}$lder's inequality} \hspace{0.2cm}
+			&\leq \left( \left( \int |f|^p \right)^{1/p} + \left( \int |g|^p \right)^{1/p} \right) \cdot \left( \int |f+g|^{(p-1)(\frac{p}{p-1})} \right)^{1 - \frac{1}{p}}\\
+			&= (||f||_p + ||g||_p) \frac{||f+g||_p^p}{||f+g||_p}
+			\end{aligned}$$
+
+			Since $||f+g||_p = ||f||_p + ||g||_p$, then the equality will hold in the H$\ddot{o}$lder's inequality, so we have
+				$$|f| = c_f \cdot |f+g|^{p-1} \hspace{0.4cm} \text{and} \hspace{0.4cm} |g| = c_g \cdot |f+g|^{p-1}$$
+			where $c_f$ and $c_g$ are the constant.
+			Hence
+				$$|f| = \frac{c_f}{c_g} \cdot |g| = C \cdot |g|$$
+			where $C$ is the constant.\\
+
+		\item [(iii)]
+			In $l^p$ space, the proof is similar with (i) and (ii), H$\ddot{\text{o}}$lder's inequality states that
+				$$\sum_k |a_k b_k| \leq \left( \sum_k |a_k|^p \right)^{1/p} \left( \sum_k |b_k|^{p'} \right)^{1/p'}$$
+			with equality when
+				$$|b_k|^p = c \cdot |a_k|^{p'}$$
+			where $c$ is the constant.\\
+			Also, Minkowski's inequality states
+				$$\left( \sum_k |a_k + b_k|^p \right)^{1/p} \leq \left( \sum_k |a_k|^p \right)^{1/p} + \left( \sum_k |b_k|^p \right)^{1/p}$$
+			with equality when
+				$$a_k = c_k \cdot b_k$$
+			where $c_k$ is the constant.\\
+
+	\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\item (Exercise 8.5)\\
+		For $0 < p \leq \infty$ and $0 < |E| < +\infty$, define
+			$$N_p[f] = \left( \frac{1}{|E|} \int_E |f|^p \right)^{1/p},$$
+		where $N_\infty[f]$ means $||f||_\infty$. Prove that if $p_1 < p_2$, then $N_{p_1}[f] \leq N_{p_2}[f]$. Prove also that if $1 \leq p \leq \infty$, then $N_p[f+g] \leq N_p[f] + N_p[g]$, $(1/|E|)\int_E |fg| \leq N_p[f] N_{p'}[g]$, $1/p + 1/p' = 1$, and that $\lim_{p \to \infty} N_p[f] = ||f||_\infty$. Thus, $N_p$ behaves like $||\cdot||_p$ but has the advantage of being monotone in $p$. Recall Exercise 28 of Chapter 5.\\
+	\newline
+ 	\textit{\textbf {Proof.}}\\
+ 	\begin{enumerate}
+ 		\item[(i)]
+	 			$$N_{p_1}[f]
+	 			= \left( \frac{1}{|E|} \int_E |f|^{p_1} \right)^{1/p_1}
+	 			\Rightarrow |E| \left( N_{p_1}[f] \right)^{p_1}
+	 			= \int_E |f|^{p_1} \cdot 1$$
+	 		Since $p_1 < p_2$, then $1 \leq \frac{p_2}{p_1} \leq \infty$, then by H$\ddot{\text{o}}$lder's inequality, we have
+	 			$$\begin{aligned}
+	 			&\int_E |f|^{p_1} \cdot 1
+	 			\leq \left( \int_E (|f|^{p_1})^{\frac{p_2}{p_1}} \right)^{\frac{p_1}{p_2}} \cdot \left( \int_E 1^{\frac{p_2}{p_2 - p_1}} \right)^{\frac{p_2 - p_1}{p_2}}
+	 			= \left( \int_E |f|^{p_2} \right)^{\frac{p_1}{p_2}} \cdot |E|^{\frac{p_2 - p_1}{p_2}}\\
+	 			&\Rightarrow N_{p_1}[f]
+	 			= \left( \frac{1}{|E|} \int_E |f|^{p_1} \right)^{1/p_1}
+	 			\leq |E|^{\frac{-1}{p_2}} \left( \int_E |f|^{p_2} \right)^{1/p_2}
+	 			= N_{p_2}[f]
+	 			\end{aligned}$$
+
+	 	\item[(ii)]
+	 		Since $1 \leq p \leq \infty$, then by Minkowski's inequality, we have
+	 			$$||f + g||_p \leq ||f||_p + ||g||_p
+	 			\Rightarrow N_p[f+g] \leq N_p[f] + N_p[g]$$
+
+	 	\item[(iii)]
+	 		Since $1 \leq p \leq \infty$ and $1/p + 1/p' = 1$, then by H$\ddot{\text{o}}$lder's inequality, we have
+	 			$$||fg||_1 \leq ||f||_p + ||g||_{p'}
+	 			\Rightarrow \frac{1}{|E|} \int_E |fg|
+	 			\leq \left( \frac{1}{|E|} \right)^{\frac{1}{p}} ||f||_p + \left( \frac{1}{|E|} \right)^{\frac{1}{p'}} ||g||_{p'}
+	 			= N_p[f] N_{p'}[g]$$
+
+	 	\item[(iv)]
+	 		Since $\underset{p \to \infty}{\lim} |E|^{-1/p} = 1$, then
+	 			$$\lim_{p \to \infty} N_p[f]
+	 			= \lim_{p \to \infty} \left( \frac{1}{|E|} \int_E |f|^p \right)^{1/p}
+	 			= \lim_{p \to \infty} |E|^{-1/p} ||f||_p
+	 			= ||f||_\infty$$
+
+ 	\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\item (Exercise 8.7)\\
+		Show that when $0 < p < 1$, the neighborhoods $\{f : ||f||_p < \epsilon \}$ of zero in $L^p(0,1)$ are not convex. (Let $f = \chi_{(0,\epsilon^p)}$, and $g = \chi_{(\epsilon^p, 2\epsilon^p)}$. Show that $||f||_p = ||g||_p = \epsilon$, but that $||\frac{1}{2}f + \frac{1}{2}g ||_p > \epsilon$.)\\
+	\newline
+ 	\textit{\textbf {Proof.}}\\
+ 		For $\epsilon > 0$, let $f = \chi_{(0,\epsilon^p)}$, and $g = \chi_{(\epsilon^p, 2\epsilon^p)}$, then
+ 			$$||f||_p = \left( \int_0^{\epsilon^p} 1^p dx \right)^{1/p} = \epsilon$$
+ 			$$||g||_p = \left( \int_{\epsilon^p}^{2\epsilon^p} 1^p dx \right)^{1/p} = \epsilon$$
+ 			$$||\frac{1}{2}f + \frac{1}{2}g||_p^p
+ 			= \int_0^{2 \epsilon^p} |\frac{1}{2}f + \frac{1}{2}g|^p dx
+ 			= \int_0^{\epsilon^p} \frac{1}{2^p} dx + \int_{\epsilon^p}^{2\epsilon^p} \frac{1}{2^p} dx
+ 			= \frac{\epsilon^p}{2^{p-1}}$$
+ 		Then
+ 			$$||\frac{1}{2}f + \frac{1}{2}g||_p = \frac{\epsilon}{2^{1-1/p}} > \frac{1}{2}||f||_p + \frac{1}{2}||g||_p = \epsilon, \hspace{0.3cm} 0 < p < 1$$
+ 		So $\{f : ||f||_p < \epsilon \}$ is not convex for every $\epsilon > 0$ and $0 < p < 1$.\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\item (Exercise 8.9)\\
+		If $f$ is real-valued and measurable on $E$, $|E| > 0$, define its \textit{essential infimum} on $E$ by
+			$$ess_E \inf f = \sup \{ \alpha : | \{ x \in E : f(x) < \alpha \} | = 0 \}.$$
+		If $f \geq 0$, show that $ess_E \inf f = (ess_E \sup 1/f)^{-1}$.\\
+	\newline
+ 	\textit{\textbf {Proof.}}\\
+ 		$$\begin{aligned}
+ 		ess_E \inf f
+ 		&= \sup \{ \alpha : | \{ x \in E : f(x) < \alpha \} | = 0 \}\\
+ 		&= \sup \{ \alpha : | \{ x \in E : \frac{1}{f(x)} > \frac{1}{\alpha} \} | = 0 \}\\
+ 		&= \inf \{ \frac{1}{\alpha} : | \{ x \in E : \frac{1}{f(x)} > \frac{1}{\alpha} \} | = 0 \}\\
+ 		&= \left( \inf \{ \alpha : | \{ x \in E : \frac{1}{f(x)} > \alpha \} | = 0 \} \right)^{-1}\\
+ 		&= (ess_E \sup 1/f)^{-1}
+ 		\end{aligned}$$\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\item (Exercise 8.11)\\
+		If $f_k \to f$ in $L^p$, $1 \leq p < \infty$, $g_k \to g$ pointwise, and $||g_k||_\infty \leq M$ for all $k$, prove that $f_k g_k \to fg$ in $L^p$.\\
+	\newline
+ 	\textit{\textbf {Proof.}}\\
+ 		Since $f_k \to f$ in $L^p$, $1 \leq p < \infty$, then $||f_k - f||^p \to 0$.\\
+ 		Since $g_k \to g$ pointwise, then $|fg_k - fg|^p \to 0$ pointwise.\\
+ 		By Minkowski's Inequality, we have
+ 			$$\begin{aligned}
+ 			||f_k g_k - fg||_p
+ 			&\leq ||f_k g_k - f g_k||_p + ||f g_k  - fg||_p\\
+ 			&\leq M || f_k - f ||_p + \left( \int |f g_k - fg|^p \right)^{1/p}
+ 			\end{aligned}$$
+ 		So $||f_k g_k - fg||_p \to 0$, that is $f_k g_k \to fg$ in $L^p$.\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\item (Exercise 8.12)\\
+		Let $f, \{f_k\} \in L^p$, $0 < p \leq \infty$. Show that if $||f - f_k||_p \to 0$, then $||f_k||_p \to ||f||_p$. Conversely, if $f_k \to f$ a.e. and $||f_k||_p \to ||f||_p$, $0 < p < \infty$, show that $||f - f_k||_p \to 0$. Show that the converse may fail for $p = \infty$. (For the converse when $0 < p < \infty$, note that $|f - f_k|^p \leq c(|f|^p + |f_k|^p )$ with $c = max \{ 2^{p-1}, 1 \}$; then apply, for example, the sequential version of Lebesgue's dominated convergence theorem given in Exercise 23 of Chapter 5.)\\
+	\newline
+ 	\textit{\textbf {Proof.}}\\
+ 	\begin{enumerate}
+ 		\item [(i)]
+ 			For $1 \leq p \leq \infty$, we have
+	 			$$\left| ||f_k||_p - ||f||_p \right|
+	 			\leq |||f_k - f||_p| \to 0$$
+	 	 	So $||f_k||_p \to ||f||_p$\\
+	 	 	For $0 < p < 1$, we have
+	 	 		$$\left| ||f_k||_p^p - ||f||_p^p \right|
+	 			\leq |||f_k - f||_p^p| \to 0$$
+	 	 	So $||f_k||_p^p \to ||f||_p^p$, hence $||f_k||_p \to ||f||_p$\\
+
+	 	\item [(ii)]
+	 		Conversely, since $f_k \to f$ a.e., then $|f - f_k| \to 0$ a.e.\\
+	 		Let $c = max\{2^{p-1}, 1\}$, $\phi_k = c(|f|^p + |f_k|^p)$ and $\phi = 2c|f|^p$, then $\phi_k \to \phi$ a.e. and $|f - f_k|^p \leq \phi_k$ a.e. since $f_k \to f$ a.e. and $|f - f_k|^p \leq c(|f|^p + |f_k|^p )$.\\
+	 		$\phi \in L^p(E)$ since $f \in L^p$.\\
+	 		Also, $\int_E \phi_k \to \int_E \phi$ since $||f_k||_p^p \to ||f||_p^p$
+	 		By Generalized Lebesgue's Dominated Convergence Theorem, we have
+	 			$$\int_E |f - f_k|^p \to 0 \Rightarrow ||f - f_k||_p \to 0$$
+
+ 	 \end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\item (Exercise 8.17)\\
+		Suppose that $f_k, f \in L^2$ and that $\int f_k g \to \int fg$ for all $g \in L^2$ (i.e., $\{ f_k \}$ converges weakly in $L^2$ to $f$). If $||f_k||_2 \to ||f||_2$, show that $f_k \to f$ in $L^2$ norm. The same is true for $L^p$, $1 < p < \infty$, by a 1913 result of Radon.\\
+	\newline
+ 	\textit{\textbf {Proof.}}\\
+ 		$$\begin{aligned}
+ 		||f_k - f||_2^2
+ 		&= \int (f_k - f) \overline{(f_k - f)}\\
+ 		&= ||f_k||_2^2 - \int f_k \overline{f} - \int f \overline{f_k} + ||f||_2^2\\
+ 		&= ||f_k||_2^2 - \int f_k \overline{f} - \overline{\int f_k \overline{f}} + ||f||_2^2\\
+ 		&\to ||f_k||_2^2 - \int f \overline{f} - \overline{\int f \overline{f}} + ||f||_2^2 = 0
+ 		\end{aligned}$$
+ 		So $f_k \to f$ in $L^2$ norm.\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\item (Exercise 8.21)\\
+		If $f \in L^p (\mathbb{R}^n), 0 < p < \infty$, show that
+			$$\underset{Q \searrow x}{\lim} \frac{1}{|Q|} \int_Q |f(y) - f(x)|^p dy = 0 \hspace{0.4cm} \text{a.e.}$$
+		Note by Exercise 5 that if this condition holds for a given $p$, then it also holds for all smaller $p$.\\
+	\newline
+ 	\textit{\textbf {Proof.}}\\
+ 		Let $\{r_k\}$ be the set of rational numbers, and let $Z_k$ be the set where the formula
+ 			$$\underset{Q \searrow x}{\lim} \frac{1}{|Q|} \int_Q |f(y) - r_k|^p dy = |f(x) - r_k|^p$$
+ 		is not valid.\\
+ 		Since $|f(y) - r_k|^p \leq c (|f(y)|^p + |r_k|^p)$ is locally integrable where $c = \max \{ 2^{p-1}, 1 \}$, by Lebesgue’s Differentiation Theorem, we have $|Z_k| = 0$.\\
+ 		Let $Z = \cup Z_k$, then $|Z| = 0$.\\
+ 		For any $Q, x$ and $r_k$
+ 			$$\begin{aligned}
+ 			\frac{1}{|Q|}\int_Q |f(y) - f(x)|^p dy
+ 			&= \frac{1}{|Q|}\int_Q |[f(y) - r_k] - [f(x) - r_k]|^p dy\\
+ 			&\leq c \cdot \frac{1}{|Q|}\int_Q |f(y) - r_k|^p dy + c \cdot \frac{1}{|Q|}\int_Q |f(x) - r_k|^p dy\\
+ 			&= c \cdot \frac{1}{|Q|}\int_Q |f(y) - r_k|^p dy + c \cdot |f(x) - r_k|^p
+ 			\end{aligned}$$
+ 		Therefore, if $x \notin Z$,
+ 			$$\underset{Q \searrow x}{\lim \sup}\frac{1}{|Q|}\int_Q |f(y) - f(x)|^p dy
+ 			\leq 2c \cdot |f(x) - r_k|^p
+ 			\hspace{0.4cm} \text{for every $r_k$.}$$
+ 		 For any $x$ at which $f(x)$ is finite (in particular, almost everywhere), we can choose $r_k$ such that $|f(x) - r_k|$ is arbitrarily small. This shows that the left side of the last formula is zero a.e., and completes the proof.
+
+
+
+\end{enumerate}
+\end{document}

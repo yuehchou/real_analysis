@@ -1,0 +1,67 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{mathrsfs} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis Homework\\ Chapter 1. Measure theory\\ Due Date: 10/21}
+\author{National Taiwan University, Department of Mathematics\\
+R06221012 \hspace{0.2cm} Yueh-Chou Lee}
+\date{October 21, 2019}
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		If $\{E_k\}$ is a sequence of sets with $\sum m_*(E_k) < \infty$. Show that $\lim \sup E_k$ has measure zero.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}\\
+
+Let $H_k$ be a $G_\delta$ set, $E_k \subset H_k$ with $m(H_k) = m_* (E_k)$
+
+$\Rightarrow\, \lim \sup E_k = \cap_{j=1}^\infty \cup_{k=j}^\infty\, E_k\, \subseteq \cap \cup H_k = \lim \sup H_k$.
+
+$$\sum m(H_k) = \sum m_*(E_k) < \infty\,
+\Rightarrow\,
+\forall \varepsilon > 0,\, \exists N \in \mathbb{Z}^+,\,
+\forall k \geq N,\, \sum_{k=N+1}^\infty m(H_k) < \varepsilon$$
+
+Let $O_j = \cup_{k=j}^\infty\,H_k$.
+
+$$O_j \searrow \lim \sup H_k
+\,\Rightarrow\, \left\{
+\begin{matrix} \begin{aligned}
+&m(\lim \sup H_k) = \lim_{j \to \infty} m(O_j)
+\leq \lim_{j \to \infty} \sum_{k = j}^\infty m(H_k)
+\leq \sum_{k = N+1}^\infty m(H_k) < \varepsilon\\
+&m_*(\lim \sup E_k) \leq 0
+\end{aligned} \end{matrix}\right.$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% \begin{flushleft}
+	% 	\rule[-0.5ex]{17cm}{2pt}\\
+	% 		\textbf{Theorem}\\
+	% 	\rule[1.5ex]{17cm}{0.5pt}
+			
+	% 	\rule[1.0ex]{17cm}{0.5pt}\
+	% \end{flushleft}
+	% \textbf{\textit{Proof.}}\\
+
+\end{document}
+
+
+
+
+
+

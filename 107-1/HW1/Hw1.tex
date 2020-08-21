@@ -1,0 +1,243 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+
+\title{Real Analysis \\ Homework 1}
+\author{Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+\begin{enumerate}
+%%第一題 Ch3 #3
+\item {Construct a two-dimensional Cantor set in the unit square $\{(x,y): 0 \leq x,y \leq 1\}$ as follows. Subdivide the square into nine equal parts and keep only the four closed corner squares, removing the remaining region (which forms a cross). Then repeat this process in a suitably scaled version for the remaining squares, ad infinitum. Show that the resulting set is perfect, has plane measure zero, and equals $C \times C$}.
+\newline
+\newline
+\textit{\textbf {Proof.}}
+\newline
+(i) The resulting set is perfect:\\
+To prove $C \times C$ is perfect, we have to show that for each point $x \in C \times C$ and for each $\epsilon > 0$, we can find a point $y \in C \times C - \{x\}$ s.t. $\left| x - y \right| < \epsilon$
+\newline
+\newline
+Choose $k$ so that $\sqrt{ 2 / 3^{2k}} < \epsilon$
+\newline
+\newline
+Suppose $x \in C \times C$. Let $[a_i, b_i] \times [a_j,b_j]$ be the interval of $C_k \times C_k$ that contains $x$, for all $i,j \in \mathbb{N}$\\
+\newline
+When the area is removed from $[a_i, b_i] \times [a_j,b_j]$, we get four parts $[a_{i1}, b_{i1}] \times [a_{j1},b_{j1}]$, $[a_{i1}, b_{i1}] \times [a_{j2},b_{j2}]$, $[a_{i2}, b_{i2}] \times [a_{j1},b_{j1}]$ and $[a_{i2}, b_{i2}] \times [a_{j2},b_{j2}]$ of $C_{k+1} \times C_{k+1}$. The point $x$ is contained in one of those four parts, and there is a point $y \in C \times C$ that is contained in the other one of those four intervals. So $y \neq x$ and $|x - y| \leq \sqrt{ 2 / 3^{2k}} < \epsilon$
+\newline
+\newline
+(ii) The resulting set has measure zero:\\
+$$|C \times C| = \lim_{k \to \infty} (1 - \sum_{k = 1}^{\infty} 5 \cdot 2^{2(k-1)} \cdot 3^{-2k}) = 1 - 5 \cdot \lim_{k \to \infty} \sum_{k = 1}^{\infty} 2^{2(k-1)} \cdot 3^{-2k} = 1 - 1 = 0$$
+Hence, the resulting set has measure zero.
+\newline
+\newline
+
+
+
+%%第二題 Ch3 #5
+\item Construct a subset of $[0,1]$ in the same manner as the Cantor set by removing from each remaining interval a subinterval of relative length $\delta$, $0 < \delta < 1$. Show that the resulting set is perfect, has measure $1-\delta$, and contains no intervals.
+\newline
+\newline
+\textit{\textbf {Proof.}}
+\newline
+(i) The resulting set is perfect:
+\newline
+To prove this Cantor set $C$ is perfect, we have to show that for each $x \in C$ and for each $\epsilon > 0$, we can find a point $y \in C - \{ x \}$ such that $|x-y| < \epsilon$.
+\newline
+\newline
+To search for $y$, recall that $C$ is constructed as the intersection of sets $C_0 \supset C_1 \supset C_2 \supset C_3 \supset ...$ where $C_k$ is a union of $2^k$ disjoint intervals each of length $\delta / 3^k$, and recall also that $C$ has nonempty intersection with each of those $2^k$ intervals.
+\newline
+\newline
+Choose $k$ so that $\delta / 3^k < \epsilon$
+\newline
+\newline
+Let $[a,b]$ be the interval of $C_k$ that contains $x$.
+\newline
+\newline
+When the middle third is removed from $[a,b]$,  one gets two intervals $[a,b']$, $[b'',b]$ of $C_{k+1}$. The point $x$ is contained in one of those two intervals, and there is a point $y \in C$ that is contained in the other one of those two intervals. So $y \neq x$ and $|x - y| < \epsilon$.
+\newline
+\newline
+(ii) The resulting set has measure $1-\delta$:
+\newline
+Let $E_k$ be the $k$th stage of the resulting subinterval, so that the resulting set is $C = \cap_{k=1}^{\infty} C_k$.\\
+By the process of (i), we have
+$$|C| = |\cap_{k=1}^{\infty} C_k| = \lim_{k \to \infty} (1 - \sum_{i=1}^{k} 2^{i-1} \delta 3^{-i}) = 1 - \delta$$
+\newline
+\newline
+
+
+%%第三題 Ch3 #6
+\item Construct a Cantor-type subset of $[0,1]$ by removing from each interval remaining at the $k$th stage a subinterval of relative length $\theta_k$, $0 < \theta_k < 1$. Show that the remainder has measure zero if and only if $\sum \theta_k = +\infty$.
+\newline
+\newline
+\textit{\textbf {Proof.}}
+\newline
+Let $E_k$ be the $k$th stage of the Cantor-type subinterval.
+\newline
+As we know that Cantor-type set $E$ is equivalent to $\cap_k E_k$, so $|E| = |\cap_k E_k| =\prod_k (1 - \theta_k)$
+\newline
+\newline
+$(\Leftarrow)$
+\newline
+Since $0 < \theta_k < 1$, we have
+$$log(1-\theta_k) = \int_0^{\theta_k} \frac{-1}{1-x} dx = -\int_0^{\theta_k} 1 + x + x^2 + x^3 + ... dx = -\sum_{n=1}^{k} \frac{\theta_k}{k}$$
+$$\Rightarrow -log(1-\theta_k) > \theta_k$$
+Moreover, we know $\sum \theta_k = +\infty$, so
+$$\sum \theta_k = + \infty < - \sum log(1-\theta_k) = - log(\prod_k (1 -\theta_k))$$
+Hence, $log(\prod_k (1 -\theta_k)) = -\infty$.
+\newline
+Since $log(\prod_k (1 -\theta_k)) \to -\infty \Rightarrow \prod_k (1 -\theta_k) = |E| \to 0$\\
+Hence, if $\sum \theta_k = +\infty$ then the remainder has measure zero.
+\newline
+\newline
+$(\Rightarrow)$
+\newline
+If $\sum \theta_k = c < +\infty$, then $\theta_k \to 0$ as $k \to \infty$ and $(1 - \theta_k) \to 1$ as $k \to \infty$.\\
+Hence, $|E| = \lim_{k \to \infty} |E_k| = \prod_k (1 - \theta_k) > 0$.\\
+So the remainder has measure zero if $\sum \theta_k = +\infty$.
+\newline
+\newline
+
+
+%%第四題 Ch3 #9
+\item If $\left\{ E_k \right\}_{k=1}^{\infty}$ is a sequence of sets with $\sum \left| E_k \right|_e < +\infty$, show that $lim sup E_k$ has measure zero.
+\newline
+\newline
+\textit{\textbf {Proof.}}
+\newline
+Let $\epsilon > 0$.
+By the definition of limit, since $lim_{n \to \infty} \sum_{k=1}^n \left| E_k \right|_e = \sum \left| E_k \right|_e < +\infty$, there exists $\mathrm{N}$ such that for $n \geq \mathrm{N}$,
+$$\sum_{k = n+1}^{\infty} \left| E_k \right|_e = \sum_{k=1}^{\infty} \left| E_k \right|_e - \sum_{k=1}^{n} \left| E_k \right|_e < \epsilon$$
+Since $lim sup E_k = \cap_{j=1}^{\infty} \cup_{k=j}^{\infty} E_k \subseteq \cup_{k=N+1}^{\infty} E_k$,
+$$\left| lim sup E_k \right|_e \leq \left| \cup_{k=N+1}^{\infty} E_k\right|_e \leq \sum_{k=N+1}^{\infty} \left| E_k \right|_e < \epsilon$$
+$\epsilon > 0$ is arbitrary, so $\left| lim sup E_k \right|_e = 0$. Hence, $lim sup E_k$ has measure zero.
+\newline
+\newline
+Since $lim inf E_k \subseteq lim sup E_k$, $ \left| lim inf E_k \right|_e \leq \left| lim sup E_k \right|_e = 0$.
+\newline Hence, $lim inf E_k$ has also measure zero.
+\newline
+\newline
+
+
+%%第五題 Ch3 #10
+\item If $E_1$ and $E_2$ are measurable, show that $\left| E_1 \cup E_2 \right| + \left| E_1 \cap E_2 \right| = \left| E_1 \right| +\left| E_2 \right|$.
+\newline
+\newline
+\textit{\textbf {Proof.}}
+\newline
+Since $E_1$ is measurable, we have
+$$|E_1 \cup E_2| = |(E_1 \cup E_2) \cap E_1| + |(E_1 \cup E_2) \cap E_1^c| = |E_1| + |E_2 \cap E_1^c|$$
+Moreover, we know that
+$$|E_2| = |E_1 \cap E_2| + |E_1^c \cap E_2|$$
+$$\Rightarrow |E_1^c \cap E_2| = |E_2| - |E_1 \cap E_2|$$
+Hence,
+$$|E_1 \cup E_2| = |E_1| + |E_2 \cap E_1^c| = |E_1| + (|E_2| - |E_1 \cap E_2|)$$
+$$\Rightarrow \left| E_1 \cup E_2 \right| + \left| E_1 \cap E_2 \right| = \left| E_1 \right| +\left| E_2 \right|$$
+\newline
+\newline
+
+
+%%第六題 Ch3 #12
+\item If $E_1$ and $E_2$ are measurable subsets of $\mathrm{R}^1$, show that $E_1 \times E_2$ is a measurable subset of $\mathrm{R}^2$ and $\left| E_1 \times E_2 \right| = \left| E_1 \right| \left| E_2 \right|$.
+\newline
+\newline
+\textit{\textbf {Proof.}}
+\newline
+(i) $|E_1 \times E_2|$ is measurable:
+\newline
+Since $E_1$ and $E_2$ are measurable, $E_1 = H_1 \cup Z_1$ and $E_2 = H_2 \cup Z_2$, where $H_1, H_2$ are of type $F_\sigma$ and $|Z_1| = 0$, $|Z_2| = 0$.\\
+Then
+$$E_1 \times E_2 = (H_1 \times H_2) \cup (H_1 \times Z_2) \cup (Z_1 \times H_2) \cup (Z_1 \times Z_2)$$
+Since $H_1 \times H_2$ is also of type $F_\sigma$, we have to prove other terms have measure zero.\\
+\newline
+Let $\epsilon > 0$. Since $|Z_2| = 0$, there exists intervals $\{ I_k \}$ such that $Z_2 \subseteq \cup_{k = 1}^{\infty} I_k$ and $\sum_{k = 1}^{\infty} |I_k| < \epsilon$\\
+Write $H_1^n = H_1 \cap [-n,n]$, then $H_1 = \cup_{n=1}^{\infty} H_1^n$. Note that
+$$H_1^n \times Z_2 \subseteq [-n,n] \times \cup_{k=1}^{\infty} I_k = \cup_{k=1}^{\infty} ([-n,n] \times I_k)$$
+so
+$$|H_1^n \times Z_2|_e \leq \sum_{k=1}^{\infty} 2n|I_k| = 2n\epsilon$$
+Since $\epsilon > 0$ is arbitrary, $|H_1^n \times Z_2| = 0$ for each $n$.
+So
+$$|H_1 \times Z_2| = |\cup_{n=1}^{\infty} (H_1^n \times Z_2)|_e \leq \sum_{n=1}^{\infty} |H_1^n \times Z_2|_e = 0$$
+Thus $|H_1 \times Z_2| = 0$, similarly, $Z_1 \times H_2$ and $Z_1 \times Z_2$ have also measure zero.\\
+Hence
+$$|E_1 \times E_2| = |(H_1 \times H_2) \cup (H_1 \times Z_2) \cup (Z_1 \times H_2) \cup (Z_1 \times Z_2)| = |E_1||E_2|$$
+\newline
+\newline
+
+
+(ii) $|E_1 \times E_2| = |E_1||E_2|$:
+\newline
+\textbf {Case 1} Suppose $|E_1|$ and $|E_2|$ are both finite:\\
+Since $E_1$, $E_2$ are measurable, for each $k \in \mathbb{N}$ there are open sets $S_k \supseteq E_1$, $T_k \supseteq E_2$ such that $|S_k - E_1| < 1/k$, $|T_k - E_2| < 1/k$. We may assume $S_{k+1} \subseteq S_k$, $T_{k+1} \subseteq T_k$.
+\newline
+\newline
+Since $S_k$ is open, $S_k = \cup_{k \in \mathbb{N} I_i}$ for some non-overlapping closed intervals. Similarly, $T_k = \cup_{j \in \mathbb{N}} J_j$ for some non-overlapping closed intervals.\\
+So
+$$|S_k \times T_k| = |\cup_{(i,j) \in \mathbb{N} times \mathbb{N}} (I_i \times J_j)| = \sum_{i, j \in \mathbb{N}} |I_i \times J_j| = \sum_{i, j \in \mathbb{N}} |I_i||J_j| = (\sum_{i \in \mathbb{N}} |I_i|) (\sum_{j \in \mathbb{N}} |J_j|) = |S_k||T_k|$$
+Write $S = \cap_{k = 1}^{\infty} S_k$, $T = \cap_{k = 1}^{\infty} T_k$. then $|S - E_1| = |T - E_2| = 0$.\\
+Hence
+$$|E_1 \times E_2| = |S \times T| = \lim_{k \to \infty} |S_k \times T_k| = \lim_{k \to \infty}|S_k||T_k| = |E_1||E_2|$$
+where the second equality follows by Monotone Convergence Theorem for measure, since $S_k \times T_k \searrow S \times T$ and $|S_k \times T_k| < \infty$ for some $k$ since $|E_1|$, $|E_2|$ are both finite. The last equality also follows by Monotone Convergence Theorem for measure.
+\newline
+\newline
+\textbf {Case 2} Suppose one of $|E_1|$, $|E_2|$ are infinite:\\
+If $|E_1| = \infty$ and $|E_2| > 0$, then write $E_1^n = E_1 \cap [-n, n]$.
+$$|E_1 \times E_2| = \lim_{n \to \infty} |E_1^n \times E_2| = \lim_{n \to \infty} |E_1^n||E_2| = |E_1||E_2| = \infty$$
+where the first equality follows by Monotone Convergence Theorem for measure, since $E_1^n \times E_2 \nearrow E_1 \times E_2$.\\
+If $|E_1| = \infty$ and $|E_2| = 0$, $|E_1 \times E_2| = 0$ by our first lemma.
+\newline
+\newline
+
+
+%%第七題 Ch3 #13
+\item Motivated by (3.7), define the \textit{inner measure} of $E$ by $\left| E \right|_i = sup\left| F \right|$, where the supremum is taken over all closed subsets $F$ of $E$. Show that (i) $\left| E \right|_i \leq \left| E \right|_e$, and (ii) if $\left| E \right|_e < +\infty$, then $E$ is measurable if and only if $\left| E \right|_i = \left| E \right|_e$
+\newline
+\newline
+\textit{\textbf {Proof.}}
+\newline
+(i)
+\newline
+Since $F$ is closed, we know $F$ is measurable and $|F| = |F|_e$.
+\newline
+Since $F \subset E \Rightarrow |F| = |F|_e \leq |E|_e$.
+\newline
+Moreover, by the definition of \textit{inner measure}, we now have
+$$|E|_i = sup|F| \leq sup |E|_e = |E|_e$$
+\newline
+\newline
+(ii)
+\newline
+By \textbf {Lemma 3.22}, $E$ is measurable if and only if give $\epsilon > 0$, there exists a closed set $F \subset E$ such that $|E - F|_e < \epsilon$.
+\newline
+\newline
+So what we need to do is to prove that $|E - F|_e < \epsilon$ is equivalent to $|E|_i = |E|_e$.
+\newline
+\newline
+$E = (E - F) \cup F$ and $|E|_e < \infty$, so we have
+$$|E|_e = |E-F|_e + |F|_e < \epsilon + |F|_e \Rightarrow |E|_e < sup |F| = |E|_i$$
+Since $|E|_e \leq sup |F| = |E|_i$ and (i) $|E|_i \leq |E|_e$, hence, $|E|_i = |E|_e$.
+\newline
+\newline
+
+
+%%第八題 Ch3 #14
+\item Show that the conclusion of part (ii) of Exercise 13 is false if $\left| E \right|_e = +\infty$.
+\newline
+\newline
+\textit{\textbf {Proof.}}
+\newline
+Given $A$ is a non-measurable set in $(0,1)$ and define $E = (-\infty, 0] \cup A \cup [1, +\infty)$.
+\newline
+Then we will have
+$$|E|_e = \infty = |E|_i$$
+But $E$ is non-measurable, so the conclusion of part (ii) in previous Exercise will be false if $|E|_e = +\infty$.
+\newline
+\newline
+
+
+
+\end{enumerate}
+\end{document}

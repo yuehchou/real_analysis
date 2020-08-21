@@ -1,0 +1,204 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+
+
+\title{Real Analysis\\ Homework 5}
+\author{Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 10.12
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 10.12}\\
+		\rule[1.5ex]{17cm}{0.5pt}\
+		Give an example of a pair of measures $\nu$ and $\mu$ such that $\nu$ is absolutely continuous with respect to $\mu$, but given $\varepsilon > 0$, there is no $\delta > 0$ such that $\nu(A) < \varepsilon$ for every $A$ with $\nu(A) < \delta$. (Thus, the analogue for measures of Theorem 10.34 may fail.)
+		\newline
+		Prove the analogue of Theorem 10.35 for mutually singular measures $\nu$ and $\mu$.\\
+	\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}	
+	\textit{\textbf {Proof.}}\\
+	Let $\mu$ be Lebesgue measure and
+		$$\mu(A) = \int_A \frac{1}{t} dt$$
+	for any measurable set $A$. So for any $\varepsilon, \delta > 0$ and let $A = [0,\delta]$, then
+		$$\mu(A) = \infty > \varepsilon$$
+	But $\nu$ is absolutely continuous with respect to $\mu$.\\\\
+	Next, we will prove the analogue of Theorem 10.35 for mutually singular measures $\nu$ and $\mu$.\\\\
+	If $\nu$ is singular on $E$ with respect to $\mu$, there exists $A \subset E$ with $\mu(A) = 0$ such that $\nu(E - A) = 0$. Taking $E_0 = A$, then we will obtain the neccessity of the condition. To prove its sufficiency, choose for each $k = 1,2,\cdots$ a measurable $E_k \subset E$ with $\mu(E_k) < 2^{-k}$ and $\nu(E - E_k) < 2^{-k}$.\\\\
+	Let $A = \lim \sup E_k$. Since $A = \cap_{k = m}^\infty E_k$ for every $m$, it follows as usual that $\mu(A) = 0$. Moreover,
+		$$\begin{aligned}
+		\nu(E - A)
+		&= \nu(E - \lim \sup E_k)
+		= \nu(\lim \inf (E - E_k))\\
+		&\leq \lim \inf (E - E_k) = 0
+		\end{aligned}$$
+	Hence, $\nu$ is singular with respect to $\mu$, which completes the proof.\\
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 10.22
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 10.22}\\
+		\rule[1.5ex]{17cm}{0.5pt}\
+		Let $\mu$ be a measure and $A$ be a set with $0 < \mu(A) < \infty$. Let f be measurable and bounded on $A$, and let $\phi$ be convex in an interval containing the range of $f$. Prove that
+			$$\phi\left( \frac{\int_A f d\mu}{\int_A d\mu} \right)
+			\leq \frac{\int_A \phi(f) d\mu}{\int_A d\mu}$$
+		(This is Jensen’s inequality for measures. See Theorem 7.44.)\\
+	\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textit{\textbf {Proof.}}\\
+	By hypothesis, $f$ is finite a.e. withe respect to $\mu$ in $A$. Choose $(a,b)$, $-\infty \leq a < b \leq -\infty$, so that $\phi$ is convex in $(a,b)$, and so that $a < f(\mu) < b$ for every $\mu$ at which $f(\mu)$ is finite. The number $\gamma$ defined by
+		$$\gamma = \frac{\int_A f d\mu}{\int_A d\mu}$$
+	is finite and satisfies $a < \gamma < b$. If $m$ is the slope of a supprting line at $\gamma$ and $a < t < b$, then $\phi(\gamma) + m(t - \gamma) \leq \phi(t)$. Hence, for almost every $\mu$,
+		$$\phi(\gamma) + m[f(\mu) - \gamma] \leq \phi(f(\mu)).$$
+	Multiplying both sides of this inequality by $\mu$ and integrating the result with respect to $\mu$, we obatian
+		$$\phi(\gamma) \int_A d\mu + m \left( \int_A f d\mu - \gamma \int_A d\mu \right)
+		\leq \int_A \phi(f) d\mu$$
+	Here the existence of $\int_A \phi(f) d\mu$ follows from the integrability of $\mu$ and $f \mu$. [The continuity of $\phi$ implies that $\phi(f)$ is measurable.] Since $\int_A f d\mu - \gamma \int_A d\mu = 0$, the last inequality reduces to
+		$$\phi(\gamma) \int_A d\mu \leq \int_A \phi(f) d\mu$$
+	which is the desired result.\\
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 10.23
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 10.23}\\
+		\rule[1.5ex]{17cm}{0.5pt}\
+		A sequence $\{\phi_k\}$ of set functions is said to be uniformly absolutely continuous with respect to a measure $\mu$ if given $\varepsilon > 0$, there exists $\delta > 0$ such that if $E$ satisfies $\mu(E) < \delta$, then $|\phi_k(E)| < \varepsilon$\\for all $k$. If $\{f_k\}$ is a sequence of integrable functions on a finite measure space $(\mathscr{S}, \Sigma, \mu)$ that converges pointwise a.e.$(\mu)$ to an integrable $f$, show that $f_k \to f$ in $L(d\mu)$ norm if and only if the indefinite integrals of the $f_k$ are uniformly absolutely continuous with respect to $\mu$.\\
+		(Cf. Exercise 17 of Chapter 7.)\\
+	\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textit{\textbf {Proof.}}\\
+	$(\Rightarrow)$\\
+	Let $\phi_k(A) = \int_A f_k d\mu$. Suppose $f_k \to f$ in $L(d\mu)$, $\forall \varepsilon > 0$, $\exists N \in \mathbb{N}$, $k \geq N$, then
+		$$\int |f_k - f| \to 0 \quad \text{as} \quad k \to \infty$$
+	So $\exists \delta > 0$ such that if $A \in \Sigma$ with $\mu(A) < \delta$, then
+		$$|\phi_k(A)| = |\int_A f_k| \leq \int_A |f_k| < \varepsilon, \quad \forall k = 1, \cdots, N-1$$
+		$$|\phi_k(A)| \leq \int_A |f_k| \leq \int_A |f_k - f| + \int_A |f| < \varepsilon, \quad k \geq N$$
+	$(\Leftarrow)$\\
+	Given $\varepsilon > 0$. For all $k$, since the indefinite integral of $f_k$ is absolutely continuous, there exists $\delta_k > 0$ such that for any $A \subseteq \Sigma$ with $|A| < \delta_k$, we have $|\int_E f_k| < \varepsilon$.\\\\
+	Since the indefinite integral of $f$ is absolutely continuous, choose $N \in \mathbb{N}$ and $\delta > 0$ such that for any $\mu(A) < \delta$ and $k \geq N+1$, we have
+		$$|\int_A f_k|
+		\leq \int_A |f_k|
+		\leq \int_A |f_k - f| + \int_A |f|
+		< \varepsilon$$
+	Let $\delta' = \min\{ \delta, \delta_1, \delta_2, \cdots, \delta_N\}$, then $|\int_A f_k| < \varepsilon$ for all $k$.\\
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 10.24
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 10.24}\\
+		\rule[1.5ex]{17cm}{0.5pt}\
+		Let $(\mathscr{S}, \Sigma, \mu)$ be a $\sigma$-finite measure space, and let $f$ be $\Sigma$-measurable and integrable over $\mathscr{S}$. Let $\Sigma_0$ be a $\sigma$-algebra satisfying $\Sigma_0 \subset \Sigma$. Of course, $f$ may not be $\Sigma_0$-measurable. Show that there is a unique function $f_0$ that is $\Sigma_0$-measurable such that $\int fg d\mu = \int f_0 g d\mu$ for every $\Sigma_0$-measurable $g$ for which the integrals are finite. The function $f_0$ is called the \textit{conditional expectation} of $f$ with respect to $\Sigma_0$, denoted $f_0 = E(f|\Sigma_0)$.
+		\\(Apply the Radon–Nikodym theorem to the set function $\phi(E) = \int_E f d\mu$, $E \in \Sigma_0$.)\\
+	\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textit{\textbf {Proof.}}\\
+	Let $\phi$ be an additive set function on the measurable subsets of a measurable $E \in \Sigma$ and $f$ be $\sigma$-measurable and integrable over $\mathscr{S}$, then $\mu$ is a $\sigma$-finite measurable on $E$, by Radon–Nikodym theorem, we will have that there exists a unique $f \in L(E;d\mu)$ such that
+		$$\phi(A) = \int_A f d\mu$$
+	for every measurable $A \subset E$.\\\\
+	For every $\Sigma_0$-measurable $g$ where $\Sigma_0 \subset \Sigma$, so
+		$$\int_E fg d\mu \leq (\sup_{E} g) \int_E f d\mu < \infty$$
+	since $\sup_{E} g$ and $\int_E f d\mu$ are finte.\\\\
+	To prove the uniqueness, let $f_0$ and $f_1$ are $\Sigma_0$-measurable such that
+		$$\int fg d\mu = \int f_0g d\mu
+		\quad \text{and} \quad
+		\int fg d\mu = \int f_1 g d\mu$$
+	then
+		$$\int f_0g d\mu - \int f_1 g d\mu
+		= \int (f_0 - f_1) g d\mu
+		= \int fg d\mu - \int fg d\mu
+		= 0$$
+	so $f_0 - f_1 = 0$, hence $f_0$ is unique.\\
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 10.25
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 10.25}\\
+		\rule[1.5ex]{17cm}{0.5pt}\
+		Using the notation of the preceding exercise, prove the following:
+		\begin{enumerate}
+			\item [(a)]
+				$E(af + bg|\Sigma_0) = aE(f|\Sigma_0) + bE(g|\Sigma_0), a, b$ constants.
+			\item [(b)]
+				$E(f|\Sigma_0) \geq 0$ if $f \geq 0$.
+			\item [(c)]
+				$E(fg|\Sigma_0) = gE(f|\Sigma_0)$ if $g$ is $\Sigma_0$-measurable.
+			\item [(d)]
+				If $\Sigma_1 \subset \Sigma_0 \subset \Sigma$, then $E(f|\Sigma_1) = E(E(f|\Sigma_0)|\Sigma_1)$.
+		\end{enumerate}
+	\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textit{\textbf{Proof.}}
+	\begin{enumerate}
+		\item [(a)]
+			For every $A \in \Sigma_0$ and $h$ is $\Sigma_0$-measurable, we have
+				$$\begin{aligned}
+				\int E(af + bg | \Sigma_0) h d\mu
+				&= \int_{A} (af + bg) h d\mu
+				= a\int_{A} fh d\mu + b\int_{A} gh d\mu\\
+				&= a\int E(f|\Sigma_0) h d\mu + b \int E(g|\Sigma_0) h d\mu\\
+				&= \int aE(f|\Sigma_0) h d\mu + \int b E(g|\Sigma_0) h d\mu\\
+				&= \int [aE(f|\Sigma_0) + b E(g|\Sigma_0)] h d\mu
+				\end{aligned}$$
+			Hence $E(af + bg|\Sigma_0) = aE(f|\Sigma_0) + bE(g|\Sigma_0)$.\\
+
+		\item [(b)]
+			By Exercise 10.24, we know that $f$ is $\Sigma$-measurable and $\Sigma_0 \subset \Sigma$, so if $f \geq 0$ in $\Sigma$,\\
+			then $f \geq 0$ in $\Sigma_0$, hence $E(f|\Sigma_0) \geq 0$.\\
+			
+		\item [(c)]
+			For every $A \in \Sigma_0$ and $h$ is $\Sigma_0$-measurable, we have
+				$$\int E(fg | \Sigma_0) h d\mu
+				= \int_A fgh d\mu = \int_A f \cdot (gh) d\mu
+				= \int E(f|\Sigma_0) gh d\mu
+				= \int [gE(f|\Sigma_0)]h d\mu$$
+			Hence $E(fg | \Sigma_0) = gE(f | \Sigma_0)$.\\
+			
+		\item [(d)]
+			For every $A \in \Sigma_1 \subset \Sigma_0 \subset \Sigma$ and $g$ is $\Sigma_0$-measurable, we have
+				$$\int E(E(f | \Sigma_0)|\Sigma_1) g d\mu
+				= \int_A E(f | \Sigma_0) g d\mu
+				= \int_A fg d\mu
+				= \int E(f|\Sigma_0)g d\mu$$
+			Hence $E(f|\Sigma_1) = E(E(f|\Sigma_0)|\Sigma_1)$.
+			
+	\end{enumerate}
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

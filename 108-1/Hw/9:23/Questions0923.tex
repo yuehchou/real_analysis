@@ -1,0 +1,44 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{mathrsfs} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis Homework 1\\ Due Date: 9/23}
+\begin{document}
+\maketitle
+
+1. Please prove the uniqueness of Theorem 1.3 in the textbook.\\\\
+
+
+2. Let $R$ be a rectangle in $\mathbb{R}^n$. Prove $\sigma(R) = |R| = m_*(R)$.\\\\
+
+
+3. \textit{Theorem 1.3} states that every open set in $\mathbb{R}$ is the disjoint union of open intervals. The analogue in $\mathbb{R}^d$, $d \geq 2$, is generally false. Prove the following:
+
+\begin{enumerate}
+	\item [(a)] An open disc in $\mathbb{R}^2$ is not the disjoint union of open rectangles.\\
+	{[}
+	Hint: What happens to the boundary of any of these rectangles?
+	{]}
+
+	\item [(b)] An open connected set $\Omega$ is the disjoint union of open rectangles if and only if $\Omega$ is itself an open rectangle.\\
+\end{enumerate}
+
+
+
+4. At the start of the theory, one might define the outer measure by taking coverings by rectangles instead of cubes. More precisely, we define
+	$$m_*^\mathcal{R}(E) = \inf \sum_{j = 1}^\infty |R_j|,$$
+where the inf is now taken over all countable coverings $E \subset \cup_{j = 1}^\infty \mathcal{R}_j$ by (closed) rectangles.
+
+Show that this approach gives rise to the same theory of measure developed in the text, by proving that $m_*(E) = m_*^\mathcal{R}(E)$ for every subset $E$ of $\mathbb{R}^d$.\\
+{[}
+Hint: Use \textit{Lemma 1.1}.
+{]}\\
+
+
+\end{document}

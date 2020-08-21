@@ -1,0 +1,364 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{mathrsfs} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis Homework\\ Chapter 1. Measure theory\\ Due Date: 10/21}
+\author{National Taiwan University, Department of Mathematics\\
+R06221012 \hspace{0.2cm} Yueh-Chou Lee}
+\date{October 21, 2019}
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.9}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Given an example of an open set $\mathcal{O}$ with the following property: the boundary of the closure of $\mathcal{O}$ has positive Lebesgue measure.
+
+		[Hint: Consider the set obtained by taking the union of open intervals which are deleted at the odd steps in the construction of a Cantor-like set.]
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Sol.}}\\
+
+We begin with a Cantor-like set $\hat{\mathcal{C}}$ as described in \textbf{Exercise 1.4}. Our plan is to construct an open set whose closure has boundary $\hat{\mathcal{C}}$. At the $k$-th stage of the construction we remove $2^{k - 1}$ intevals each of length $l_j$ with the property that
+	$$\sum_{j = 1}^{k}\ 2^{j - 1} l_j < 1$$
+for each $k$.\\
+
+We now consider the set
+	$$\mathcal{I}\ =\ \cup_{k=1}^{\infty} \cup_{j=1}^{2^k}\,I_{2j-1,\,k}$$
+which is the union of those intervals $I_k$ that are removed at odd steps in the construction.\\
+
+We have following,\\
+
+\textbf{Claim.}\ \textit{Every $x \in \hat{\mathcal{C}}$ is a limit point of a sequence in $\mathcal{I}$.}\\
+
+\textit{\textbf{Proof.}}
+
+We contruct $\hat{\mathcal{C}}$ iteratively as described in \textbf{Exercise 1.4}. Let $\mathcal{C}_j$ denote the remaining set after $j$ iteratioins of the removal step and $\mathcal{R}_j$ the set of elements removed.\\
+
+Recall that
+	$$\hat{\mathcal{C}}\ =\ \cap_{j=1}^{\infty}\,\mathcal{C}_j$$
+
+Next, we note that each of the $\mathcal{C}_j$ is the disjoint union of $2^j$ intervals which we denote $C_{j,\,k}$.\\
+
+Because the intervals are centrally situated we know that after $n$ iterations $x$ lies no further than $2^{-n}$ froom an element of $\mathcal{R}_n$.
+
+For each $n$, choose such an element, $x_n'$, of $\mathcal{R}_j$. This yeilds a convergent sequence $x_n' \to x$ because for any $\epsilon > 0$ we simply choose $n$ large enough that $2^{-n} < \epsilon$.\\
+
+Next, note that the subsequence $x_n$ of odd numbered terms in $x_n'$ must also converge and each $x_n \in \mathcal{I}$. Then $x_n \to x$ and so $x$ is a limit point of a sequence in $\mathcal{I}$.\;$_\Box$\\\\
+
+Now we observe that $\mathcal{I}$ and $\hat{\mathcal{C}}$ are disjoint so we apply the claim to get that $\hat{\mathcal{C}} \subseteq \partial\,\bar{\mathcal{I}}$. Then by monotonicity of the measure and the results of \textbf{Exercise 1.4}, we have
+	$$m(\bar{\mathcal{I}}) \geq m(\hat{\mathcal{C}}) > 0.$$
+Verifying that $\mathcal{I}$ satisfies the requirements.\\\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.13}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		The following deals with $G_\delta$ and $F_\sigma$ sets.
+		\begin{enumerate}
+			\item [(a)] Show that a. closed set is a $G_\delta$ and an open set is an $F_\sigma$.
+
+			[Hint: If $F$ is closed, consider $\mathcal{O}_n = \left\{x:d(x,F) < \dfrac{1}{n} \right\}$.]
+
+			\item [(b)] Give an example of an $F_\sigma$ which is not a $G_\delta$.
+
+			[Hint: This is more difficult; let $F$ be a denumerable set that is dense.]
+
+			\item [(c)] Give an example of a Borel set which is not a $G_\delta$ nor an $F_\sigma$.
+		\end{enumerate}
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+\begin{enumerate}
+	\item [(a)] Let $F$ be the closed set and consider $\mathcal{O}_n = \left\{x:d(x,F) < \dfrac{1}{n} \right\}$.
+
+	Since $F$ is closed, $d(x,F) = 0$ if and only if $x \in F$ therefore
+		$$F = \cap_{n \in \mathbb{N}}\, \mathcal{O}_n.$$
+
+	Thus, $F \in G_\delta$.\\
+
+	Let $G$ be an open set. Then $G^c$ is closed and hence is an $G_\delta$ set. Therefore $G$ is a $F_\sigma$ set by de Morgan.\\
+
+	\item [(b)]
+
+	\textit{\textbf{Definition.}} A topological space $X$ is called a \textbf{Baire space} if for any countable collection $\{A_n\}$ of closed sets of $X$ each of which has empty interior in $X$, their union $\cup A_n$ also has empty interior in $X$.\\
+
+	\textit{\textbf{Theorem. (Baire Category Theroem)}} Complete metric spaces are Baire spaces.\\\\
+
+	We can definitely choose an $F$ as in the hint for any $\mathbb{R}^d$ because $\mathbb{R}^d$ is a separable topological space (points with rational coordinates form a dense set).
+
+	Since $F$ is a countable union of singletons, it is an $F_\sigma$. To show that it is not $G_\delta$, we will refer to the Baire category theorem.\\
+
+	Now suppose $F$ is $G_\delta$ to get a contadiction. Then $F = \cap_{n \in \mathbb{N}}\, U_n$ where $U_n$'s are a countable collection of open sets.
+
+	Since $F$ is dense, each $U_n$ is dense.
+
+	Write $C_n = \mathbb{R}^d \setminus U_n$. Then since $Int(C_n)$ is disjoint from the dense set $U_n$, we have $Int(C_n) = \emptyset$. So
+		$$\mathbb{R}^d \setminus F = \cup_{n \in \mathbb{N}}\,C_n$$
+	is a countable union of closed sets with empty interiors.
+
+	But $F$ is also a countable union of closed sets with empty interiors, namely singletons. Thus $\mathbb{R}^d = (\mathbb{R}^d \setminus F) \cup F$ is a countable union of closed sets with empty interiors.
+
+	But by Baire Category Theorem, $\mathbb{R}^d$ is a Baire space, hence $\mathbb{R}^d$ has empty interior, nonsense. Therefore, $F$ is not $G_\delta$.\\
+
+	\item [(c)]
+
+	\textit{\textbf{Lemma.}} Let $X$ be any topological space and $A,\, B \subseteq X$.
+	\begin{enumerate}
+		\item [(1)] If $A$ and $B$ are $F_\sigma$ sets so are $A \cap B$ and $A \cup B$.
+
+	 	\item [(2)] If $A$ and $B$ are $G_\delta$ stes so are $A \cap B$ and $A \cup B$.
+	\end{enumerate}
+
+	\textit{\textbf{Proof.}}
+
+	(2) follows from (1) by taking complements. To prove (1), write $A = \cup_{n \in \mathbb{N}}\,F_n$ and $B = \cup_{n \in \mathbb{N}}\,L_n$ where $F_n,\,L_n$ are closed. Then
+		$$A \cup B
+		= \cup_{n \in \mathbb{N}} (F_n \cup L_n),\
+		A \cap B = \cup_{n,\,m \in \mathbb{N}} (F_n \cap L_m)$$
+	are $F_\sigma$ sets.\,$_\Box$\\\\
+
+	Let $F = [0,\infty) \cap \mathbb{Q}$ and $G = (-\infty,0] \cap (\mathbb{R} \setminus \mathbb{Q})$ in $\mathbb{R}$. Note that closed sets in $\mathbb{R}$ are trivially $F_\sigma$ and also $G_\delta$ by part (a). By \textit{\textbf{Lemma}}, $F$ is an $F_\sigma$ set and $G$ is a $G_\delta$ set.\\
+
+	Let $E = F \cup G$. Being the union of two Borel sets, $E$ is certainly Borel. Suppose that $E$ is $G_\delta$. Then by \textit{\textbf{Lemma.}} the set $E \cap [0,\infty) = F$ is $G_\delta$. But then the set $F' = (-\infty,0] \cap \mathbb{Q}$ is also $G_\delta$ because $F'$ is the image of $F$ under the homeomorphism $x \mapsto -x$ of $\mathbb{R}$. Thus $F \cup F' = \mathbb{Q}$ is $G_\delta$. This contradicts what we've shown in part (b). Thus, $E$ is not $G_\delta$.\\
+
+	Now suppose that $E$ is $F_\sigma$. The $E \cap (-\infty,0] = G$ is $F_\sigma$. Similar to above, from here it follows that $\mathbb{R} \setminus \mathbb{Q}$ is $F_\sigma$ which then implies that $\mathbb{Q}$ is $G_\delta$, again a contradiction. Thus, $E$ is neither $G_\delta$ nor $F_\sigma$.\\\\
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.16}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		\textbf{The Borel-Cantelli lemma.} Suppose $\{E_k\}_{k = 1}^\infty$ is a countable family of measurable subsets of $\mathbb{R}^d$ and that
+			$$\sum_{k=1}^\infty m(E_k) < \infty.$$
+		Let
+			$$\begin{aligned}
+			E
+			&= \{x \in \mathbb{R}^d : x \in E_k,\ \text{for infinitely many }k\}\\
+			&= \underset{k \to \infty}{\lim \sup} (E_k).
+			\end{aligned}$$
+		\begin{enumerate}
+			\item [(a)] Show that $E$ is measurable.
+
+			\item [(b)] Prove $m(E) = 0$.
+		\end{enumerate}
+		[Hint:\ Write $E = \cap_{n = 1}^\infty \cup_{k \geq n} E_k$.]
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}\\
+
+\textbf{Verify the hint:}
+
+Assume $x \in E_k$ for infinitely many $k$. This implies that for every $n \in \mathbb{N}$, there exists $k \geq n$ such that $x \in E_k$. That is, for every $n \in \mathbb{N}$, $x \in \cup_{k \geq n}\,E_k$ and hence $x \in \cap_{n \in \mathbb{N}} \cup_{k \geq n}\,E_k$.
+
+\begin{enumerate}
+	\item [(a)] By definition of the limilt superior, we have
+		$$E\ =\ \cap_{n = 1}^{\infty}\ \cup_{k \geq n} E_k$$
+
+	Each $\cup_{k \geq n} E_k$ is a countable union of measurable sets, and hence measurable. Then $E$ is a countable intersection of measurable sets, and so it is also measurable.\\
+
+	\item [(b)] Assume to the contary that $m(E) = \delta > 0$.
+
+	Notice that if we define
+		$$X_n\
+		=\ \cap_{k=1}^N \cup_{n \geq k}\, E_n
+		=\ \cup_{n \geq N}\, E_n$$
+
+	Then $X_n \searrow E$, and $\forall N$,
+		$$\delta
+		\leq m(X_n)
+		= m\left( \cup_{n \geq N}\, E_n\right)
+		\leq \sum_{n = N}^\infty\, m(E_n)$$
+	which contradicts the precondition $\sum_{k=1}^\infty m(E_k) < \infty$.\\\\
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.19}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Here are some observations regarding the set operation $A + B$.
+		\begin{enumerate}
+			\item [(a)] Show that if either $A$ and $B$ is open, then $A + B$ is open.
+
+			\item [(b)] Show that if $A$ and $B$ are closed, then $A + B$ is measurable.
+
+			\item [(c)] Show, however, that $A + B$ might not be closed even though $A$ and $B$ are closed.
+		\end{enumerate}
+		[Hint: For (b) show that $A + B$ is an $F_\sigma$ set.]
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+\begin{enumerate}
+	\item [(a)] Without loss of generality, suppose that $A$ is open and choose $x \in A + B$. This means that there is an $a \in A$ and a $b \in B$ such that $a + b = x$.
+
+	Because $A$ is open, we can choose a $\delta > 0$ such that $B_\delta(a) \subset A$.\\
+
+	Claim that $B_\delta(x) \subset A + B$.\\
+
+	We can see this because any $y \in B_\delta(x)$ satisfies $y = x + \varepsilon$, where $|\varepsilon| < \delta$. Then $y = a + b + \varepsilon = (a + \varepsilon) + b$.
+
+	We note that $(a + \varepsilon) \in A$ so $y \in A + B$. Hence, $B_\delta(x) \subset A + B$ and so $A + B$ and so $A + B$ is open because $x$ was arbitrary.\\
+
+	\item [(b)] Suppose that $A,\, B \subset \mathbb{R}^d$ are closed. Note that it will suffice to prove the special case of $A,\, B$ compact because we can write
+		$$A_k
+		= \cup_{k=1}^\infty\, A \cap B_k(0)\
+		\text{and}\
+		B_j
+		= \cup_{j=1}^\infty\, B \cap B_j(0)$$
+	where $B_i(0)$ is the ball of radius $i$ centered at the origin. Then $A_k,\, B_j$ are compact for every $k,\, j$ and therefore can then write
+		$$A + B = \cup_{j=1}^\infty \cup_{k=1}^\infty A_k + B_j$$
+
+	Hence, if each of the $A_k + B_j$ are measurable, then $A + B$ will. So we have reduced the prblem to the follwing claim.\\
+
+	\textbf{Claim.} If $X$ and $Y$ are compact subsets of $\mathbb{R}^d$, then the set $X + Y$ is compact.\\
+
+	\textit{\textbf{Proof.}}
+
+	Recall that a set in $\mathbb{R}^d$ is compact if and only if every sequence has a convergent subsequence.\\
+
+	Consider any sequence $\{z_n\}_{n=1}^\infty$ in $X + Y$. Then by the definition of $X + Y$, we have that each of the $z_n$ can be written $z_n = x_n + y_n$ where $x_n \in X$ and $y_n \in Y$.\\
+
+	Becasue $X, Y$ are compact, we can find convergent subsequences $x_{n_k} \to x$ in $X$ and $y_{n_k} \to y$ in $Y$. Because $X$ and $Y$ are closed, we know that $x \in X$ and $y \in Y$ so we can see that for any $\varepsilon > 0$ and sufficiently large $n,\,k$
+		$$|(x + y) - (x_{n_k} + y_{n_k})|
+		= |(x - x_{n_k}) + (y - y_{n_k})|
+		< |x - x_{n_k}| + |y - y_{n_k}| < \varepsilon$$
+
+	Hence, $z_n = x_n + y_n$ has a convergent subsequence in $X + Y$ which shows that $X + Y$ is compact.\,$_\Box$\\\
+
+	Going back to the original problem, we have that $A + B$ can be written as a countable union of compact sets, and hence closed. This means that $A + B$ is not only measurable, but actually $\mathcal{F}_\sigma$.\\
+
+	\item [(c)] Define
+		$$A = \{(x,y) \in \mathbb{R}^2\,
+		|\, y \geq b - mx,\, b > 0,\, m > 0\}$$
+
+	and
+		$$B = \{(x,y) \in \mathbb{R}^2\,
+		|\, y \geq  -b + mx,\, b > 0,\, m > 0\}$$
+
+	Then we have that $A^c$ and $B^c$ are open, so $A$ and $B$ are closed. But
+		$$A + B = \{(x,y) \in \mathbb{R}^2 \,|\, y > 0\}$$
+
+	which is open.\\\\
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.20}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Show that there exist closed sets $A$ and $B$ with $m(A) = m(B) = 0$, but $m(A + B) > 0$:
+		\begin{enumerate}
+			\item [(a)] In $\mathbb{R}$, let $A = \mathcal{C}$ (the Cantor set), $B = \mathcal{C}/2$. Note that $A + B \supseteq [0, 1]$.
+
+			\item [(b)] In $\mathbb{R}^2$, observe that if $A = I \times \{0\}$ and $B = \{0\} \times I$ (where $I = [0, 1]$), then $A + B = I \times I$.
+		\end{enumerate}
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+\begin{enumerate}
+	\item [(a)] Let $x \in [0,1]$. We know that $x$ has a ternary expansion
+		$$x = \sum_{n \in \mathbb{N}} a_n 3^{-n}.$$
+
+	Then if we define
+		$$b_n = \left\{
+		\begin{matrix}
+		a_n & &\text{if }a_n \neq 1\\
+		0 & &\text{otherwise}
+		\end{matrix} \right.$$
+
+	and
+		$$c_n = \left\{
+		\begin{matrix}
+		2 & &\text{if }a_n = 1\\
+		0 & &\text{otherwise}
+		\end{matrix} \right.$$
+
+	then we have
+		$$\begin{aligned}
+		x
+		&= \sum_{n \in \mathbb{N}} b_n 3^{-n}
+		+ \sum_{n \in \mathbb{N}} \frac{c_n}{2}\,3^{-n}\\
+		&= \sum_{n \in \mathbb{N}} b_n 3^{-n}
+		+ \frac{1}{2} \sum_{n \in \mathbb{N}} c_n 3^{-n}
+		\in \mathcal{C} + \mathcal{C}/2
+		\end{aligned}$$
+
+	since $\{b_n\}$ and $\{c_n\}$ are sequences of $0$'s and $2$'s.
+
+	As $x$ was arbitrary above, we obtain $[0,1] \subseteq A + B$. Hence $m(A + B) \geq 1$, but $A$ and $B$ are closed sets of measure zero.\\
+
+	\item [(b)] Given $(x,y) \in I \times I$, $(x,y) = (x,0) + (0,y) \in A + B$. $I \times I \subseteq A + B$ and the reverse containment is similar so we have $A + B = I \times I$.
+
+	Therefore $m(A + B) = 1$, however both $A$ and $B$ can be covered by rectangles of area $\varepsilon$ for any given $\varepsilon > 0$, hence, $m(A) = m(B) = 0$.\\\\
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.26}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Suppose $A \subset E \subset B$, where $A$ and $B$ are measurable sets of finite measure.
+
+		Prove that if $m(A) = m(B)$, then $E$ is measurable.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+Suppose that $A,\,B$ are measurable sets, and that $A \subset E \subset B$.
+
+We want to prove that $E$ is measurable.\\
+
+Fisrt, we note that because $A \subset E$ that we can write
+	$$E\ =\ A \cup (E - A)$$
+
+Because $A$ is measurable, it will suffice to show that $E - A$ is measurable, then $E$ will be a union of two measurable sets, therefore, $E$ is measurable.\\
+
+Observe that because $A \subset E \subset B$ that $(E - A) \subset (B - A)$. We use monotonicity of the measure to get
+	$$m_*(E - A) \leq m_*(B - A)
+	= m(B - A) = m(B) - m(A) = 0$$
+
+So $E - A$ is a subset of a set with measure $0$, and is measurable as a result. This immediately gives that $E$ is measurable. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% \begin{flushleft}
+	% 	\rule[-0.5ex]{17cm}{2pt}\\
+	% 		\textbf{Theorem}\\
+	% 	\rule[1.5ex]{17cm}{0.5pt}
+			
+	% 	\rule[1.0ex]{17cm}{0.5pt}\
+	% \end{flushleft}
+	% \textbf{\textit{Proof.}}\\
+
+\end{document}
+
+
+
+
+
+

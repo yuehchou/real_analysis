@@ -1,0 +1,147 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+
+\title{Real Analysis \\ Homework 2}
+\author{Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+\item (Exercise 3.15) If $E$ is measurable and $A$ is any subset of $E$, show that $|E| = |A|_i + |E-A|_e$.\\
+\newline
+\textit{\textbf {Proof.}}\\
+Let $F$ be a closed set and $F \subseteq A$, then $E-A \subseteq E-F$.
+So we have
+$$|F| + |E-A|_e \leq |F| + |E-F|_e = |E|$$
+Taking the supremum of the both sides, then
+$$\sup|F| + |E-A|_e = |A|_i + |E-A|_e \leq |E|$$
+However
+$$|A|_i + |E-F|_e \geq |F| + |E-F|_e = |E|$$
+Since $E - A \subseteq E - F \Rightarrow \inf (E - A) \subseteq E - F$, taking the infimum of the both sides, then
+$$|A|_i + \inf |E - F|_e \geq |E| \Rightarrow |A|_i + |E - A|_e \geq |E|$$
+By above two inequalities, we will have
+$$|E| \leq |A|_i + |E - A|_e \leq |E|$$
+Hence
+$$|E| = |A|_i + |E-A|_e$$
+\newline
+
+
+\item (Exercise 3.17) Give an example which shows that the image of a measurable set under a continuous transformation may not be measurable. (Consider the Cantor-Lebesgue function and the pre-image of an appropriate nonmeasurable subset of its range.) See also Exercise 10 of Chapter 7.\\
+\newline
+\textit{\textbf {Proof.}}\\
+Let $f$ be Cantor-Lebesgue function and $\mathit{C}$ be the Cantor set, then $f(C) = [0,1]$, therefore for all $x \in \mathit{C}$, we have
+$$x = \sum_{k=1}^{\infty} c_k 3^{-k}, \hspace{0.1cm} c_k = 0 \hspace{0.1cm} \mathrm{or} \hspace{0.1cm} 2 \hspace{0.1cm} \mathrm{for} \hspace{0.1cm} \mathrm{all} \hspace{0.1cm}k$$
+Then
+$$f(x) = \sum_{k=1}^{\infty} \frac{1}{2} c_k 2^{-k}$$
+Hence, $f(C) \subseteq [0,1]$.\\
+However, for every $y \in [0,1]$, let
+$$y = \sum_{k=1}^{\infty} a_k 2^{-k}$$
+where $a_k = 0 \hspace{0.1cm} \mathrm{or} \hspace{0.1cm} 1$.\\
+Let
+$$x = \sum_{k=1}^{\infty} 2 a_k 3^{-k} \in \mathit{C}$$
+Then
+$$f(x) = f(\sum_{k=1}^{\infty} 2 a_k 3^{-k}) = \sum_{k=1}^{\infty} a_k 2^{-k} = y$$
+This implies $f(\mathit{C}) = [0,1]$. Since $|[0,1]| = 1 > 0$, there exists $B \subseteq [0,1]$ such that $B$ is non-measurable set.\\
+Let
+$$A = \{ x \in \mathit{C} | f(x) \in B \}$$
+However, $\mathit{C}$ is measure zero and $A \subseteq C$, therefore $A$ is also measure zero.\\
+Hence, $f$ is continuous and $f(A = B$ where $A$ is measurable set and $B$ is non-measurable set.
+\newline
+
+
+
+\item (Exercise 3.18) Prove that outer measure is \textit{translation invariant}; that is, if $E_h = \{ x + h : x \in E \}$ is the translate of $E$ by $h$, $h \in \mathbb{R}^n$, show that $|E_h|_e = |E|_e$. If $E$ is meaurable, show that $E_h$ is also measurable. (This fact was used in proving Lemma 3.37.)\\
+\newline
+\textit{\textbf {Proof.}}\\
+Let $\{ I_k \}_{k=1}^{\infty}$ be a family of intervals such that $E \subseteq \cup_{k=1}^{\infty} I_k$.\\
+Since $E_h = {x+h : x \in E}$, then $\{I_k + h\}_{k=1}^{\infty}$ is also a family such that $E_h \subseteq \cup_{k=1}^{\infty} (I_k + h)$.\\
+Hence,
+$$|E_h|_e \leq \sum_{k=1}^{\infty} v(I_k + h) = \sum_{k=1}^{\infty} v(I_k)$$
+Taking the infremum of the both sides in $|E_h|_e \lq \sum_{k=1}^{\infty} v(I_k)$, we will have
+$$\inf |E_h|_e = |E_h|_e \leq \inf \sum_{k=1}^{\infty} v(I_k) = |E|_e$$\\
+However,
+$$|E|_e \leq \sum_{k=1}^{\infty} v(I_k) = \sum_{k=1}^{\infty} v(I_k+h)$$
+Similarily, taking the infremum of the both sides in $|E|_e \leq \sum_{k=1}^{\infty} v(I_k+h)$
+Hence,
+$$\inf |E|_e = |E|_e \leq \inf \sum_{k=1}^{\infty} v(I_k+h) = |E_h|_e$$
+From $|E_h|_e \leq |E|_e$ and $|E_h|_e \geq |E|_e$, we can conclude that
+$$|E_h|_e = |E|_e$$
+\newline
+
+
+
+
+\item (Exercise 3.20) Show that there exist disjoint $E_1, E_2,...,E_k,...$ such that $|\cup E_k|_e < \sum |E_k|_e$ with strict inequality. (Let $E$ be a nonmeasurable subset of $[0, 1]$ whose rational translates are disjoint. Consider the translates of $E$ by all rational numbers $r$, $0 < r < 1$, and use Exercise 18.)\\
+\newline
+\textit{\textbf {Proof.}}\\
+Follow the hint, let $E$ be a nonmeasurable subset of $[0, 1]$ whose rational translates are disjoint.\\
+Consider the translates of $E$ by the sequence of rational numbers $\{ r_k \}$ where $0 < r_k < 1$ for all $k$.\\
+Define the $E_{r_k} = {x + r_k : x \in E}$.\\
+Then we have $\cup_{r_k} E_{r_k} \subseteq [0,2]$, that is $|\cup_{r_k} E_{r_k}| \leq 2$.\\
+By Exercise 3.18, we know that $|E_{r_k}|_e = |E|_e$ for all $k$.\\
+Hence,
+$$|\cup E|_e \leq |\cup_{r_k} E_{r_k}|_e \leq 2 < \sum_{r_k} |E_{r_k}|_e = \sum |E|_e$$\\
+
+
+
+
+\item (Exercise 3.21) Show that there exist sets $E_1, E_2,...,E_k,...$ such that $E_k \searrow E, |E_k|_e < +\infty$, and $\lim_{k \to \infty} |E_k|_e > |E|_e$ with strict inequality.\\
+\newline
+\textit{\textbf {Proof.}}\\
+Let a non-measurable set $A \subset [0,1]$ and satisfy $|A|_e > 0$.\\
+Let $\{ r_i \}_{i=1}^{\infty} = \mathbb{Q} \cap [0,1]$, $A_{r_i} = \{ a + r_i | a \in A \}$ and
+$$E_k = \cup_{i=k}^{\infty} A_{r_i}$$
+Since $A_{r_i} \cap A_{r_j} = \phi$ for $i \neq j$, then $E_k \searrow \phi$, and $E_k \subset [0,2]$ implies
+$$|E_k|_e \leq 2 < +\infty$$
+Hence
+$$|E_k|_e = |\cup_{i=k}^{\infty} A_{r_i}|_e \geq |A_{r_k}|_e = |A|_e > 0$$
+for all $k$.
+But $|\phi|_e = 0$, therefore $\lim_{k \to \infty}|E_k|_e$ must be larger than $|E|_e$.
+\newline
+
+
+
+\item (Exercise 3.24) Let $0.\alpha_1 \alpha_2 ...$ be the dyadic development of any $x$ in $[0, 1]$, that is, $x = \alpha_1 2^{-1} + \alpha_2 2^{-2} + ...$ with $\alpha_i = 0, 1$. Let $k_1, k_2, ...$ be a fixed permutation of the positive integers $1, 2, ... $, and consider the transformation $T$ that sends $x = 0.\alpha_1 \alpha_2 ...$ to $Tx = 0.\alpha_{k_1} \alpha_{k_2} ...$. If $E$ is a measurable subset of $[0, 1]$, show that its image $TE$ is also measurable and that $|TE| = |E|$. (Consider first the special cases of $E$ a dyadic interval $[s2^{-k}, (s+1)2^{-k}]$, $s = 0,1,...,2^k - 1$ , and then of $E$ an open set [which is a countable union of nonoverlapping dyadic intervals]. Also show that if $E$ has small measure, then so has $TE$.)\\
+\newline
+\textit{\textbf {Proof.}}\\
+Let $I_{k,s}$ be the $s$-th dynamic interval where for any element $x = 0.\alpha_1 \alpha_2 ... \in I_{k,s}$, only the first $k$ dynamic intergers $\alpha_1, \alpha_2, ..., \alpha_k$ are the same (which means $\alpha_{k+1}, \alpha_{k+2}, ...$ are different).\\
+So
+$$I_{k,s} = [s2^{-k}, (s+1)2^{-k}], \hspace{0.1cm} s = 0,1,...,2^{k-1}$$
+Since $I_{k,s}$ is closed interval, $I_{k,s}$ is measurable.\\
+Suppose the tranformation $T_i$ only permutes the first $i$ dynamic intergers $\alpha_1, \alpha_2, ..., \alpha_i$ in any $x$ where $x$ is in any dynamic interval $I_{k,s}$, therefore, $T_i \nearrow T$.\\
+Since for any interger $k$, we will have $\cup_s I_{k,s} = [0,1]$.\\
+Hence, for any open set $E \subset [0,1]$, pick $k$ and $k > i$, then we can find the finite $j$ dynamic intervals such that
+$$E = \cup_{s = \{s_1, s_2, ..., s_j\}} I_{k,s}$$
+For any dynamic interval $I_{k,s}$ where $\cup_{s = \{s_1, s_2, ..., s_j\}} I_{k,s}$, since the first $k$ dynamic intergers in every $x \in I_{k,s}$ are the same, and for any tranformation $T_i$ only permutes the first $i$ dynamic intergers where $k > i$.\\
+Hence, the first $k$ dynamic intergers of all elemnets $x' \in T_i(I_{k,s})$ are still the same, this means $T_i(I_{k,s})$ just be moved to another dynamic interval $I_{k, s'}$ where $s' = 0,1,...,2^{k-1}$.\\
+$T_i(I_{k,s}) = I_{k, s'}$, so $I_{k,s'}$ is also a closed interval and also measurable.\\
+However $T_i(E) = T_i(\cup_{s = \{s_1, s_2, ..., s_j\}} I_{k,s}) = \cup_{s' = \{s_1', s_2', ..., s_j'\}} I_{k,s'}$ and all $I_{k,s'}$ are measurable, then $T_i (E)$ is measurable.\\
+Since $T_i \nearrow T$, then $T_i(E) \nearrow T(E)$ is also measurable.\\\\
+
+Let $I'_{k,s}$ be the interval which is removed two boundary points $s2^{-k}$ and $(s+1)2^{-k}$ in $I_{k,s}$, therefore all intervals $I'_{k,s}$ are open and measurable.\\
+Also, fixed $k$ and for all $s$, $I'_{k,s}$ are disjoint.\\
+Since those two boundary points measure zero, then we have
+$$|I_{k,s}| - |I'_{k,s}| \leq |I_{k,s} - I'_{k,s}| < \epsilon$$
+Since
+$$T(E) = T(\cup_s I_{k,s}) = \cup_{s'} I_{k,s'}$$
+we will have
+$$|T(E)| - |E| = |\cup_{s'} I_{k,s'}| - |\cup_s I_{k,s}|
+< \sum_{s'} |I_{k,s'}| - |\cup_s I'_{k,s}|$$
+Since all $I'_{k,s}$ are disjoint, then
+$$|T(E)| - |E| < \sum_{s'} |I_{k,s'}| - |\cup_s I'_{k,s}| < \sum_{s'} |I_{k,s'}| - \sum_s |I'_{k,s}|$$
+
+Fixed $k$, if $\sum_{s} |I'_{k,s}|$ is the sum of the $n$ disjoint open intervals $I'_{k,s}$ and $\sum_{s'} |I'_{k,s'}|$ is the sum of the another $n$ disjoint open intervals $I'_{k,s'}$, since $|I'_{k,s}| = |I'_{k,s'}| = 2^{-k}$, therefore, $\sum_{s} |I'_{k,s}| = \sum_{s'} |I'_{k,s'}|$.\\
+Hence,
+$$|T(E)| - |E|
+< \sum_{s'} |I_{k,s'}| - \sum_s |I'_{k,s}|
+= \sum_{s'} |I_{k,s'}| - \sum_{s'} |I'_{k,s'}| < n \cdot \epsilon$$
+Since $\epsilon$ is arbitary chosen small, $|T(E)| = |E|$.
+\end{enumerate}
+\end{document}
+
+

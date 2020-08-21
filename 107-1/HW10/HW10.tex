@@ -1,0 +1,232 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis \\ Homework 10}
+\author{Yueh-Chou Lee}
+\date{December 28, 2018}
+\begin{document}
+\maketitle
+ \begin{enumerate}
+
+ 	\item (Exercise 7.11)\\
+ 		Prove the following result concerning \textit{changes of variable}. Let $g(t)$ be monotone increasing and absolutely continuous on $[\alpha,\beta]$ and let $f$ be integrable on $[a,b]$, $a = g(\alpha)$, $b = g(\beta)$. Then $f(g(t))g'(t)$ is measurable and integrable on $[\alpha,\beta]$, and
+ 		$$\int_a^b f(x) \hspace{0.1cm} dx = \int_\alpha^\beta f(g(t)) g'(t) \hspace{0.1cm} dt$$
+ 		(Consider the cases when $f$ is the characteristic function of an interval, an open set, etc.)
+ 		
+ 		\textit{\textbf {Proof.}}\\
+ 		Since $g(t)$ is monotone increasing and absolutely continuous on $[\alpha,\beta]$, then $g$ is of bounded variatin on $[\alpha,\beta]$, $g'$ also exists a.e. and $g' \in L[\alpha,\beta]$.\\
+ 		Let $f$ and $g'$ be the non-negative function.\\
+ 		Since $f \in L[a,b]$ and $g' \in L[\alpha, \beta]$, then $f$ is measurable on $[a,b]$ and $g$ is measurable on $[\alpha, \beta]$.\\
+ 		Thus, $f(g(t))$ is also measurable on $[\alpha,\beta]$ since $g(t)$ is continuous on $[\alpha,\beta]$.\\
+ 		Then
+ 		$$f(g(t)) g'(t)
+ 		= \frac{1}{2} \left\{ \left[ f(g(t)) + g'(t) \right]^2 - [f(g(t))]^2 - g(t)^2 \right\}$$
+ 		is measurable.\\
+		$f$ and $g'$ are finite on $[a,b]$ and $[\alpha, \beta]$ since $f \in L[a,b]$ and $g' \in L[\alpha, \beta]$, so
+		$$\int_\alpha^\beta f(g(t)) g'(t) dt
+		\leq \left|[\alpha, \beta]\right| \sup_{[\alpha, \beta]}\{ f(g(t)) g'(t) \}
+		< \infty$$
+		thus, $f(g(t)) g'(t)$ is integrable on $[\alpha, \beta]$.\\
+
+		Let $\Gamma = \{ t_i \}$ be a partition of $[\alpha, \beta]$ with norm $|\Gamma|$.\\
+		Then
+		$$\begin{aligned}
+		\int_\alpha^\beta f(g(t)) g'(t) dt
+		&= \sum \int_{t_{i-1}}^{t_i} f(g(t)) g'(t) dt\\
+		&= \sum f(g(t_{i-1})) \int_{t_{i-1}}^{t_i} g'(t) dt
+		+ \sum \int_{t_{i-1}}^{t_i} [f(g(t)) - f(g(t_{i-1}))] g'(t) dt
+		\end{aligned}$$
+
+		The first term on the right equals
+		$$\sum f(g(t_{i-1})) [g(t_i) - g(t_{i-1})]$$
+		which converges to
+		$$\int_a^b f dg \hspace{0.2cm} \mbox{ as $|\Gamma| \to 0$}$$
+		The second termon the right is majorized in absolute value by
+		$$\left[ \underset{|x- y| \leq |\Gamma|}{\sup} |f(x) - f(y)| \right] \sum \int_{t_{i-1}}^{t_i} |g'| dt
+		= \left[ \underset{|x-y| \leq |\Gamma|}{\sup} \right] \int_\alpha^\beta |g'| dt$$
+		Since $f(g(t))$ is uniformly continuous on $[\alpha, \beta]$, the last expression tends to $0$ as $|\Gamma| \to 0$.\\
+		Thus
+		$$\int_a^b f(x) \hspace{0.1cm} dx = \int_\alpha^\beta f(g(t)) g'(t) \hspace{0.1cm} dt$$\\
+
+
+
+
+
+
+ 	\item (Exercise 7.12)\\
+ 		Use Jensen's inequality to prove that if $a, b \geq 0$, $p, q > 1$, $\frac{1}{p} + \frac{1}{q} = 1$, then
+ 		$$ab \leq \frac{a^p}{p} + \frac{b^q}{q}$$
+ 		More generally, show that
+ 		$$a_1 ... a_N \leq \sum_{j=1}^N \frac{a_j^{p_j}}{p_j}$$
+ 		where $a_j \geq 0$, $p_j > 1$, $\sum_{j=1}^N \frac{1}{p_j} = 1$.\\
+ 		(Write $a_j = e^{x_j / p_j}$ and use the convexity of $e^x$.)
+
+ 		\textit{\textbf {Proof.}}\\
+ 		Let $a_j = e^{x_j / p_j}$ and $\phi(x) = e^x$, then $x_j = \ln (a_j^{p_j})$ and $\phi$ is a convex function.\\
+ 		By using Jensen's inequailty and $\sum_{j=1}^N \frac{1}{p_j} = 1$,
+ 		$$\begin{aligned}
+ 		a_1...a_N
+ 		&= \phi\left(\sum_{i=1}^N \frac{x_j}{p_j}\right)
+ 		= \phi\left(\frac{\sum_{i=1}^N \frac{1}{p_j} \cdot x_j}{\sum_{i=1}^N \frac{1}{p_j}}\right)\\
+ 		&\leq \frac{\sum_{i=1}^N \frac{1}{p_j} \phi(x_j)}{\sum_{i=1}^N \frac{1}{p_j}}
+ 		= \sum_{i=1}^N \frac{e^{x_j}}{p_j}\\
+ 		&= \sum_{i=1}^N \frac{a_j^{p_j}}{p_j}
+ 		\end{aligned}$$
+
+ 		If $N = 2$, then the inequality $ab \leq \frac{a^p}{p} + \frac{b^q}{q}$ holds.\\
+
+
+
+
+
+
+ 	\item (Exercise 7.14)\\
+ 		Prove that $\phi$ is convex on $(a,b)$ if and only if it is continuous and
+ 		$$\phi \left( \frac{x_1 + x_2}{2} \right) \leq \frac{\phi(x_1) + \phi(x_2)}{2}$$
+ 		for $x_1, x_2 \in (a,b)$.
+
+ 		\textit{\textbf {Proof.}}\\
+ 		($\Rightarrow$)\\
+ 		By Theorem 7.40, since $\phi$ is convex on $(a,b)$, then $\phi$ is continuous in $(a,b)$.\\
+ 		By the formula 7.34, if $\phi$ is convex in $(a,b)$, then
+ 		$$\phi \left( \frac{p_1 x_1 + p_2 x_2}{p_1 + p_2} \right)
+ 		\leq \frac{p_1 \phi(x_1) + p_2 \phi(x_2)}{p_1 + p_2} \hspace{0.5cm} \mbox{holds.}$$
+ 		Set $p_1 = p_2 = \frac{1}{2}$, we have
+ 		$$\phi \left( \frac{x_1 + x_2}{2} \right) \leq \frac{\phi(x_1) + \phi(x_2)}{2}$$\
+
+ 		($\Leftarrow$)\\
+ 		Suppose that $\phi$ is continuous and satisfies
+ 		$$\phi \left( \frac{x_1 + x_2}{2} \right) \leq \frac{\phi(x_1) + \phi(x_2)}{2}$$
+ 		for $x_1, x_2 \in (a,b)$.
+ 		Given $x_1, x_2 \in (a,b)$, then for any $t \in [x_1, x_2]$ can be written as
+ 		$$t = (1 - \sum_{k=1}^\infty \frac{a_k}{2^k}) \hspace{0.1cm} x_1 + (\sum_{k=1}^\infty \frac{a_k}{2^k}) \hspace{0.1cm} x_2$$
+ 		where $a_i \in [0,1]$ for all $i$.\\
+ 		Let $t_n$ be the $n$th partial sum of the series $t$.\\
+ 		We claim that
+ 		$$\phi\left( (1 - \sum_{k=1}^n \frac{a_k}{2^k}) \hspace{0.1cm} x_1 + (\sum_{k=1}^n \frac{a_k}{2^k}) \hspace{0.1cm} x_2 \right)
+ 		\leq (1 - \sum_{k=1}^n \frac{a_k}{2^k}) \hspace{0.1cm} \phi(x_1) + (\sum_{k=1}^n \frac{a_k}{2^k}) \hspace{0.1cm} \phi(x_2)$$
+ 		for all $n$ is any positive integer.\\
+ 		For $n = 1$, then
+ 		$$\phi((1 - \frac{a_1}{2}) \hspace{0.1cm} x_1 + \frac{a_1}{2} \hspace{0.1cm} x_2)
+ 		\leq (1 - \frac{a_1}{2}) \hspace{0.1cm} \phi(x_1) + \frac{a_1}{2} \hspace{0.1cm} \phi(x_2)$$
+ 		Suppose that this inequality holds for $n = r$.\\
+ 		For $n = r + 1$, we have
+ 		$$\begin{aligned}
+ 		&.\hspace{0.4cm} \phi\left( (1 - \sum_{k=1}^{r+1} \frac{a_k}{2^k}) \hspace{0.1cm} x_1 + (\sum_{k=1}^{r+1} \frac{a_k}{2^k}) \hspace{0.1cm} x_2 \right)\\
+ 		&\leq \frac{1}{2} \left[ \phi((1 - a_1) \hspace{0.1cm} x_1 + a_1 x_2) + \phi (1 - \sum_{k=2}^{r+1} \frac{a_k}{2^k}) \hspace{0.1cm} x_1 + \phi (\sum_{k=2}^n \frac{a_k}{2^k}) \hspace{0.1cm} x_2 \right]\\
+ 		&\leq \frac{1}{2} \left[ \phi((1 - a_1) \hspace{0.1cm} x_1 + a_1 x_2) + (1 - \sum_{k=2}^{r+1} \frac{a_k}{2^k}) \hspace{0.1cm} \phi(x_1) + (\sum_{k=2}^n \frac{a_k}{2^k}) \hspace{0.1cm} \phi(x_2) \right]\\
+ 		&= (1 - \sum_{k=1}^{r+1} \frac{a_k}{2^k}) \hspace{0.1cm} \phi(x_1) + (\sum_{k=1}^{r+1} \frac{a_k}{2^k}) \hspace{0.1cm} \phi(x_2)
+ 		\end{aligned}$$
+ 		By the induction, then we have
+ 		$$\phi(t)
+ 		= \underset{n \to \infty}{\lim} \phi(t_n)
+ 		\leq (1 - \sum_{k=1}^\infty \frac{a_k}{2^k}) \hspace{0.1cm} \phi(x_1) + (\sum_{k=1}^\infty \frac{a_k}{2^k}) \hspace{0.1cm} \phi(x_2)$$
+ 		since $\phi$ is continuous and the above inequality as $n \to \infty$, therefore, $\phi$ is convex.\\
+
+
+
+
+
+
+
+ 	\item (Exercise 7.15)\\
+ 		Theorem 7.43 shows that a convex function is the indefinite integral of a monotone increasing function. Prove the converse: If $\phi(x) = \int_a^x f(t) dt + \phi(a)$ in $(a,b)$ and $f$ is monotone increasing, then $\phi$ is convex in $(a,b)$. (Use Exercise 14.)
+
+ 		\textit{\textbf {Proof.}}\\
+ 		Given any interval $[x_1,x_2] \in (a,b)$, since $f$ is monotone increasing, then we have
+ 		$$\begin{aligned}
+ 		\frac{\phi(x_1) + \phi(x_2)}{2} - \phi(\frac{x_1 + x_2}{2})
+ 		&= \frac{[\phi(x_2) - \phi(\frac{x_1 + x_2}{2})] - [\phi(\frac{x_1 + x_2}{2}) - \phi(x_1)] }{2}\\
+ 		&= \frac{1}{2} \int_{\frac{x_1 + x_2}{2}}^{x_2} f(x) dx - \frac{1}{2} \int_{x_1}^{\frac{x_1 + x_2}{2}} f(x) dx\\
+ 		&\geq \frac{1}{2} \left[ \left(x_2 - \frac{x_1 + x_2}{2} \right) f(\frac{x_1 + x_2}{2}) - \left( \frac{x_1 + x_2}{2} - x_1 \right) f(\frac{x_1 + x_2}{2}) \right]\\
+ 		&= \left( \frac{x_2 - x_1}{4} \right) \left( f(\frac{x_1 + x_2}{2}) - f(\frac{x_1 + x_2}{2}) \right)\\
+ 		&= 0
+ 		\end{aligned}$$
+
+ 		By Exercise 7.14, $\phi$ is convex since $\int_a^x f(t) dt$ is continuous.\\
+
+
+
+
+
+
+
+  	\item (Exercise 7.16)\\
+  		Show that the formula
+  		$$\int_{-\infty}^{+\infty} f g' = - \int_{-\infty}^{+\infty} f' g$$
+  		for integration by parts may not hold if $f$ is of bounded variation on $(-\infty, + \infty)$ and $g$ is infinitely differentiable with compact support. (Let $f$ be the Cantor–Lebesgue function on $[0,1]$, and let $f = 0$ elsewhere.)
+
+ 		\textit{\textbf {Proof.}}\\
+ 		Follow the hint, let $f$ be the Cantor–Lebesgue function on $[0,1]$ and $f = 0$ elsewhere. Since $f \in [0,1]$ on $[0,1]$ and $f = 0$ elsewhere, then $f$ is of bounded variation on $(-\infty, +\infty)$.\\
+ 		Let
+ 		$$g(x) =
+ 		\begin{cases}
+ 		e^{\frac{1}{(x-1)^2 - 1}} \hspace{0.2cm} &\mbox{if $x \in (0,2)$}\\
+ 		0 &\mbox{otherwise}
+ 		\end{cases}$$
+ 		Then $g$ vanishes outside the bounded set $[0+\epsilon, 2 - \epsilon]$ where $\epsilon > 0$ and $g^{(n)} = f_n (x) e^{\frac{1}{(x-1)^2 - 1}}$, hence, $g$ is infinitely differentiable with compact support.\\
+ 		Since $g$ is also increasing on $(0,1)$, then
+ 		$$\int_{-\infty}^{+\infty} f \cdot g'
+ 		= \int_0^1 f \cdot g'
+ 		\geq \int_{\frac{1}{3}}^{\frac{2}{3}} \frac{1}{2} \cdot g'> 0$$
+
+ 		But $f' = 0$ since $f$ is the Cantor–Lebesgue function on $[0,1]$ and $f = 0$ elsewhere, then $\int_{-\infty}^{+\infty} f' g = 0$.\\
+ 		Thus,
+ 		$$\int_{-\infty}^{+\infty} f \cdot g' > 0 = \int_{-\infty}^{+\infty} f' g$$
+ 		and then the exercise follows.\\
+
+
+
+
+
+
+
+
+  	\item (Exercise 7.17)\\
+  		A sequence $\{\phi_k\}$ of set functions is said to be \textit{uniformly absolutely continuous} if given $\epsilon > 0$, there exists $\delta > 0$ such that if $E$ satisfies $|E|<\delta$, then $|\phi_k(E)| < \epsilon$ for all $k$. If $\{f_k\}$ is a sequence of integrable functions on $(0,1)$ which converges pointwise a.e. to an integrable $f$, show that $\int_0^1 |f - f_k| \to 0$ if and only if the indefinite integrals of the $f_k$ are uniformly absolutely continuous. (cf. Exercise 23 of Chapter 10.)
+
+ 		\textit{\textbf {Proof.}}\\
+ 		Given $\epsilon > 0$.\\
+ 		If the indefinite integrals of the $f_k$ are uniformly absolutely continuous and $f \in L(0,1)$, there exists $\delta > 0$ such that if $E \subseteq (0,1)$ satisfies $|E| < \delta$, then
+ 		$$\left| \int_E f_k \right| < \epsilon$$
+ 		for all $k$ and
+ 		$$\int_E |f| < \epsilon$$
+ 		By Egorov's theorem, there is a closed subset $F$ of $(0,1)$ such that
+ 		$$\left| (0,1) - F \right| < \delta$$
+ 		and $\{ f_k \}$ converges uniformly to $f$ on $F$.\\
+ 		Then choose $M > 0$ such that for all $k \geq M$, we have
+ 		$$\begin{aligned}
+ 		\int_0^1 |f - f_k|
+ 		&= \int_F |f - f_k| + \int_{(0,1) \setminus F} |f - f_k|\\
+ 		&< \epsilon |F| + \int_{(0,1) \setminus F} |f| + \int_{(0,1) \setminus F} |f_k|\\
+ 		&< \epsilon + \epsilon +\int_{(0,1) \setminus F} f_k^+ + \int_{(0,1) \setminus F} f_k^-\\
+ 		&< 4\epsilon
+ 		\end{aligned}$$
+
+ 		So
+ 		$$\int_0^1 |f - f_k| \to 0$$
+ 		Conversely, given $\epsilon > 0$.\\
+ 		For all $k$, since the indefinite integral of $f_k$ is absolutely continuous, there exists $\delta_k > 0$ such that for any $E \subseteq (0,1)$ with $|E| < \delta_k$, then we have
+ 		$$\left| \int_E f_k \right| < \epsilon$$
+ 		Since the indefinite integral of $f$ is absolutely continuous, choose $M > 0$ and $\delta > 0$ such that for any $|E| < \delta$ and $k \geq M+1$, then we have
+ 		$$\left| \int_E f_k \right|
+ 		\leq \int_E |f_k|
+ 		\leq \int_E |f_k - f| + \int_E |f| < \epsilon$$
+
+ 		Let $\delta' = \min \{ \delta, \delta_1, \delta_2,..., \delta_M \}$, then
+ 		$$\left| \int_E f_k \right| < \epsilon$$
+ 		for all $k$.
+
+
+
+
+
+
+ \end{enumerate}
+\end{document}

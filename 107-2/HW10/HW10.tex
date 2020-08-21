@@ -1,0 +1,229 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+
+
+\title{Real Analysis\\ Homework 10}
+\author{National Taiwan University, Department of Mathematics\\
+R06221012 \hspace{0.2cm} Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex.1
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 1}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			Show that if $f \in C^0(\mathbb{R}^n)$, then its support is identical with the support of the distribution
+				$$\left<f,\phi\right>
+				= \int\,f\phi\,dx, \quad \phi \in C_c^\infty(\mathbb{R}^n).$$
+			Is this true when $f \in L_{\text{loc}}^1(\mathbb{R}^n)$?
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}\\
+		If $\phi$ is such that $\text{supp}\,\phi\cap\text{supp}\,f = \emptyset$, then $\int_{\mathbb{R}^n}\,f(x)\phi(x)\,dx = 0$, so $\text{supp}\,\mathcal{D}_f \subseteq \text{supp}\,f$.\\
+		Now fixed an $x_0$ such that $f(x_0) \neq 0$, $f(x_0) > 0$, then $f(x) > \frac{f(x_0)}{2}$ for some ball $B_\eta(x_0)$. Assume that $x_0 \notin \text{supp}\,\mathcal{D}_f$, then we can find some $\delta > 0$ such that $B_\delta(x_0) \cap \text{supp}(\mathcal{D}_f) = \emptyset$. We can assume that $\delta < \eta$.\\
+		Now find a $\phi$ such that supp $\phi \subseteq B_\delta(x_0)$ and that $\phi(x) = 1$ on $B_{\frac{\delta}{2}}(x_0)$. Then
+			$$\int_{\mathbb{R}^n} f(x)\phi(x)\,dx
+			\geq \int_{B_{\frac{\delta}{2}}(x_0)} f(x) \phi(x)\,dx
+			\geq \frac{(f(x_0))\,\delta^n}{2^{n+1}} > 0,$$
+		so $\phi$ is such that supp $\phi \cap \text{supp}\,\mathcal{D}_f = \emptyset$ but $\int_{\mathbb{R}^n} f(x)\phi(x)\,dx \neq 0$, this is a contradiction.\\
+		We conclude that $x_0 \in \text{supp}\,\mathcal{D}_f$ and hence $\text{supp}\,f \subseteq \text{supp}\,\mathcal{D}_f$.\\
+		Thus
+			$$\text{supp}\,f = \text{supp}\,\mathcal{D}_f.$$\\
+		This will not be true when $f \in L_{\text{loc}}^1(\mathbb{R}^n)$, consider the function
+			$$f(x) =
+			\left\{\begin{matrix}
+			1, &x \in \mathbb{Q}\\
+			0, &x \notin \mathbb{Q}
+			\end{matrix}\right..$$
+		The supp $f = \mathbb{R}$, but supp $\mathcal{D}_f = \emptyset$.\\
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex.2
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 2}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			Show that the principal value integral
+				$$\text{p.v. }
+				\int \frac{\phi(x)}{x}\,dx
+				= \underset{\varepsilon \to 0^+}{\lim}
+				\left( \int_{-\infty}^{-\varepsilon}\,\frac{\phi(x)}{x}\,dx
+				+ \int_\varepsilon^\infty \frac{\phi(x)}{x}\,dx \right)$$
+			exists for all $\phi \in C_c^\infty(\mathbb{R}^n)$, and is a distribution. What is its order?
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}
+		$$\begin{aligned}
+		\text{p.v. }
+		\int \frac{\phi(x)}{x}\,dx
+		&= \underset{\varepsilon \to 0^+}{\lim}
+		\left( \int_{-\infty}^{-\varepsilon}\,\frac{\phi(x)}{x}\,dx
+		+ \int_\varepsilon^\infty \frac{\phi(x)}{x}\,dx \right)\\
+		&= \underset{\varepsilon \to 0^+}{\lim}\,\int_{\varepsilon \leq |x| < 1}\,\frac{\phi(x) - \phi(0)}{x}\,dx
+		+ \int_{1 \leq |x|}\,\frac{\phi(x)}{x}\,dx
+		\end{aligned}$$
+	Since $\phi \in C_c^\infty(\mathbb{R}^n)$, $\phi$ has compact support. Then
+		$$\int_{1 \leq |x|}\,\frac{\phi(x)}{x}\,dx
+		= \int_{1 \leq |x|}\,\frac{|x\,\phi(x)|}{x^2}\,dx
+		\leq \underset{x \in \mathbb{R}}{\sup}\{|x\,\phi(x)|\}\,\int_{1 \leq |x|} \frac{1}{x^2}\,dx
+		= 2\,\underset{x \in \mathbb{R}}{\sup}\{|x\,\phi(x)|\}
+		< \infty.$$
+	Also, we see that
+		$$\chi_{\varepsilon \leq |x| < 1}\,\left|\frac{\phi(x) - \phi(0)}{x}\right|
+		\leq \chi_{|x| < 1}\,||\phi||_{\infty}
+		\quad \text{and} \quad
+		\chi_{|x| < 1}\,||\phi||_{\infty} \in L^1(\mathbb{R}),$$
+	so by Lebesgue Dominated Convergence Theorem, we know that
+		$$\underset{\varepsilon \to 0^+}{\lim}\,\int_{\varepsilon \leq |x| < 1}\,\frac{\phi(x) - \phi(0)}{x}\,dx
+		\leq \chi_{|x| < 1}\,||\phi||_{\infty}
+		< \infty.$$
+	Hence
+		$$\text{p.v. }
+		\int \frac{\phi(x)}{x}\,dx
+		= \underset{\varepsilon \to 0^+}{\lim}
+		\left( \int_{-\infty}^{-\varepsilon}\,\frac{\phi(x)}{x}\,dx
+		+ \int_\varepsilon^\infty \frac{\phi(x)}{x}\,dx \right)
+		\quad \text{exists.}$$\\\\
+	Moreover, if supp $\phi \subset [-a,a]$, then
+		$$\left|\text{p.v. }\int \frac{\phi(x)}{x}\,dx\right|
+		\leq 2a\,\sup\{|\phi'|\}.$$
+	This implies that the p.v. of $\dfrac{1}{x}$ is a distribution of order at most 1.\\\\
+	Finally, the order cannot be 0. Indeed, if $0 \leq \phi_\varepsilon \leq 1$ such that supp $\phi_\varepsilon \subset [\varepsilon,4\varepsilon]$ and $\phi_{\varepsilon} = 1$ on $[2\varepsilon, 3\varepsilon]$ then
+		$$\text{p.v. } \int \frac{\phi(x)}{x}\,dx \geq \frac{1}{4\varepsilon}\,\sup\{|\phi_{\varepsilon}|\}.$$\\
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex.3
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 3}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			Find a distribution $u \in \mathcal{D}'(\mathbb{R})$ such that $u = \frac{1}{x}$ on $(0,\infty)$ and $u = 0$ on $(-\infty,0)$.
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}\\
+		Consider the function $g(x) = \ln x$ for $x > 0$ and $g(x) = 0$ for $x \leq 0$. Then $g \in L^1_{\text{loc}}$, so defines a distribution, and $g'(x) = \frac{1}{x}$ for $x > 0$. So $g'$ is an admissible $u$. Therefore
+			$$\left<u, \phi\right>
+			= - \int_0^\infty\,\phi'(x)\,\ln x \,dx$$
+		works.\\
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex.4
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 4}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			Show that
+				$$\left<u,\phi\right> = \overset{\infty}{\underset{k = 1}{\sum}}\,\partial^k \phi(\frac{1}{k})$$
+			is a distribution in $(0,\infty)$? What is its order?
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}\\
+		Let $\phi$ be such that supp $\phi \subset [\dfrac{1}{N}, N]$. Then
+			$$\left<u, \phi\right>
+			= \sum_{k=1}^N\,\partial^k\phi(\frac{1}{k})
+			\leq \sum_{k=1}^N\,\underset{x \in [1/N,N]}{\sup}\,|\partial^k \phi|.$$
+		Since the compacts $[1/N,N]$ exhaust $(0,\infty)$, it follows that $u$ is a distribution on $(0,\infty)$.\\\\\\
+		Suppose that $u = v \arrowvert_{(0,\infty)}$ for $v \in \mathcal{D}'(\mathbb{R})$. Then there must exist $N_0$ and $C_0$ such that
+			$$|\left<v,\phi\right>|
+			\leq C_0\,\sum_{k=1}^{N_0}\,\sup|\partial^k \phi|,
+			\quad \text{supp } \phi \subset [-1,1].$$
+		So, if we take $N > N_0$, we will have
+			$$\left|\partial^N \phi(\frac{1}{N})\right|
+			\leq |\left<u,\phi\right>|
+			\leq |\left<v,\phi\right>|
+			\leq C_0 \,\sum_{k=1}^{N_0} \sup\,|\partial^k \phi|,$$
+		if supp $\phi \subset \left(\frac{1}{N+1}, \frac{1}{N-1}\right)$. This would imply that $\partial^N\,\delta_{\frac{1}{N}}$ is order at most $N_0 < N$ and consequently that $\partial^N \delta$ is of order at most $N_0$ on a small interval $(-\varepsilon, \varepsilon)$.\\\\
+		We claim that this is impossible.\\
+		Indeed, let $\psi \in C_c^\infty ((-\varepsilon, \varepsilon))$ be such that $\partial^N \psi(0) \neq 0$. Consider then the test functions
+			$$\psi_\lambda(x) = \lambda^N \psi(\frac{x}{\lambda})
+			\quad \text{for small }\lambda > 0.$$
+		We have supp $\psi_\lambda \subset (-\varepsilon \lambda, \varepsilon \lambda)$. Moreover,
+			$$\partial^N \psi_\lambda (0) = \partial^N \psi(0)
+			\quad \text{and} \quad
+			\partial^k \psi_\lambda = \lambda^{N - k}\,\partial^k \psi.$$
+		Thus, we would have an estimate
+			$$|\partial^N \psi(0)|
+			\leq C_0\,\sum_{k=1}^{N_0}\,\lambda^{N-N_0}\,\sup|\partial^k \psi|
+			\quad \text{for any }\lambda > 0.$$
+		This is clearly a contradiction for small $\lambda$.\\
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex.5
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 5}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			Let $u \in \mathcal{D}'(\mathbb{R}^n)$ have the property that $\left<u,\phi\right> \geq 0$ for all real valued nonnegative $\phi \in C_c^\infty(\mathbb{R}^n)$. Show that $u$ is of order 0.
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}\\
+	Let $K \subset \subset \mathbb{R}^n$ and $\psi_K \in C_c^\infty (\mathbb{R}^n)$ non-negative cut-off function such that $\psi_K = 1$ on $K$. Then for real-valued test functions $\phi$ with supp $\phi \subset K$, we would have
+		$$\left(\sup_K\,|\phi|\right) \psi_K(x) - \phi(x) \geq 0.$$
+	Hence
+		$$\left<u,\left(\sup_K\,|\phi|\right) \psi_K(x) - \phi(x)\right> \geq 0.$$
+	This implies
+		$$\left<u, \phi(x)\right>
+		\leq \left<u,\psi_K\right> \left(\sup_K\,|\phi|\right).$$
+	For complex valu $\phi$ we obtain
+		$$|\left<u, \phi(x)\right>|
+		\leq 2 \left<u,\psi_K\right> \left(\sup_K\,|\phi|\right)$$
+	by considering the real and imaginary parts of $\phi$.\\
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex.6
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 6}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			Let $\{f_k\}_{k=1}^\infty \in L_{\text{loc}}^1 (\mathbb{R}^n)$ be a sequence of real valued functions such that
+				$$\text{supp}\,f_k \subset \{|x| \leq k^{-1}\},
+				\quad \int\,f_k(x)\,dx = 1,
+				\quad k = 1,2,\cdots.$$
+			Show that the sequence $\{f_k^2\}_{k=1}^\infty$ does not converge in $\mathcal{D}'(\mathbb{R}^n)$ as $k \to \infty$.
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}\\
+	Let $\phi \in C_c^\infty(\mathbb{R}^n)$ and
+		$$f_k(x) = \left\{
+		\begin{matrix}
+		\frac{k}{2},\,&|x| \leq \frac{1}{k}\\
+		0,\,&|x| > \frac{1}{k}
+		\end{matrix}\right.,$$
+	then $\{f_k\}_{k=1}^\infty \in L_{\text{loc}}^1 (\mathbb{R}^n)$ and $\int\,f_k(x)\,dx = 1$. So
+		$$f_k^2(x) = \left\{
+		\begin{matrix}
+		\frac{k^2}{4},\,&|x| \leq \frac{1}{k}\\
+		0,\,&|x| > \frac{1}{k}
+		\end{matrix}\right.,$$
+	hence, if $\phi \in \mathcal(\mathbb{R}^n)$ and $\phi = 1$ in $|x| \leq 1$, then
+		$$\left<f_k^2,\phi\right>
+		= \int f_k^2(x)\phi(x)\,dx
+		\geq\,\underset{|x| \leq \frac{1}{k}}{\inf} \phi\,\int_{|x| \leq \frac{1}{k}} f_k^2(x)\,dx
+		= \frac{k}{2},$$
+	which is divergent as $k \to \infty$. Therefore, the sequence $\{f_k^2\}_{k=1}^\infty$ does not converge in $\mathcal{D}'(\mathbb{R}^n)$ as $k \to \infty$.\\
+
+
+\end{document}
+
+
+
+
+
+
+

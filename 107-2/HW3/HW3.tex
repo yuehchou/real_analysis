@@ -1,0 +1,238 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+
+
+\title{Real Analysis \\ Homework 3}
+\author{Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex2
+	\item (Exercise 10.2)\\
+		A measure space $(\mathscr{S}, \Sigma, \mu)$ is said to be \textit{complete} if $\Sigma$ contains all subsets of sets with measure zero; that is, $(\mathscr{S}, \Sigma, \mu)$ is complete if $\Upsilon \in \Sigma$ whenever $\Upsilon \subset \mathrm{Z}$, $\mathrm{Z} \in \Sigma$, and $\mu(\mathrm{Z}) = 0$. In this case, show that if $f$ is measurable and $g = f$ a.e. $(\mu)$, then $g$ is also measurable (cf. Theorem 4.5 and Chapter 3, Exercise 34). Is this true if $(\mathscr{S}, \Sigma, \mu)$ is not complete?\\
+		Give an example of an incomplete measure space with a measure that is neither identically infinte nor identically zero.\\
+	\newline
+	\textit{\textbf {Proof.}}\\
+		\begin{enumerate}
+			\item
+				Let $f$ and $g$ be measurable functions satisfies $f = g$ a.e. $(\mu)$, and let $Z = \{f \neq g\}$, tehn $\mu(Z) = 0$.\\
+				For any constant $a$, since $\{g > a, f \neq g\}$ is subset of $Z$, then it has measure zero. Hence $\{g >a\}$ is measurable.\\
+
+			\item
+				But if $(\mathscr{S}, \Sigma, \mu)$ is not complete, the set $\{g > a, f \neq g\}$ is maybe nonmeasurable.\\
+				For example, let $\mathscr{S} = \{0,1,2\}$. $\Sigma = \{\phi, \{0,1,2\}, \{0\}, \{1,2\} \}$ and let $\mu$ be the function with $\mu(\phi) = 0$, $\mu(\{0,1,2\}) = 1$, $\mu(\{0\}) = 1$ and $\mu(\{1,2\}) = 0$, then $\Sigma$ is a $\sigma$-algebra and $\mu$ is a measure.\\
+				Let
+					$$f(x) = \left\{
+					\begin{matrix}
+					&0 &\text{if $x = 0$} \\
+					&1 &\text{if $x = \{1,2\}$}
+					\end{matrix}\right.,
+					\quad \quad
+					g(x) = \left\{
+					\begin{matrix}
+					&0 &\text{if $x = 0$}\\
+					&2 &\text{if $x = 1$}\\
+					&3 &\text{if $x = 2$}
+					\end{matrix}\right.$$
+				Then $\{ f \neq g\} = \{1, 2\}$ has measure zero and $f$ is measurable, but $\{g > 2\} = \{2\}$ is nonmeasurable.\\
+
+		\end{enumerate}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex3
+	\item (Exercise 10.3)\\
+		\textbf{Theorem 10.14 (Egorov’s Theorem)}\\
+			Let $(\mathscr{S}, \Sigma, \mu)$ be a measure space, and let $E$ be a measurable set with $\mu(E) < +\infty$. Let $\{f_k\}$ be a sequence of measurable functions on $E$ such that each $f_k$ is finite a.e.$(\mu)$ in $E$ and $\{f_k\}$ converges a.e.$(\mu)$ in $E$ to a finite limit. Then, given $\epsilon > 0$, there is a measurable set $A \subset E$ with $\mu(E - A) < \epsilon$ such that $\{f_k\}$ converges uniformly on $A$.\\
+	\newline
+	\textit{\textbf {Proof.}}\\
+		For $n, k \in \mathbb{N}$, define
+			$$E_{n,k} = \underset{m \geq n}{\bigcup} \left\{ x \in E \left| |f_m(x) - f(x)| \geq \frac{1}{k}\right.\right\}$$
+		Thus $E_{n+1,k} \subset E_{n,k}$.\
+
+		For a point $x$, the sequence $\{f_m(x)\}$ converges to $f(x)$, but it cannot occur in every set $E_{n,k}$, since $f_m(x)$ has to stay closer to $f(x)$ than $\frac{1}{k}$ eventually.\
+
+		Hence by the assumption of $\mu$-almost everywhere pointwise convergence on $E$, then
+			$$\mu \left( \underset{n \in \mathbb{N}}{\bigcap} E_{n,k} \right) = 0, \quad \forall k$$
+		Since $E$ is of finte measure, we have continuity from above; hence there exists, for each $k$, and for some $n_k \in \mathbb{N}$ such that
+			$$\mu(E_{n_k, k}) < \frac{\epsilon}{2^k}$$
+		Let
+			$$A = \underset{k \in \mathbb{N}}{\bigcup} E_{n_k,k}$$
+		as the set of all those points $x$ in $E$.\
+
+		On the set $E - A$ we therefore have uniform convergence.\
+
+		Appealing to the $\sigma$ additivity of $\mu$ and using the geometric series, we get
+			$$\mu(A) \leq \underset{k \in \mathbb{N}}{\sum} \mu(E_{n_k, k}) < \underset{k \in \mathbb{N}}{\sum} \frac{\epsilon}{2^k} = \epsilon$$
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex4
+	\item (Exercise 10.4)\\
+		If $(\mathscr{S}, \Sigma, \mu)$ is a measure space, and if $f$ and $\{f_k\}$ is said to \textit{converge} in $\mu$-measure on $E$ to limit $f$ if
+			$$\underset{k \to \infty}{\lim} \mu \{ x \in E : |f(x) - f_k(x)| < \epsilon \} = 0 \hspace{0.2cm} \text{for all $\epsilon > 0$}$$
+		Formulate and prove analogues of Theorems 4.21 through 4.23.
+
+	\begin{enumerate}
+		\item
+			Let $f$ and $f_k$, $k = 1,2,\cdots$, be measurable and finite a.e. in $E$. If $f_k \to f$ a.e. on $E$ and $|E| < +\infty$, then $f_k \to f$ in $\mu$-measure on $E$.\\
+			\newline
+			\textit{\textbf {Proof.}}\\
+			Given $\epsilon, \eta > 0$, let $F$ be the closed subset of $E$ and $K \in \mathbb{N}$.\
+
+			If $k > K$, $\mu\{x \in E : |f(x) - f_k(x)| > \epsilon\} \subset \mu(E-F)$ and since $|E - F| < \eta$, then $f_k \to f$ in $\mu$-measure on $E$.\\
+
+		\item
+			If $f_k \to f$ in $\mu$-measure on $E$, there is a subsequence $\{f_{k_j}\}$ such that $f_{k_j} \to f$ a.e. in $E$.\\
+			\newline
+			\textit{\textbf {Proof.}}\\
+			Since $f_k \to f$ in $\mu$-measure on $E$, given $j = 1,2,\cdots$, there exists $k_j$ such that
+				$$\mu\left\{ |f - f_k| > \frac{1}{j} \right\} < \frac{1}{2^j} \quad \text{for $k \geq k_j$}$$
+			We may assume that $k_j \nearrow$. Let $E_j = \{ |f - f_{k_j}| > 1/j \}$ and $H_m = \bigcup_{j=m}^\infty E_j $.\
+
+			Then 
+				$$\mu(E_j) < 2^{-j}, \quad \mu(H_m) \leq \sum_{j=m}^\infty 2^{-j} = 2^{-m+1}$$
+			and
+				$$|f - f_{k_j}| \leq \frac{1}{j} \quad \text{in } E - E_j$$
+			Thus, if $j \geq m$,
+				$$|f - f_{k_j}| \leq 1/j \quad \text{in } E - H_m$$
+			so that $f_{k_j} \to f$ a.e. in $E$. This completes the proof.\\
+
+
+		\item
+			A necessary and sfficient condition that $\{f_k\}$ converge in $\mu$-measure on $E$ is that for each $\epsilon > 0$,
+				$$\underset{k, l \to \infty}{\lim} u\{x \in E : |f_k(x) - f_l(x)| > \epsilon\} = 0$$
+			\textit{\textbf {Proof.}}\\
+			The necessity follows from the formula
+				$$\{|f_k - f_l| > \epsilon\}
+				\subset
+				\left\{ |f_k - f| > \frac{\epsilon}{2} \right\} \cup \left\{ |f_l - f| > \frac{\epsilon}{2} \right\}$$
+			and the fact that the measures of the sets on the right tend to zero as $k, l \to \infty$ if $f_k \to f$ in $\mu$-measure.\
+
+			To prove the converse, choose $N_j$, $j = 1,2,\cdots$, so that if $k, l \geq N_j$, then
+				$$\mu\left\{ |f_k - f_j| > \frac{1}{j} \right\} < \frac{1}{2^j}$$
+			We may assume that $N_j \nearrow$, then
+				$$|f_{N_{j+1}} - f_{N_j}| \leq \frac{1}{2^j}$$
+			expect for a set $E_j$, $|E_j| < 2^{-j}$.\
+
+			Let $H_i = \bigcup_{j=i}^\infty E_j$, $i = 1,2,\cdots$, then
+				$$|f_{N_{j+1}}(x) - f_{N_j}(x)| \leq 2^{-j} \quad \text{for $j \geq i$ and $x \notin H_i$} $$
+			It follows that $\sum(f_{N_{j+1} - f_{N_j}})$ converges uniformly outside $H_i$ for every $i$ and, therefore, that $\{f_{N_j}\}$ converges uniformly outside every $H_i$.\
+
+			Since
+				$$\mu(H_i) \leq \sum_{j \geq i} 2^{-j} = 2^{-i+1}$$
+			we obtain that $\{f_{N_j}\}$ converges a.e. in $E$ and, letting $f = \lim f_{N_j}$, that $f_{N_j} \to f$ in $\mu$-measure on $E$, note that
+				$$\{|f_k - f| > \epsilon\}
+				\subset
+				\left\{ |f_k - f_{N_j}| > \frac{\epsilon}{2} \right\} \cup \left\{ |f_{N_j} - f| > \frac{\epsilon}{2} \right\}
+				\quad \text{for any } N_j$$
+			To show that the measure of the set on the left is less than a prescribed $\eta > 0$ for all sufficiently large $k$, select $N_j$ so that the first term on the right has measure less than $\frac{1}{2} \eta$ for all large $k$ (here, we use the Cauchy condition) and so that the measure of the second term on the right is also less than $\frac{1}{2} \eta$. This completes the proof.\\
+
+
+	\end{enumerate}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex6
+	\item (Exercise 10.6)
+		\begin{enumerate}
+			\item If $f_1, f_2 \in L(d \mu)$ and $\int_E f_1 d \mu = \int_E f_2 d \mu$ for all measurable $E$, show that $f_1 = f_2$ a.e. $(\mu)$.
+
+			\item  Prove the uniqueness of $f$ and $\sigma$ in Theorem 10.40.
+
+			\item Let $\mu$ be $\sigma$-finite, and let $f_1, f_2 \in L^{p'} (d\mu)$, $\frac{1}{p} + \frac{1}{p'} = 1$, $1 \leq p \leq \infty$. If $\int f_1 g d\mu = \int f_2 g d \mu$ for all $g \in L^p(d\mu)$, show that $f_1 = f_2$ a.e. $(\mu)$.\
+		\end{enumerate}
+
+	% \newline
+	\textit{\textbf {Proof.}}\\
+		\begin{enumerate}
+			\item If $f_2 = 0$, let $E = \{ f_1 > 0 \}$ and $E_n = \{ h \geq \frac{1}{n} \} \nearrow E$.\\
+			Since 
+				$$0 \leq f_1 \chi_{E_n} \leq f_1 \chi_E = f_1$$
+			then
+				$$\int_{E_n} f_1 d \mu = 0$$
+			But
+				$$\int_{E_n} f_1 d\mu \geq \frac{1}{n} \cdot \mu(E_n)$$
+			so that $\mu (E_n) = 0$ for all $n$, and thus $\mu (E) = 0$.\\
+			For general $f_2$, let $f = f_1 - f_2$, then
+				$$\int_E f d\mu = 0$$
+			Hence
+				$$\mu(\{f_1 \neq f_2\}) = 0$$
+
+			\item
+				Let
+					$$v(A)
+					= \int_A f_1 d\mu + \sigma_1(A)
+					= \int_A f_2  d\mu + \sigma_2(A)$$
+				for every measurable $A \subset E$.\\
+				Then
+					$$\int_A f_1 d\mu - \int_A f_2 d\mu
+					= \sigma_2(A) - \sigma_1(A)
+					= 0$$
+				since $\sigma_2 - \sigma_1$ and $\mu$ are mutually singular and $\sigma_2 - \sigma_1$ is absolutely continuous.\\
+				Thus $f$ and $\sigma$ are unique.\\
+
+			\item
+				Since $f_1, f_2 \in L^{p'}(d\mu)$ and $g \in L^p d(\mu)$, then $\int_E f_1 g d\mu$ and $\int_E f_2 g d\mu$ are finite.\\
+				Since $\mu$ is $\sigma$-finite, then let $E = \cup_{k=1}^\infty E_k$ such that $\mu(E_k) < \infty$ for all $k$.\\
+				For any $k$, let $g = \chi_{E_k}$, then $\int_A f_1 g d\mu = \int_A f_2g d\mu$ for any measurable set $A$.\\
+				By (a), we have $f_1 = f_2$ a.e. on $E_k$, thus $f_1 = f_2$ a.e.\\
+
+		\end{enumerate}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex7
+	\item (Exercise 10.7)\\
+		Prove the integral convergence results in Theorems 10.27 through 10.29 and 10.31.\\
+	\newline
+	\textit{\textbf {Proof.}}\\
+		Since $f_k \leq f$ for every $k \geq 1$ and integrals preserve monotonicity, then
+			$$\int f_k d \mu \leq f d\mu \quad \text{for all } k \geq 1$$
+		Then we have
+			$$\underset{k \to \infty}{\lim} \int f_k d\mu \leq \int f d\mu$$
+		On the other hand, for the converse, apply Fatou's lemma, then we have
+			$$\underset{k \to \infty}{\lim} f_k = f$$
+		by assumption.\
+
+		Since the limit exists, then we write
+			$$\underset{k \to \infty}{\lim \inf} f_k = \underset{k \to \infty}{\lim} f_k$$
+		By Fatou's Lemma, so
+			$$\int \underset{k \to \infty}{\lim \inf} f_k d\mu
+			= \int \underset{k \to \infty}{\lim} f_k d\mu
+			\leq \underset{k \to \infty}{\lim \inf} \int f_k d\mu
+			= \underset{k \to \infty}{\lim} \int f_k d\mu$$
+		then we have
+			$$\int f d\mu \leq \underset{k \to \infty}{\lim} f_k d\mu$$
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex8
+	\item (Exercise 10.8)\\
+		Show that for $1 \leq p < \infty$, the class of simple functions vanishing outside sets of finite measure is dense in $L^p(d\mu)$. See also Exercise 27.\\
+	\newline
+	\textit{\textbf {Proof.}}\\
+		If $f \geq 0$ and measurable on $E \in \Sigma$, by Theorem 10.13 (iv), there exists nonnegative, simple measurable $f_k \nearrow f$ on $E$. Hence $|f_k|^p \nearrow |f|^p$, then $||f_k||_p \nearrow ||f||_p$.\
+
+		By Exercise 8.12, then $||f_k - f||_p \to 0$.\
+
+		Suppose there is a simple function $f_k$ on a measurable set $E$ such that $\mu(E) = \infty$. This implies that $||f||_p = \infty$. That is contradiction.\
+
+		Thus the class of simple functions vanishing outside sets of finite measure is dense in $L^p(d \mu)$.
+
+
+\end{enumerate}
+\end{document}
+
+
+

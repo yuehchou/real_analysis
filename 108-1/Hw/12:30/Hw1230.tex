@@ -1,0 +1,373 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{mathrsfs} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis Homework\\ Chapter 4. Product Measures\\ Due Date: 12/30}
+\author{National Taiwan University, Department of Mathematics\\
+R06221012 \hspace{0.2cm} Yueh-Chou Lee}
+\date{December 30, 2019}
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $A \subseteq X$ and let $B$ be a $\nu$-measurable subset of $Y$. If $A \times B$ is measurable with respect to the product measure $\mu \times \nu$, is $A$ necessarily measurable with respect to $\mu$?
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+No, $A$ is NOT necessarily measurable with respect to $\mu$.\\
+
+If $X = Y = \text{Borel $\sigma$ algebra of } \mathbb{R}$, $\mu = \nu = \text{Lebesgue measue}$ and $A$ is a Lebesgue measuable set in $\mathbb{R}$ which is not Borel set, then $A \times \mathbb{R}$ is measurable with respect to the product measure but $A \notin X$, that is $A$ may not be measurable with respect to $\mu$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 2}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $\mathbb{N}$ be the set of natural numbers, $\mathcal{M} = 2^{\mathbb{N}}$, and $c$ the counting measure defined by setting $c(E)$ equal to the number of points in $E$ if $E$ is finite and $\infty$ if $E$ is an infinite set. Prove that every function $f\,:\,\mathbb{N} \to \mathbb{R}$ is measurable with respect to $c$ and that $f$ is integrable over $\mathbb{N}$ with respect to $c$ if and only if the series $\sum_{k=1}^\infty f(k)$ is absolutely convergent in which case
+			$$\int_{\mathbb{N}} f\,dc = \sum_{k=1}^\infty\,f(k).$$
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+% https://math.stackexchange.com/questions/1763657/conditions-on-integrable-function-with-counting-measure
+
+% And show the equality: https://math.stackexchange.com/questions/764076/integration-with-respect-to-counting-measure?rq=1
+
+\begin{enumerate}
+	\item Use the fact that $f$ is integrable iff $|f|$ is integrable.
+
+	For nonnegative, measurable function $|f|$ in measure space $(\mathbb{N}, \mathcal{M}, c)$, we have
+		$$\int_{\mathbb{N}}\,|f|\,dc
+		= \sum_{k = 1}^\infty|f(k)|.$$
+
+	Moreover, we also know that $|f|$ is integrable iff $\int_{\mathbb{N}}\,|f|\,dc = \sum_{k = 1}^\infty|f(k)|< +\infty$.
+
+	Thus, every function $f\,:\,\mathbb{N} \to \mathbb{R}$ is measurable with respect to $c$ and that $f$ is integrable over $\mathbb{N}$ with respect to $c$ if and only if the series $\sum_{k=1}^\infty f(k)$ is absolutely convergent.
+
+	\item Following, we will show that
+		$$\int_{\mathbb{N}} f\,dc = \sum_{k=1}^\infty\,f(k).$$
+
+	Use the fact that for nonnegative, measurable function $g$ in measure space $(\mathbb{N}, \mathcal{M}, c)$, we have
+		$$\int_{\mathbb{N}}\,g\,dc
+		= \sum_{k = 1}^\infty g(k).$$
+
+	Since we can write $f$ as $f = f^+ - f^-$ where $f^+,\,f^- \geq 0$, then
+		$$\begin{aligned}
+		&\int_{\mathbb{N}}\,|f|\,dc
+		= \sum_{k = 1}^\infty|f(k)|\\
+		\Rightarrow\ &\int_{\mathbb{N}}\,|f^+ - f^-|\,dc
+		= \sum_{k = 1}^\infty|f^+(k) - f^-(k)|\\
+		\Rightarrow\ &\int_{\mathbb{N}}\,f^+\,dc + \int_{\mathbb{N}}\,f^-\,dc
+		= \sum_{k = 1}^\infty f^+(k) + \sum_{k = 1}^\infty f^-(k)\\
+		\Rightarrow\ &\int_{\mathbb{N}}\,f^+\,dc - \sum_{k = 1}^\infty f^-(k)
+		= \sum_{k = 1}^\infty f^+(k) - \int_{\mathbb{N}}\,f^-\,dc\\
+		\Rightarrow\ &\int_{\mathbb{N}}\,f^+\,dc - \int_{\mathbb{N}}\,f^-\,dc
+		= \sum_{k = 1}^\infty f^+(k) - \sum_{k = 1}^\infty f^-(k)\\
+		\Rightarrow\ &\int_{\mathbb{N}} f\,dc = \sum_{k=1}^\infty\,f(k).
+		\end{aligned}$$
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 3}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $(X,\mathcal{A},\mu) = (Y,\mathcal{B},\nu) = (\mathbb{N},\mathcal{M},c)$, the measure space defined in the preceding problem. State the Fubini and Tonelli Theorems explicitly for this case.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+% https://math.stackexchange.com/questions/1799766/relation-between-counting-measure-and-tonelli-theorem
+
+% https://math.stackexchange.com/questions/1709995/verification-prove-the-fubini-tonelli-theorem-when-x-mathcalm-mu-is-an/2936220
+
+Suppose every function $f\,:\,\mathbb{N} \times \mathbb{N} \to \mathbb{R}$ is measurable with respect to $\mu \times \nu$ and $f$ is integrable over $\mathbb{N} \times \mathbb{N}$ with respect to $\mu \times \nu$.
+
+The Tonelli's Theorems for counting measure on $\mathbb{N} \times \mathbb{N}$, if $f$ is $\mathcal{M} \times \mathcal{M}$ and $f \geq 0$, then $\int_\mathbb{N}f\,d\mu$ is measurable with respect to $c$, $\int_\mathbb{N}f\,dc$ is measurable with respect to $\mu$, and
+	$$\int_{\mathbb{N}} \left[ \int_{\mathbb{N}}\,f\,d\mu \right]\,d\nu
+	= \int_{\mathbb{N} \times \mathbb{N}} f\,d(\mu \times \nu)
+	= \int_{\mathbb{N}} \left[ \int_{\mathbb{N}}\,f\,d\nu \right]\,d\mu
+	= \sum_{k=1}^\infty \sum_{n=1}^\infty f(k,n).$$
+
+The Fubini's Theorems for counting measure on $\mathbb{N} \times \mathbb{N}$, if $f$ is integrable over $\mathbb{N} \times X$ with repect to $c \times \mu$, that is
+	$$\int_{\mathbb{N}} \left[ \int_{\mathbb{N}}\,f\,d\nu \right]\,d\mu
+	= \sum_{k=1}^\infty \sum_{n=1}^\infty f(k,n)
+	< \infty,$$
+
+then
+	$$\int_{\mathbb{N}} \left[ \int_{\mathbb{N}}\,f\,d\mu \right]\,d\nu
+	= \int_{\mathbb{N} \times \mathbb{N}} f\,d(\mu \times \nu)
+	= \int_{\mathbb{N}} \left[ \int_{\mathbb{N}}\,f\,d\nu \right]\,d\mu
+	= \sum_{k=1}^\infty \sum_{n=1}^\infty f(k,n).$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 4(i)}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $(\mathbb{N},\mathcal{M},c)$ be the measure space defined in \textbf{Exercise 2} and $(X, \mathcal{A}, \mu)$ a general measure space. Consider $\mathbb{N} \times X$ with the product measure $c \times \mu$.
+
+		Show that a subset $E$ of $\mathbb{N} \times X$ is measurable with respect to $c \times \mu$ if and only if for each natural number $k$, $E_k = \{x \in X | (k,x) \in E\}$ is measurable with respect to $\mu$.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+$(\Rightarrow)$:
+
+We can get from \textbf{Lemma 4.8.2} in Real Analysis by Fon-Che Liu.\\
+
+$(\Leftarrow)$:
+
+We can find some $n \in \mathbb{N}$ such that $E = \cup_n (\{n\} \times E_n)$, since $E_n$ is measurable with respect to $\mu$ and $\{n\} \subset \mathbb{N}$ is measurable with respect to $c$, then $E$ is measurable with respect to $c \times \mu$.\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 4(ii)}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $(\mathbb{N},\mathcal{M},c)$ be the measure space defined in \textbf{Exercise 2} and $(X, \mathcal{A}, \mu)$ a general measure space. Consider $\mathbb{N} \times X$ with the product measure $c \times \mu$.
+
+		Show that a function $f\,:\,\mathbb{N} \times X \to \mathbb{R}$ is measurable with respect to $c \times \mu$ if and only if for each natural number $k$, $f(k,\cdot)\,:\,X \to \mathbb{R}$ is measurable with respect to $\mu$.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+$(\Rightarrow)$:
+
+We can get from \textbf{Corollary 4.8.2} in Real Analysis by Fon-Che Liu.\\
+
+% By Tonelli's Theorem, if $f\,:\,\mathbb{N} \times X \to \mathbb{R}$ is measurable with respect to $c \times \mu$, then $f(k,\cdot)\,:\,X \to \mathbb{R}$ is measurable with respect to $\mu$.\\
+
+$(\Leftarrow)$:
+
+Let $f_k = f(k,\cdot)\,:\,X \to \mathbb{R}$. By \textbf{Exercise 4(i)}, we know that if $E_k$ is measurable, then $\{k\} \times E_k$ is measurable. Thus,
+	$$f^{-1}((a, \infty]) = \bigcup_k \{k\} \times f_k^{-1}((a,\infty])$$
+
+is a countable union of measurable sets, so $f$ is measurable.\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 4(iii)}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $(\mathbb{N},\mathcal{M},c)$ be the measure space defined in \textbf{Exercise 2} and $(X, \mathcal{A}, \mu)$ a general measure space. Consider $\mathbb{N} \times X$ with the product measure $c \times \mu$.
+
+		Show that a function $f\,:\,\mathbb{N} \times X \to \mathbb{R}$ is integrable over $\mathbb{N} \times X$ with repect to $c \times \mu$ if and only if for each natural number $k$, $f(k,\cdot)\,:\,X \to \mathbb{R}$ is integrable over $X$ with respect to $\mu$ and
+			$$\sum_{k=1}^\infty\int_X|f(k,x)|\,d\mu(x) < \infty.$$
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+Use the fact that $f$ is integrable over $\mathbb{N} \times X$ with repect to $c \times \mu$ iff $|f|$ is integrable over $\mathbb{N} \times X$ with repect to $c \times \mu$.
+
+Also, by \textbf{Exercise 4(ii)}, we have $f$ is measurable with respect to $c \times \mu$, then $|f|$ is measurable and nonnegative, hence, we have
+	$$\int_{\mathbb{N}}\,|f|\,dc
+	= \sum_{k = 1}^\infty|f(k,x)|.$$
+
+Moreover, $|f|$ is integrable over $\mathbb{N} \times X$ with repect to $c \times \mu$ iff
+	$$\int_{\mathbb{N} \times X} |f|\,d(c \times \mu)
+	= \int_X \left( \int_{\mathbb{N}} |f|\,dc\right)d\mu
+	= \int_X \left( \sum_{k=1}^\infty |f(k,x)| \right) d\mu
+	= \sum_{k=1}^\infty \int_X |f(k,x)|\,d\mu
+	< +\infty.$$
+
+Since $\int_X |f(k,x)|\,d\mu < \sum_{n=1}^\infty \int_X |f(n,x)|\,d\mu < +\infty$, then $f(k,\cdot)\,:\,X \to \mathbb{R}$ is integrable over $X$ with respect to $\mu$.\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 4(iv)}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $(\mathbb{N},\mathcal{M},c)$ be the measure space defined in \textbf{Exercise 2} and $(X, \mathcal{A}, \mu)$ a general measure space. Consider $\mathbb{N} \times X$ with the product measure $c \times \mu$.
+
+		Show that if the function $f\,:\,\mathbb{N} \times X \to \mathbb{R}$ is integrable over $\mathbb{N} \times X$ with repect to $c \times \mu$ then
+			$$\int_{\mathbb{N} \times X} f\,d(c \times \mu)
+			= \sum_{k=1}^\infty\int_X f(k,x)\,d\mu(x)
+			< \infty.$$
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}\\
+
+Since the function $f\,:\,\mathbb{N} \times X \to \mathbb{R}$ is integrable over $\mathbb{N} \times X$ with repect to $c \times \mu$, by \textbf{Exercise 4(iii)}, we then have
+	$$\begin{aligned}
+	\int_{\mathbb{N} \times X} f\,d(c \times \mu)
+	&= \int_X \left( \int_{\mathbb{N}} f\,dc\right)d\mu\\
+	&= \int_X \left( \sum_{k=1}^\infty f(k,x) \right) d\mu\\
+	&= \sum_{k=1}^\infty\int_X f(k,x)\,d\mu(x)\\
+	&\leq \sum_{k=1}^\infty\int_X|f(k,x)|\,d\mu(x)
+	< \infty.
+	\end{aligned}$$
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 5}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $(X, \mathcal{A}, \mu) = (Y, \mathcal{B}, \nu) = (\mathbb{N}, \mathcal{M}, c)$, the measure space defined in \textbf{Exercise 2}. Define $f: \mathbb{N} \times \mathbb{N} \to \mathbb{R}$ by setting
+			$$f(x,y) = \left\{\begin{matrix}
+			&2 - 2^{-x} &&\text{if }x = y\\
+			& -2 + 2^{-x} &&\text{if }x = y + 1\\
+			& 0 &&\text{otherwise.}
+			\end{matrix}\right.$$
+
+		Show that $f$ is measurable with respect to the product measure $c \times c$. Also show that
+			$$\int_{\mathbb{N}} \left[\int_{\mathbb{N}} f(m,n)\,dc(m)\right]dc(n)
+			\neq
+			\int_{\mathbb{N}} \left[\int_{\mathbb{N}} f(m,n)\,dc(n)\right]dc(m).$$
+
+		Is this a contradiction either of Fubini's Theorem or Tonelli's Theorem?
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+\begin{enumerate}
+	\item Show that $f$ is measurable with respect to the product measure $c \times c$.\\
+
+		Since $\mathbb{N}$ is countable and the only set for which $c \times c$ measure is $0$ is the emptyset, the $c \times c$ measurable sets of $\mathbb{N} \times \mathbb{N}$ are all subsets, hence $f$ is measurable.\\
+
+	\item Show that
+			$\int_{\mathbb{N}} \left[\int_{\mathbb{N}} f(m,n)\,dc(m)\right]dc(n)
+			\neq
+			\int_{\mathbb{N}} \left[\int_{\mathbb{N}} f(m,n)\,dc(n)\right]dc(m).$\\
+
+		Since
+			$$\sum_{m = 1, m \in \mathbb{N}}^\infty \sum_{n = 1, n \in \mathbb{N}}^\infty f(m,n)
+			= f(1,1) = 1.5,$$
+
+		but
+			$$\begin{aligned}
+			\sum_{n = 1, n \in \mathbb{N}}^\infty \sum_{m = 1, m \in \mathbb{N}}^\infty f(m,n)
+			&= \sum_{n = 1, n \in \mathbb{N}}^\infty (2 - 2^{-n}) + (-2 + 2^{-n-1})\\
+			&= \sum_{n = 1, n \in \mathbb{N}}^\infty 2^{-n-1} - 2^{-n}\\
+			&= - \sum_{n = 1, n \in \mathbb{N}}^\infty 2^{-n-1}\\
+			&= -0.5 \neq 1.5.
+			\end{aligned}$$
+
+		So 
+			$$\int_{\mathbb{N}} \left[\int_{\mathbb{N}} f(m,n)\,dc(m)\right]dc(n)
+			\neq
+			\int_{\mathbb{N}} \left[\int_{\mathbb{N}} f(m,n)\,dc(n)\right]dc(m).$$\\
+
+	\item Is this a contradiction either of Fubini's Theorem or Tonelli's Theorem?\\
+
+		No, it doesn't contradict Fubini's theorem or Tonelli's Theorem either.
+
+		Since the measure $c$ is $\sigma$-finite, hence it show we can NOT remove the assumption of non-negativeness or integrability.\\
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 10}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $h$ and $g$ be integrable functions on $X$ and $Y$, and define $f(x,y) = h(x)g(y)$. Show that $f$ is integrable on $X \times Y$ with respect to the product measure, then
+			$$\int_{X \times Y} f\,d(\mu \times \nu)
+			= \int_X h\,d\mu\,\int_Y g\,d\nu.$$
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+\begin{enumerate}
+	\item \textbf{Measurability:}
+
+		Use the fact that a function is measurable if and only if it is the pointwise limit of a sequence of simple functions.
+
+		So take simple $a_n,\,b_n$ such that $h(x) = \underset{n \to \infty}{\lim} a_n(x)$ for every $x$ and $g(y) = \underset{n \to \infty}{\lim} b_n(y)$ for every $y$.
+
+		Then
+			$$f(x,y) = h(x)g(y) = \underset{n \to \infty}{\lim} a_n(x)b_n(y)$$
+
+		for every $(x,y)$.
+
+		It only remains to observe that each $(x,y) \mapsto a_n(x)b_n(y)$ is a simple function to conclude that $f$ is measurable.
+
+		This follows from
+			$$1_X(x) 1_Y(y) = 1_{X \times Y}(x,y).$$\\
+
+	\item \textbf{Integrability:}
+
+		Take two nondecreasing sequences of nonnegative simple functions $a_n(x), b_n(y)$ converging pointwise to $|h(x)|$ and $|g(y)|$ respectively. Then $a_n(x)b_n(y)$ is a nondecreasing sequence of nonnegative simple functions converging pointwise to $|f|$.
+
+		By the monotone convergence theorem
+			$$\int_{X \times Y} |f|\,d(\mu\times\nu)
+			= \underset{n \to \infty}{\lim} \int_{X \times Y} a_n(x)b_n(y)\,d(\mu\times\nu)(x,y).$$
+
+		By definition of the product measure
+			$$\int_{X \times Y} 1_{X \times Y}(x,y)\,d(\mu\times\nu)
+			= (\mu\times\nu)(X \times Y)
+			= \mu(X) \nu(Y)
+			= \int_{X} 1_X(x)\,d\mu \int_{Y} 1_Y(y)\,d\nu.$$
+
+		By linearity, this extends to simple functions. Hence, by monotone convergence again,
+			$$\int_{X \times Y} a_n(x)b_n(y)\,d(\mu\times\nu)(x,y)
+			= \int_{X} a_n(x)\,d\mu \int_{Y} b_n(y)\,d\nu\
+			\longrightarrow\
+			\int_X |h|\,d\mu \int_Y |g|\,d\nu.$$
+
+		So $f$ is integrable with
+			$$\int_{X \times Y} |f|\,d(\mu\times\nu)
+			= \int_X |h|\,d\mu \int_Y |g|\,d\nu.$$
+
+		Note that applying the above to $h^{\pm}$ and $g^{\pm}$, we can deduce
+			$$\int_{X \times Y} f\,d(\mu\times\nu)
+			= \int_X h\,d\mu \int_Y g\,d\nu.$$
+\end{enumerate}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% \begin{flushleft}
+	% 	\rule[-0.5ex]{17cm}{2pt}\\
+	% 		\textbf{Theorem}\\
+	% 	\rule[1.5ex]{17cm}{0.5pt}
+			
+	% 	\rule[1.0ex]{17cm}{0.5pt}\
+	% \end{flushleft}
+	% \textbf{\textit{Proof.}}\\
+
+\end{document}
+
+
+
+
+
+

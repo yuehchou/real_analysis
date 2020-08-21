@@ -1,0 +1,205 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+
+
+\title{Real Analysis\\ Homework 8}
+\author{National Taiwan University, Department of Mathematics\\
+R06221012 \hspace{0.2cm} Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 11.5
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 11.5}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			Let $f$ be monotone increasing and right continuous on $\mathbb{R}^1$.
+			\begin{enumerate}
+				\item[(a)] Show that $\Lambda_f$ is absolutely continuous with respect to Lebesgue measure if and only if $f$ is absolutely continuous on $\mathbb{R}^1$. (By absolutely continuous on $\mathbb{R}^1$, we mean absolutely continuous on every compact interval.)
+
+				\item[(b)] If $\Lambda_f$ is absolutely continuous with respect to Lebesgue measure, show that its Radon–Nikodym derivative equals $df/dx$.
+			\end{enumerate}
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}
+	\begin{enumerate}
+		\item[(a)]
+			($\Rightarrow$)\\
+				By \textbf{Theorem 10.34}, since $\Lambda_f$ is absolutely continuous on $\mathbb{R}^1$.\\
+				Let $[a,b] \subset \mathbb{R}^1$, then $\forall \varepsilon > 0$, there exists $\delta > 0$ such that $\Lambda_f(A) < \varepsilon$ for any measurable $A \subset [a,b]$ with $|A| < \delta$.\\
+				Let $\{[a_k,b_k]\}$ be nonoverlapping subintervals of $[a,b]$ and $\sum_k (b_k - a_k) < \delta$. Then
+					$$\sum_k |f(b_k) - f(a_k)|
+					= \sum_k \Lambda_f ((a_k,b_k])
+					= \Lambda_f (\cup (a_k, b_k])
+					< \varepsilon$$
+				Hence, $f$ is absolutely continuous.\
+
+			($\Leftarrow$)\\
+				Let $[a,b] \subset \mathbb{R}^1$ and $\{[a_k,b_k]\}$ be nonoverlapping subintervals of $[a,b]$.\\
+				Since $f$ is absolutely continuous, then $\forall \varepsilon > 0$, there exists $\delta > 0$ such that $\sum_k |f(b_k) - f(a_k)| < \varepsilon$ with $\sum_k (b_k - a_k) < \delta$.\\
+				Let $|A| < \delta$ such that $A \subset \cup_k [a_k,b_k]$.
+					$$\begin{aligned}
+					\Lambda_f(A)
+					&\leq \Lambda_f (\cup_k [a_k,b_k])
+					\leq \sum_k \Lambda_f ([a_k,b_k])\\
+					&= \sum_k (f(b_k) - f(a_k^-))
+					= \sum_k (f(b_k) - f(a_k))
+					< \varepsilon
+					\end{aligned}$$
+				Hence, $\Lambda_f$ is absolutely continuous.\\
+
+		\item[(b)]
+			Let $[a,b] \subset \mathbb{R}^1$.\\
+			By \textbf{Theorem 10.39 (Radon-Nikodym)}, we know that there exists a unique $g \geq 0$ such that $\Lambda_f (A) = \int_A g\,dx$, $\forall A \subset \mathbb{R}^1$.\\
+			By \textbf{Exercise 11.5 (a)}, since $\Lambda_f$ is absolutely continuous, then $f$ is also absolutely continuous.\\
+			Also, by \textbf{Theorem 7.29}, since $f$ is absolutely continuous, then $f'$ exists a.e. in $[a,b]$ and $f'$ is integrable on $[a,b]$. So
+				$$\Lambda_f([a,b])
+				= f(b) - f(a)
+				= \int_a^b f'(x)\,dx$$
+			Hence, Radon-Nikodym derivative of $\Lambda_f$ is $f' = df/dx$.\\
+	\end{enumerate}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 11.7
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 11.7}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			If f is monotone increasing and continuous from the right on $\mathbb{R}^1$, show that $\Lambda_f^*(A)=\Lambda_f^{o*}(A)$, where $\Lambda_f^{o*}$ is defined in the same way as $\Lambda_f^*$ except that we use \textit{open} intervals $(a_k,b_k)$.
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}\\
+		Let the countable collections $\{(a_k,b_k]\}$ such that $A \subset \cup_k (a_k,b_k]$. So for $\Lambda_f^*(A)$, we know that
+			$$\Lambda_f^*(A)
+			= \inf \sum_k \lambda(a_k,b_k]
+			= \inf \sum_k [f(b_k) - f(a_k)].$$
+		For all collections $\{(a_k,b_k^+)\}$, we have
+			$$\sum_k \lambda(a_k,b_k^+)
+			= \sum_k [\lambda(a_k,b_k] + \lambda(b_k,b_k^+)].$$
+		Since $f$ is monotone increasing and continuous from the right, then $\lambda \geq 0$ and $f(x) = f(x^+)$ for all $x \in \mathbb{R}^1$. Also, $0 \leq \lambda(b_k,b_k^+) \leq \lambda(b_k,b_k^+] = f(b_k^+) - f(b_k) = 0 \;\Rightarrow \;\lambda(b_k,b_k^+) = 0 \quad \text{for all }k$. Thus,
+			$$\sum_k \lambda(a_k,b_k^+)
+			= \sum_k \lambda(a_k,b_k].$$
+		Hence
+			$$\Lambda_f^*(A)
+			= \inf \sum_k \lambda(a_k,b_k]
+			= \inf \sum_k \lambda(a_k,b_k^+)
+			= \Lambda^{o*}_f (A).$$
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 11.8
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 11.8}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			If $f$ is monotone increasing and continuous from the right, derive formulas for $\Lambda_f([a,b])$ and $\Lambda_f((a,b))$.
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}
+	\begin{enumerate}
+		\item[(i)] By \textbf{Theorem 11.10}, since $f$ is monotone increasing and continuous from the right, then
+			$$\Lambda_f((a,b]) = f(b) - f(a).$$
+		In particular, $\Lambda(\{a\}) = f(a) - f(a^-)$. So
+			$$\Lambda_f([a,b])
+			= \Lambda_f(\{a\}) + \Lambda((a,b])
+			= [f(a) - f(a^-)] + [f(b) - f(a)]
+			= f(b) - f(a^-).$$
+
+		\item[(ii)]
+			Also,
+				$$\Lambda_f((a,b))
+				= \Lambda_f((a,b]) - \Lambda_f(\{b\})
+				= [f(b) - f(a)] - [f(b) - f(b^-)]
+				= f(b^-) - f(a).$$
+	\end{enumerate}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 11.10
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 11.10}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			Show that in $\mathbb{R}^n$, $n > 1$, the Hausdorff outer measure $H_n$ is not identical to Lebesgue outer measure. (For example, let $n = 2$, and write $A = \cup A_k$, $\delta(A_k) < \varepsilon$. Enclose $A_k$ in a circle $C_k$ with the same diameter, and show that $\sum \delta(A_k)^2 \geq (4/\pi)|A|_e$. Thus, $H_2^\varepsilon(A) \geq (4/\pi)|A|_e$.)
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}\\
+		Follow the hint, let $n = 2$, and write $A = \cup A_k$, $\delta(A_k) < \varepsilon$. Enclose $A_k$ in a circle $C_k$ with the same diameter. Then
+			$$|C_k|
+			= \left(\frac{\delta(C_k)}{2}\right)^2 \pi
+			= \left(\frac{\delta(A_k)}{2}\right)^2 \pi.$$
+		So
+			$$\sum_k \delta(A_k)^2
+			= \sum_k \frac{4}{\pi}\,|C_k|
+			\geq \frac{4}{\pi} \sum_k\,|A_k|_e
+			\geq \frac{4}{\pi}\,|\cup_k A_k|_e
+			= \frac{4}{\pi}\,|A|_e.$$
+		Thus,
+			$$H_2^\varepsilon(A) \geq (4/\pi)|A|_e.$$
+		This counterexample is sufficient to show that in $\mathbb{R}^n$, $n > 1$, the Hausdorff outer measure $H_n$ is not identical to Lebesgue outer measure.\\
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 11.11
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 11.11}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			If $A$ is a subset of $\mathbb{R}^n$, define the \textit{Hausdorff dimension} of $A$ as follows: If $H_\alpha(A) = 0$ for all $\alpha > 0$, let dim$A = 0$; otherwise, let
+				$$\text{dim}A = \sup \{\alpha: H_\alpha(A) = +\infty\}.$$
+			\begin{enumerate}
+				\item[(a)] Show that $H_\alpha(A) = 0$ if $\alpha > \text{dim}A$ and that $H_\alpha(A) = +\infty$ if $\alpha < \text{dim}A$. Show that in $\mathbb{R}^n$ we have dim$A \leq n$. See \textbf{Exercise 11.19} in order to determine the Hausdorff dimension of the Cantor set.
+
+				\item[(b)] If dim$A_k = d$ for each $A_k$ in a countable collection $\{A_k\}$, show that dim$(\cup A_k) = d$. Hence, show that every countable set has Hausdorff dimension 0.
+			\end{enumerate}
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}
+	\begin{enumerate}
+		\item[(a)]
+			\begin{enumerate}
+				\item[(i)]
+					Let $\alpha > \text{dim}A$.\\
+					If $H_\alpha(A) = +\infty
+					\quad \Rightarrow \quad
+					\text{dim}A \geq \alpha > \text{dim}A\;(\rightarrow \leftarrow)$.\\
+					So $H_\alpha(A) < +\infty$. Then we choose $\alpha > \alpha_0 > \text{dim} A \quad \Rightarrow \quad H_{\alpha_0}(A) < +\infty$.\\
+					By \textbf{Theorem 11.13 (i)}, if $H_{\alpha_0}(A) < +\infty$, then
+						$$H_\alpha(A) = 0 \quad \text{for } \alpha > \alpha_0.$$
+
+				\item[(ii)]
+					Since dim$A = \sup \{\alpha: H_\alpha(A) = +\infty\}$, then for all $\alpha > 0$ with $H_\alpha(A) = +\infty$, we have dim$A \geq \alpha$. Hence,
+						$$H_\alpha(A) = +\infty \quad \text{for all } \alpha < \text{dim}A.$$
+				\item[(iii)]
+					By \textbf{Theorem 11.16 (ii)}, if $\alpha > n$, then $H_\alpha(A) = 0,\,\forall A \subset \mathbb{R}^n$. So we have dim$A \leq n$.\\
+			\end{enumerate}
+
+		\item[(b)]
+			\begin{enumerate}
+				\item[(i)]
+					If $\alpha > d = \text{dim} A_k$, then by (a) we have $H_\alpha(A_k) = 0$. So
+						$$0 \leq H_\alpha(\cup_k A_k) \leq \sum_k H_\alpha(A_k) = 0
+						\quad \Rightarrow \quad
+						\text{dim}(\cup_k A_k) \leq d.$$
+					If $\alpha < d = \text{dim} A_k$, then by (a) we have $H_\alpha(A_k) = \infty \leq H_\alpha (\cup_k A_k)$. So
+						$$\text{dim} (\cup_k A_k) \geq d.$$
+					Hence, dim$(\cup_k A_k) = d$.\
+
+				\item[(ii)]
+					If $x \in \mathbb{R}^n$, then $x \in B_\varepsilon (x)$. So
+						$$H_\alpha(\{x\}) = \underset{\varepsilon \to 0}{\lim\,\inf} \sum_k \delta(A_k)^\alpha \leq 0.$$
+			\end{enumerate}
+	\end{enumerate}
+
+
+\end{document}

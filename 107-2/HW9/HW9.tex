@@ -1,0 +1,295 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+
+
+\title{Real Analysis\\ Homework 9}
+\author{National Taiwan University, Department of Mathematics\\
+R06221012 \hspace{0.2cm} Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 11.12
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 11.12}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			Let $\Gamma$ be an outer measure on $\mathscr{S}$, and let $\Gamma'$ denote $\Gamma$ restricted to the $\Gamma$-measurable sets. Since $\Gamma'$ is a measure on an algebra, it induces an outer measure $\Gamma^*$. Show that $\Gamma^*(A) \geq \Gamma(A)$ for $A \subset \mathscr{S}$ and that equality holds for a given $A$ if and only if there is a $\Gamma$-measurable set $E$ such that $A \subset E$ and $\Gamma(E) = \Gamma(A)$. Thus, $\Gamma = \Gamma^*$ if $\Gamma$ is regular.
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}\\
+	Given $A \subset \mathscr{S}$. Let $A_1, A_2, \dots, A_k$ be a measurable covering of $A$, then
+		$$\sum_k\,\Gamma(A_k) \geq \Gamma(\cup_k A_k) \geq \Gamma(A).$$
+	This shows that
+		$$\Gamma^* (A) = \inf\,\sum_k\,\Gamma'(A_k) = \inf\,\sum_k\,\Gamma(A_k) \geq \Gamma(A).$$
+	($\Rightarrow$)\\
+	Given $A \subset \mathscr{S}$ such that $\Gamma^*(A) = \Gamma(A)$.\\
+	Let $\{A_k^{(n)}\}_{k=1}^{K_n}$ be a sequence of coverings such that
+		$$\underset{n \to \infty}{\lim} \Gamma'(A_k^{(n)})
+		= \Gamma^*(A)
+		= \Gamma(A).$$
+	and
+		$$\begin{aligned}
+		\Gamma(A)
+		&< \Gamma \left(\cap_{n=1}^{\infty}\,\cup_{k=1}^{K_n}\,A_k^{(n)}\right)
+		= \Gamma' \left(\cap_{n=1}^{\infty}\,\cup_{k=1}^{K_n}\,A_k^{(n)}\right)\\
+		&\leq \Gamma' \left( \cup_{k=1}^{K_n} A_k^{(n)} \right)
+		\quad \forall\,n\\
+		&\leq \sum_{k=1}^{K_n}\,\Gamma'(A_k^{(n)}) \to \Gamma(A).
+		\end{aligned}$$
+	Thus, if $E = \cap_{n=1}^{\infty}\,\cup_{k=1}^{K_n}\,A_k^{(n)}$, then $A \subset E$ and $\Gamma(E) = \Gamma(A)$.\\\\
+	($\Leftarrow$)\\
+	Given $E$ is measurable and $A \subset E$ such that $\Gamma(E) = \Gamma(A)$. Thus
+		$$\Gamma(E)
+		= \Gamma(A)
+		\leq \Gamma^*(A)
+		\leq \Gamma^*(E)
+		= \Gamma(E).$$
+
+
+
+\newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 11.13
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 11.13}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			Let $\lambda$ be a measure on an algebra $\mathscr{A}$, and let $\lambda^*$ be the corresponding outer measure. Given $A$, show that there is a set $H$ of the form $\cap_k \cup_j A_{k,j}$ such that $A_{k,j} \in \mathscr{A}$, $A \subset H$ and $\lambda^*(A) = \lambda^*(H)$. Thus, every outer measure that is induced by a measure on an algebra is regular.
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}\\
+	Given $A$, let $\{A_{k,j}\}$ be sequence of coverings of $A$ such that $\underset{k \to \infty}{\lim} \sum_j \lambda(A_{k,j}) = \lambda^*(A)$. Thus
+		$$\begin{aligned}
+		\lambda^*(A)
+		\leq \lambda^* \left(\cap_k \cup _j A_{k,j} \right)
+		&\leq \lambda^* \left(\cup _j A_{k,j} \right)
+		\quad \forall\,k\\
+		&\leq \sum_j\,\lambda^*(A_{k,j})
+		\to \lambda^*(A).
+		\end{aligned}$$
+	So if $H = \cap_k \cup _j A_{k,j}$, then $A \subset H$ and $\lambda^*(A) = \lambda^*(H)$.\\
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 11.15
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 11.15}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+		\begin{enumerate}
+			\item [(a)] Show that the intersection of a family of algebras is an algebra.
+
+			\item [(b)] A collection $\mathscr{C}$ of subsets of $\mathscr{S}$ is called a \textit{subalgebra} if it is closed under finite intersections and if the complement of any set in $\mathscr{C}$ is the union of a finite number of disjoint sets in $\mathscr{C}$. Given an example of a subalgebra. Show that a subalgebra $\mathscr{C}$ generates an algebra by adding $\emptyset$, $\mathscr{S}$, and all finite disjoint unions of sets of $\mathscr{C}$.
+		\end{enumerate}
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}
+	\begin{enumerate}
+		\item [(a)]
+			% Let $\mathscr{S}$ be a fixed set and $\mathscr{A}$ be an algebra of subsets of $\mathscr{S}$.\\
+			Let $\{A_k\}$ be a family of algebras and $A = \cap_k\,A_k$.
+			\begin{enumerate}
+				\item [(i)] 
+					Let $X$ be a set and $X \in A$, then
+						$$X^c
+						= \cap_k(X \cap A_k)^c
+						\in \mathscr{A},$$
+					since $A_k$ is an algebra, $(X \cap A_k)^c \in A_k$ and $A_k \in A$.\
+					% Since $A_k \in \mathscr{A} \quad \forall k$, then 
+					% 	$$A = \cap_k\,A_k \in \mathscr{A}.$$
+					% Also, since $A_k^c \in \mathscr{A} \quad \forall k$, then
+					% 	$$A^c
+					% 	= (\cap_k\,A_k)^c
+					% 	= (\mathscr{S} - \cap_k\,A_k)
+					% 	= \cup_k (\mathscr{S} - A_k)
+					% 	= \cup_k\,A_k^c \in \mathscr{A}.$$
+
+				\item [(ii)]
+					Let $X_1, X_2, \dots, X_N$ be the sets and $X_1, X_2 \dots, X_N \in A$, then
+						$$\cup_{i=1}^N X_i \in A.$$
+			\end{enumerate}
+
+		\item [(b)]
+			Let $\mathscr{C}' = \mathscr{C} \cup \emptyset \cup \mathscr{S} \cup \{\text{all finite disjoint union of sets of }\mathscr{C}\}$.\\
+			We need to show that $A^c \in \mathscr{C}'$, if $A \in \mathscr{C}'$.
+			\begin{enumerate}
+				\item [(i)]
+					Given $A \in \mathscr{C}$, then 
+						$$A^c
+						= \cup_{k=1}^K A_k \in \mathscr{C}'
+						\quad \text{where } A_k \in \mathscr{C}.$$
+				\item [(ii)]
+					Given $A \in \mathscr{C}' \setminus \mathscr{C}$, may assume that $A = \cup_{k=1}^K A_k$, where $A_k \in \mathscr{C}$, then
+						$$\begin{aligned}
+						A^c
+						&= \left( \cup_{k=1}^K\,A_k \right)^c
+						= \cap_{k=1}^K\,A_k^c\\
+						&= \cap_{k=1}^K \cup_{l=1}^{L_k}\,A_{k,l}
+						\quad \text{where } A_{k,l} \in \mathscr{C}\\
+						&= \cup_l \left( \cap_{k = 1}^K A_{k,l} \right) \in \mathscr{C}'.
+						\end{aligned}$$
+				\item [(iii)]
+					Given $A_1,\dots,A_n \in \mathscr{C}'$. W.L.O.G., we can assume $A_1,\dots,A_m \in \mathscr{C}$ and $A_{m+1},\dots,A_n \in \mathscr{C}' \setminus \mathscr{C}$, then
+						$$\begin{aligned}
+						\cap_{j = 1}^n\,A_j
+						&= (\cap_{j=1}^m\,A_j) \cup (\cap_{j = m+1}^n\,A_j)\\
+						&= (\cap_{j=1}^m\,A_j) \cap (\cap_{j=m+1}^n \cup_{k=1}^{K_j}\,A_{k,j})\\
+						&= (\cap_{j=1}^m\,A_j) \cap (\cup_k \cap_{j=m+1}^n\,A_{k,j})
+						\end{aligned}$$
+					and
+						$$\cap_{j=1}^m\,A_j \in \mathscr{C}
+						,\quad
+						\cup_k \cap_{j=m+1}^n\,A_{k,j} \in \mathscr{C}'.$$
+					It remains to show that
+						$$A \in \mathscr{C}
+						,\,B \in \mathscr{C}'
+						\,\Rightarrow\,
+						A \cap B \in \mathscr{C}',$$
+					since
+						$$A \cap B
+						= A \cap(\cup_{k=1}^K\,B_k)
+						= \cup_{k=1}^K (A \cap B_k)
+						\in \mathscr{C}'.$$\
+			\end{enumerate}
+
+
+			\textbf{Example of a subalgebra: }\\
+			The $2\times2$-matrices over the reals form a unital algebra in the obvious way.\\
+			The $2\times2$-matrices for which all entries are zero, except for the first one on the diagonal, form a subalgebra.
+
+	\end{enumerate}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 11.16
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 11.16}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			If $\mu$ is a finite Borel measure on $\mathbb{R}^1$, show that $\mu(B) = \sup \mu(F)$ for every Borel set $B$, where the sup is taken over all closed subsets $F$ of $B$.
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}\\
+	This is to show that $\mu$ is inner regular.\\
+	Define the collection $\mathscr{C}$ by
+		$$B \in \mathscr{C}
+		\iff \mu(B) = \sup \{\mu(F)\,:\,F \subset B,\,F \text{ is closed}\}
+		% \text{ and }
+		% \mu(B) = \inf \{\mu(G)\,:\,B \subset G,\,G \text{ is open}\}
+		$$
+	Let $B \in \mathscr{C}$, let $\varepsilon > 0$.\\
+	Take $F$ closed with $F \subset B$ and $\mu(B) < \mu(F) + \varepsilon$. Then $B^c \subset F^c$, $F^c$ is open and
+		$$\mu(B^c) = \mu(\mathbb{R}) - \mu(B) > \mu(\mathbb{R}) - \mu(B) - \varepsilon = \mu(F^c) - \varepsilon.$$
+	Hence $B^c \in \mathscr{C}$.\\
+	Let $B_1, B_2, \dots \in \mathscr{C}$ and let $\varepsilon > 0$. Take for each $i$, $F_i$ is closed with
+		$$F_i \subset B, \quad \mu(B_i) - \mu(F_i) < \frac{\varepsilon}{2^{i+1}}.$$
+	So $\cup_i\,F_i \subset \cup_i\,B_i$ and $\mu(\cup_i\,F_i) = \underset{k \to \infty}{\lim}\mu(\cup_{i=1}^k\,F_i)$, hence for some large $N$, we have
+		$$\mu(\cup_i\,F_i) - \mu(\cup_{i=1}^k\,F_i) < \frac{\varepsilon}{2}.$$
+	Then $F := \cup_{i=1}^k\,F_i \subset \cup_i B_i$, $F$ is closed and
+		$$\begin{aligned}
+		\mu(\cup_i\,B_i) - \mu(F)
+		&< \mu(\cup_i\,B_i) - \mu(\cup_i\,F_i) + \frac{\varepsilon}{2}\\
+		&\leq \mu(\cup_i\,B_i \setminus \cup_i\,F_i) + \frac{\varepsilon}{2}\\
+		&\leq \mu(\cup_i(B_i \setminus F_i)) + \frac{\varepsilon}{2}\\
+		&\leq \sum_i\,\mu(B_i \setminus F_i) + \frac{\varepsilon}{2}\\
+		&= \sum_i \left(\mu(B_i) - \mu(F_i)\right) + \frac{\varepsilon}{2}\\
+		&\leq \varepsilon.
+		\end{aligned}$$
+	Hence
+		$$\mu(B) = \sup \mu(F).$$
+
+
+	% Let $\{\cup_{i=1}^k\,F_i\}$ be a sequence of Borel measurable sets, where $F_i$ is the closed subset of $B$, then\\$\cup_{i=1}^k\,F_i \nearrow B$. By \textbf{Theorem 10.11}, since $\cup_{i=1}^k\,F_i \nearrow B$, then $\lim_{k \to \infty} \mu(\cup_{i=1}^k\,F_i) = \mu(B)$.\\
+	% Also, $\sup\,\mu(F) = \mu(\cup_i\,F_i)$. Thus
+	% 	$$\sup\,\mu(F) = \mu(B).$$
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 11.17
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 11.17}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+			Show that the conclusions of \textbf{Theorems 10.48} and \textbf{10.49}, and therefore also the conclusion of \textbf{Corollary 10.50}, remain true without the assumption (ii)	stated before \textbf{Lemma 10.47}. (Show that without this assumption, the conclusions of \textbf{Lemma 10.47} are true with $\mu$ replaced by $\mu^*$; for example,
+				$$\left. \mu^*\left\{ \mathbf{x} \in E\,:\, \underset{h > 0}{\sup}\,\frac{\nu(Q_{\mathbf{x}}(h))}{\mu(Q_{\mathbf{x}}(h))} > \alpha \right\} \leq c\,\frac{\nu(\mathbb{R}^n)}{\alpha} .\right)$$
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textbf{\textit{Proof.}}\\
+	It's sufficient to show that without this assumption, the conclusions of \textbf{Lemma 10.47} are true with $\mu$ replaced by $\mu^*$.
+	\begin{enumerate}
+		\item [(a)]
+			To show
+				$$\mu^*\left\{ \mathbf{x} \in \mathbb{R}^n
+				\,:\,
+				\underset{h > 0}{\sup}\,\frac{\nu(Q_{\mathbf{x}}(h))}{\mu(Q_{\mathbf{x}}(h))} > \alpha \right\}
+				\leq c\,\frac{\nu(\mathbb{R}^n)}{\alpha}$$
+			Fix $\alpha > 0$, and let
+				$$S
+				= \left\{
+				\mathbf{x} \in \mathbb{R}^n
+				\,:\,
+				\underset{h > 0}{\sup}\,\frac{\nu(Q_{\mathbf{x}}(h))}{\mu(Q_{\mathbf{x}}(h))}
+				> \alpha
+				\right\}.$$
+			If $B$ is any bounded Borel set and $\mathbf{x} \in S \cap B$, there is a cube $Q_{\mathbf{x}}$ with center $\mathbf{x}$ such that $\dfrac{\nu(Q_{\mathbf{x}})}{\mu(Q_{\mathbf{x}})} > \alpha$.\\
+			Using Besicovitch’s lemma, select $\{Q_{\mathbf{x}_k}\}$ and $c$ such that $\nu(Q_{\mathbf{x}_k}) > \alpha \mu(Q_{\mathbf{x}_k})$, $S \cap B \subset \cup Q_{\mathbf{x}_k}$, and $\sum \chi_{Q_{\mathbf{x}_k}} \leq c$.\\
+			We then have
+				$$\mu^*(S \cap B)
+				\leq \mu(S \cap B)
+				\leq \mu(\cup Q_{\mathbf{x}_k})
+				\leq \sum \mu(Q_{\mathbf{x}_k})
+				< \frac{1}{\alpha} \,\sum \nu(Q_{\mathbf{x}_k}),$$
+
+				$$\sum\,\nu(Q_{\mathbf{x}_k})
+				= \sum\,\int_{\cup Q_{\mathbf{x}_k}} \chi_{Q_{\mathbf{x}_k}} d\nu
+				\leq c\,\int_{\cup Q_{\mathbf{x}_k}} d\nu
+				= c\,\nu(\cup Q_{\mathbf{x}_k}).$$
+			Therefore,
+				$$\mu^*(S \cap B) \leq \frac{c}{\alpha}\,\nu(\cup Q_{\mathbf{x}_k}),$$
+			so that
+				$$\mu^*(S \cap B) \leq \frac{c}{\alpha}\,\nu(\mathbb{R}^n).$$
+			Letting $B \nearrow \mathbb{R}^n$, we obtain $\mu^*(S) \leq \dfrac{c}{\alpha}\,\nu(\mathbb{R}^n)$, as desired.\
+
+		\item [(b)]
+			To show
+				$$\mu^* \left\{\mathbf{x} \in E
+				\,:\,
+				\underset{h \to 0}{\lim \sup}
+				\frac{\nu(Q_{\mathbf{x}}(h))}{\mu(Q_{\mathbf{x}}(h))} > \alpha\right\}
+				\leq c\,\frac{\nu(E)}{\alpha}$$
+			Fix $\alpha > 0$, and let
+				$$T
+				= \left\{
+				\mathbf{x} \in E
+				\,:\,
+				\underset{h \to 0}{\lim \sup}
+				\frac{\nu(Q_{\mathbf{x}}(h))}{\mu(Q_{\mathbf{x}}(h))}
+				> \alpha\right\}.$$
+			If $\nu(E) = +\infty$, there is nothing to prove.\\
+			Otherwise, choose an open set $G \supset E$ with $\nu(G) < \nu(E) + \varepsilon$, and let $B$ be a bounded Borel set.\\
+			If $\mathbf{x} \in T \cap B$, there is a cube $Q_{\mathbf{x}}$ such that 
+				$$Q_{\mathbf{x}} \subset G
+				\quad \text{and} \quad
+				\frac{\nu(Q_{\mathbf{x}})}{\mu(Q_{\mathbf{x}})} > \alpha.$$
+			By again using Besicovitch’s lemma, there exists $\{Q_{\mathbf{x}_k}\}$, $Q_{\mathbf{x}_k} \subset G$, such that
+				$$\mu^*(T \cap B)
+				\leq \mu(T \cap B)
+				\leq \frac{c}{\alpha}\,\nu(G)
+				\leq \frac{c}{\alpha}\,[\nu(E) + \varepsilon]$$
+			The result now follows by first letting $\varepsilon \to 0$ and then letting $B \nearrow \mathbb{R}^n$.
+	\end{enumerate}
+
+
+
+
+\end{document}

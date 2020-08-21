@@ -1,0 +1,198 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{mathrsfs} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis Homework\\ Chapter 1. Measure theory\\ Due Date: 9/23}
+\author{National Taiwan University, Department of Mathematics\\
+R06221012 \hspace{0.2cm} Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Recall Theorem 1.3:}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Every open subset $\mathcal{O}$ of $\mathbb{R}$ can be writen uniquely as a countable union of disjoint open intervals.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{Exercise of 9/11:}
+
+1. Please prove the uniqueness of Theorem 1.3.\\
+
+\textbf{\textit{Proof.}}
+
+Suppose that open subset $\mathcal{O}$ of $\mathbb{R}$ can be writen in two different countable union of disjoint open intervals $\mathcal{I}$ and $\mathcal{\widetilde{I}}$.\\
+
+Fixed $x \in \mathcal{O}$, and
+	$$\mathcal{I}_x
+	= \underset{y \in Y}{\cup} (\mathcal{I}_x
+	\cap \mathcal{\widetilde{I}}_y).$$
+
+Then $\underset{y \in Y}{\cup} (\mathcal{I}_x \cap \mathcal{\widetilde{I}}_y)$ are disjoint open subsets of $\mathcal{I}_x$.
+
+But $\mathcal{I}_x$ is connected. So $\mathcal{I}_x \cap \mathcal{\widetilde{I}}_y \neq \emptyset$, and thus $\mathcal{I}_x \cap \mathcal{\widetilde{I}}_y = \mathcal{I}_x$ for some $\mathcal{\widetilde{I}}_y$, that is $\mathcal{I}_x \subseteq \mathcal{\widetilde{I}}_y$.\\
+
+Then prove similarly that for each $y \in Y$, there must be exactly one $x$ so that $\mathcal{\widetilde{I}}_y \subseteq \mathcal{I}_x$ and $\mathcal{\widetilde{I}}_y \cap \mathcal{I}_{x'} = \emptyset$ if $x' \neq x$.\\\\
+
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Recall Definition:}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $E \in \mathbb{R}^n$ and $\{Q_k\}$ be the covering of $E$ and $Q_k$ be the closed cubes, then we define that
+		$$\begin{aligned}
+		\text{Jordan outer meaure: }
+		&\sigma(E)
+		= \underset{N \in \mathbb{N}}{\inf}\,\Sigma_{k=1}^N\,|Q_k|\\
+		&\text{and}\\
+		\text{Lebesgue outer meaure: }
+		&m_*(E) = \underset{\{Q_k\} \text{: countable set}}{\inf} \Sigma_{k=1}^{\infty}\,|Q_k|
+		\end{aligned}$$
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+
+\textbf{Exercise of 9/16:}
+
+2. Let $R$ be a rectangle in $\mathbb{R}^n$. Prove $\sigma(R) = |R| = m_*(R)$.\\
+
+\textbf{\textit{Proof.}}
+
+(1) Prove $\sigma(R) = |R|$.\\
+
+By Example 2 in the text book (p.11), we know that $|R| \leq \sigma(R)$.\\
+
+To obtain the reverse inequality, consider a grid in $\mathbb{R}^d$ formed by cubes of side length $1/k$.
+
+Then, if $\mathcal{Q}$ consists of the (finite) collection of all cubes entirely contained in $R$, and $\mathcal{Q}'$ is the (finite) collection of all cubes that intersect $R$ and the complement of $R$.\\
+
+Note that $R \subset \overset{N}{\underset{i=1,\,Q \in (\mathcal{Q} \cup \mathcal{Q}')}{\cup}} Q_i$. Also, a simple argument yields
+	$$\overset{N}{\underset{i=1}{\sum}}\,|Q_i| \leq |R|.$$
+
+Moreover, there are $O(k^{d-1})$ cubes in $\mathcal{Q}'$  and these cubes have volume $k^{-d}$, so that
+
+$\overset{N}{\underset{i=1}{\sum}}|Q| = O(1/k)$. Hence
+	$$\overset{N}{\underset{i=1}{\sum}} |Q|
+	\leq |R| + O(1/k),$$
+
+and letting k tend to infinity yields $\sigma(R)\,\leq\,|R|$.
+
+Therefore, $\sigma(R) = |R|$.\\\\
+
+
+(2) Prove $m_*(R) = |R|$.\\
+
+By Example 2 in the text book (p.11), we know that $|R| \leq m_*(R)$.\\
+
+To obtain the reverse inequality, consider a grid in $\mathbb{R}^d$ formed by cubes of side length $1/k$.
+
+Then, if $\mathcal{Q}$ consists of the (finite) collection of all cubes entirely contained in $R$, and $\mathcal{Q}'$ is the (finite) collection of all cubes that intersect $R$ and the complement of $R$.\\
+
+Note that $R \subset \cup_{Q \in (\mathcal{Q} \cup \mathcal{Q}')} Q$. Also, a simple argument yields
+	$$\underset{q \in \mathcal{Q}}{\sum}\,|Q| \leq |R|.$$
+
+Moreover, there are $O(k^{d-1})$ cubes in $\mathcal{Q}'$  and these cubes have volume $k^{-d}$, so that
+
+$\underset{Q \in \mathcal{Q}'}{\sum}|Q| = O(1/k)$. Hence
+	$$\underset{Q \in (\mathcal{Q} \cup \mathcal{Q}')}{\sum} |Q|
+	\leq |R| + O(1/k),$$
+
+and letting k tend to infinity yields $m_*(R)\,\leq\,|R|$.
+
+Therefore, $m_*(R) = |R|$.\\
+
+By (1) and (2), then $\sigma(R) = |R| = m_*(R)$.\\\\
+
+
+\textbf{Exercise of 9/18:}
+
+3. \textit{Theorem 1.3} states that every open set in $\mathbb{R}$ is the disjoint union of open intervals. The analogue in $\mathbb{R}^d$, $d \geq 2$, is generally false. Prove the following:
+
+\begin{enumerate}
+	\item [(a)] An open disc in $\mathbb{R}^2$ is not the disjoint union of open rectangles.\\
+	{[}
+	Hint: What happens to the boundary of any of these rectangles?
+	{]}
+
+	\item [(b)] An open connected set $\Omega$ is the disjoint union of open rectangles if and only if $\Omega$ is itself an open rectangle.
+\end{enumerate}
+
+\textbf{\textit{Proof.}}
+\begin{enumerate}
+	\item [(a)]
+		Suppose for a contradiction that an open disc $\mathcal{O} \subset \mathbb{R}^2$ and $\mathcal{O} = \underset{n \in \mathbb{N}}{\cup}R_n$ where $R_n$ are the open rectangles and $R_i \cap R_j = \emptyset$ for $i \neq j$.\\
+
+		Choose some open rectangle $R_1 \in \mathcal{O}$ and let $x \in \partial R_1$. Then, for all $\epsilon > 0$, $B(x,\epsilon) \cap R_1 \neq \emptyset$ and $B(x,\epsilon) \cap R_1^c \neq \emptyset$. Hence, $x \notin R_1$, and so there must be an open rectangle $R_2 \in \mathcal{O}$ with $x \in R_2$. This implies that there is $\epsilon_0 > 0$ such that $B(x,\epsilon_0) \subset R_2$.\\
+
+		By our previous observation, $B(x,\epsilon_0) \cap R_1 \neq \emptyset$. Taken together, then $R_1 \cap R_2 \neq \emptyset$, which is a contradiction with the fact that $\mathcal{O}$ is the disjoint union of open rectangles.\\
+
+	\item [(b)]
+		($\Rightarrow$)
+		Let $\Omega$ be the disjoint union of open rectangles. Suppose, to the contrary, that $\Omega$ is not itself an open rectangle.\\
+
+		Then, $\Omega$ contains at least two open rectangles. By the argument in part (a), so these rectangles cannot be disjoint, which is a contradiction. Hence, it must be that $\Omega$ is itself an open rectangle.\\
+
+		($\Leftarrow$) Let $\Omega$ be an open rectangle. Then $\Omega$ is the disjoint union of a single open rectangle.\\\\
+\end{enumerate}
+
+
+4. At the start of the theory, one might define the outer measure by taking coverings by rectangles instead of cubes. More precisely, we define
+	$$m_*^\mathcal{R}(E) = \inf \sum_{j = 1}^\infty |R_j|,$$
+where the inf is now taken over all countable coverings $E \subset \cup_{j = 1}^\infty \mathcal{R}_j$ by (closed) rectangles.
+
+Show that this approach gives rise to the same theory of measure developed in the text, by proving that $m_*(E) = m_*^\mathcal{R}(E)$ for every subset $E$ of $\mathbb{R}^d$.\\
+{[}
+Hint: Use \textit{Lemma 1.1}.
+{]}\\
+
+\textbf{\textit{Proof.}}
+\begin{enumerate}
+	\item [(1)]
+		Let $E$ be some subset of $\mathbb{R}^d$.
+
+		First, we begin by considering the outer measure of $E$, given by $m_*(E) = \inf \sum_{j=1}^\infty |Q_j|$. Consider any covering of $E$ by closed cubes $E \subset \cup_{j=1}^\infty Q_j$.\\
+
+		For each $Q_j$ with side length $l_j$, we can pick the rectangle $R_j$, whose sides have length\\$r_1 = l + \dfrac{\epsilon}{j}\,l^{d-1}$ and $r_k = l$ for every other side. Then $R_j \supset E_j$ and
+			$$|R_j| = |Q_j| + \frac{\epsilon}{2^j}.$$
+		So
+			$$\sum_{j=1}^\infty |Q_j| < \sum_{j=1}^\infty |R_j| = \sum_{j=1}^\infty |Q_j| + \epsilon.$$
+		Passing to the infimum gives
+			$$m_*^R(E) \leq \sum_{j=1}^\infty |R_j| \leq m_*(E) + \epsilon.$$
+		Then letting $\epsilon \to 0$ gives $m_*^R(E) \leq m_*(E)$.\\
+
+	\item [(2)]
+		Now begin with a covering of $E$ by rectangles $R_j$. Then we divide $\mathbb{R}^n$ into a grid of cubes with side length $\frac{1}{k}$. Then we can define $Q_{j,k}$ to be the set of rectangles that have non-empty intersection with $R_j$.\\
+
+		We need to be precise about how much extra measure these cubes add. We know that there are $Ck^{d-1}$ that could intersect partially intersect $R_j$ for some suitably large $C$. The total volume these add is $\frac{C}{k}$ and so if $k \geq 2^j C$, then the total volume is less than $\frac{\epsilon}{2^j}$.
+
+		That is
+			$$\underset{k}{\sum} |Q_{j,k}| \leq |R_j| + \frac{\epsilon}{2^j}.$$
+		Then
+			$$\underset{j}{\sum} |R_j| \leq \underset{j}{\sum} \underset{k}{\sum} |Q_{j,k}| \leq \underset{j}{\sum} |R_j| + \epsilon.$$
+		Letting $\epsilon \to 0$ again gives $m_*(E) \leq m_*^R(E)$.
+\end{enumerate}
+	By (1) and (2), then $m_*(E) = m_*^\mathcal{R}(E)$.
+
+
+% 5. If a set $E$ is the countable union of almost disjoint cubes $E = \cup_{j=1}^\infty Q_j$. Show that the following equation holds.
+	% $$m_*(E) = \sum_{}$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% \begin{flushleft}
+	% 	\rule[-0.5ex]{17cm}{2pt}\\
+	% 		\textbf{Theorem}\\
+	% 	\rule[1.5ex]{17cm}{0.5pt}
+			
+	% 	\rule[1.0ex]{17cm}{0.5pt}\
+	% \end{flushleft}
+	% \textbf{\textit{Proof.}}\\
+
+\end{document}

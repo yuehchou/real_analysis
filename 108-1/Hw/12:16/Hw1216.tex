@@ -1,0 +1,351 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{mathrsfs} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis Homework\\ Chapter 3. Construction of Measures\\ Due Date: 12/16}
+\author{National Taiwan University, Department of Mathematics\\
+R06221012 \hspace{0.2cm} Yueh-Chou Lee}
+\date{December 16, 2019}
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1(a)}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		$\Omega = \mathbb{R}^2,\,\mathcal{G}_1 = \{[0,\,1] \times [0,\,1],\,\emptyset\}$ and $\mu_0([0,\,1]\times[0,\,1]) = 2,\,\mu_0(\emptyset) = 0$. Find $\mu_*$ and $\Sigma_C$.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Recall:}}
+
+If $\Omega$ is a set, $\mathcal{G} \subset 2^\Omega$ and $\mu_0:\,\mathcal{G} \to [0,\,\infty]$, then
+	$$\mu_*(E) = \underset{E \subset\,\cup A_k}{\underset{A_k \subset \mathcal{G}}{\inf}}\,\Sigma\,\mu_0(A_k)$$
+
+\textbf{\textit{Recall:}}
+
+$E$ is called Caratheodory measurable if
+	$$\mu_*(A) = \mu_*(A \cap E) + \mu_*(A \cap E^c)
+	\quad \quad \text{for any }A \subset \Omega,$$
+
+then
+	$$\Sigma_C = \{E \subset \Omega\,|\,E \text{ is Caratheodory measurable}\}$$\\
+
+\textbf{\textit{Proof.}}
+
+\begin{enumerate}
+	\item Find $\mu_*$.
+		\begin{enumerate}
+			\item $\mu_*(\emptyset) = \mu_0(\emptyset) = 0$.\\
+
+			% \item $\mu_*([0,\,1] \times [0,\,1]) = \mu_0([0,\,1] \times [0,\,1]) = 2$.\\
+
+			\item For any set $E \subseteq [0,\,1] \times [0,\,1] \subset \Omega$, then
+				$$\mu_*(E)
+				= \underset{E \subset\,\cup A_k}{\underset{A_k \subset \mathcal{G}_1}{\inf}}\,\Sigma\,\mu_0(A_k)
+				= \mu_0([0,\,1] \times [0,\,1])
+				= 2.$$
+
+			\item Let $E \cap [0,\,1] \times [0,\,1] = \emptyset$, then $\mu_*(E) = \infty$.\\
+		\end{enumerate}
+
+	\item Find $\Sigma_C$.
+		\begin{enumerate}
+			\item Let $E \cap [0,\,1] \times [0,\,1] = \emptyset$, then
+				$$\mu_*(A \cap E) + \mu_*(A \cap E^c)
+				= \mu_*(\emptyset) + \mu_*(A)
+				= \mu_*(A)
+				\quad \quad \text{for any }A \subset \Omega$$
+
+				So $E \in \Sigma_C$ for all $E \cap [0,\,1] \times [0,\,1] = \emptyset$.\\
+
+			\item Let $E \supseteq [0,\,1] \times [0,\,1]$.
+
+				If $A \cap E = \emptyset$, then
+				$$\mu_*(A)
+				\leq \mu_*(A \cap E) + \mu_*(A \cap E^c)
+				= \mu_*(\emptyset) + \mu_*(A \cap E^c)
+				\leq \mu_*(A)$$
+
+				If $A \cap E \neq \emptyset$, then $A \cap E^c \cap \mathcal{G}_1 \subset \emptyset$, thus
+
+				$$\mu_*(A)
+				\leq \mu_*(A \cap E) + \mu_*(A \cap E^c)
+				= \mu_*(A \cap E) + \mu_*(\emptyset)
+				= \mu_*(A \cap E)
+				\leq \mu_*(A)$$
+
+				So $E \in \Sigma_C$ for all $E \supseteq [0,\,1] \times [0,\,1]$.\\
+
+			\item Let $E \subset [0,\,1] \times [0,\,1]$.
+
+			Suppose to the contrary that $E \in \Sigma_C$. Take $A = [0,\,1] \times [0,\,1]$, then
+				$$2 = \mu_*(A)
+				= \mu_*(A \cap E) + \mu_*(A \cap E^c)
+				= \mu_*(E) + \mu_*(A \setminus E)
+				= \mu_0(A) + \mu_0(A)
+				= 2 + 2 = 4$$
+
+			Therefore we get a contradiction. So $E \notin \Sigma_C$ for all $E \subset [0,\,1] \times [0,\,1]$.\\\\
+		\end{enumerate}
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1(b)}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $\Omega = \mathbb{R}^2,\,\mathcal{G}_2 = \left\{Q_1 = [0,\,1] \times [0,\,1],\,Q_2 = \left[\frac{1}{2},\,2\right] \times \left[\frac{1}{2},\,2\right],\,\emptyset\right\}$ and $\mu_0(Q_1) = 2,\,\mu_0(Q_2) = \frac{9}{4},$ $\mu_0(\emptyset) = 0$. Find $\mu_*$ and $\Sigma_C$.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+\begin{enumerate}
+	\item Find $\mu_*$.
+	\begin{enumerate}
+		\item $\mu_*(\emptyset) = \mu_0(\emptyset) = 0$.\\
+
+		\item For any set $E \subseteq Q_1 \subset \Omega$, then
+			$$\mu_*(E)
+			= \underset{E \subset\,\cup A_k}{\underset{A_k \subset \mathcal{G}_2}{\inf}}\,\Sigma\,\mu_0(A_k)
+			= \mu_0(Q_1)
+			= 2.$$
+
+		\item For any set $E \subseteq Q_2 \setminus Q_1 \subset \Omega$, then
+			$$\mu_*(E)
+			= \underset{E \subset\,\cup A_k}{\underset{A_k \subset \mathcal{G}_2}{\inf}}\,\Sigma\,\mu_0(A_k)
+			= \mu_0(Q_2)
+			= \frac{9}{4}.$$
+
+		\item For any set $E \subseteq Q_1 \cup Q_2$ and $E \cap Q_1 \neq \emptyset,\,E \cap Q_2 \setminus Q_1 \neq \emptyset$, then
+			$$\mu_*(E)
+			= \underset{E \subset\,\cup A_k}{\underset{A_k \subset \mathcal{G}_2}{\inf}}\,\Sigma\,\mu_0(A_k)
+			= \mu_0(Q_1) + \mu_0(Q_2)
+			= 2 + \frac{9}{4}
+			= 4\frac{1}{4}.$$
+
+		\item Let $E \cap (Q_1 \cup Q_2) = \emptyset$, then $\mu_*(E) = \infty$.\\
+	\end{enumerate}
+
+\newpage
+
+	\item Find $\Sigma_C$.
+	\begin{enumerate}
+		\item Let $E \cap (Q_1 \cup Q_2) = \emptyset$, then
+			$$\mu_*(A \cap E) + \mu_*(A \cap E^c)
+			= \mu_*(\emptyset) + \mu_*(A)
+			= \mu_*(A)
+			\quad \quad \text{for any }A \subset \Omega$$
+
+		So $E \in \Sigma_C$ for all $E \cap (Q_1 \cup Q_2) = \emptyset$.\\
+
+		\item Let $E \supseteq Q_1 \cup Q_2$.
+
+		If $A \cap E = \emptyset$, then
+			$$\mu_*(A)
+			\leq \mu_*(A \cap E) + \mu_*(A \cap E^c)
+			= \mu_*(\emptyset) + \mu_*(A \cap E^c)
+			\leq \mu_*(A)$$
+
+		If $A \cap E \neq \emptyset$, then $A \cap E^c \cap \mathcal{G}_2 \subset \emptyset$, thus
+			$$\mu_*(A)
+			\leq \mu_*(A \cap E) + \mu_*(A \cap E^c)
+			= \mu_*(A \cap E) + \mu_*(\emptyset)
+			= \mu_*(A \cap E)
+			\leq \mu_*(A)$$
+
+		So $E \in \Sigma_C$ for all $E \supseteq Q_1 \cup Q_2$.\\
+
+		\item Let $E \subset Q_1 \cup Q_2$ where $E \cap Q_1 \neq \emptyset$ or $E \cap Q_2 \setminus Q_1 \neq \emptyset$.
+
+		Suppose to the contrary that $E \in \Sigma_C$. Take $A = Q_1 \cup Q_2$, then
+			$$\begin{aligned}
+			4\frac{1}{4}
+			&= \mu_*(A)
+			= \mu_*(A \cap E) + \mu_*(A \cap E^c)\\
+			&= \mu_*(E) + \mu_*(A \setminus E)\\
+			&= \mu_0(A) + \mu_*((A \setminus E) \cap Q_1) + \mu_*((A \setminus E) \cap (Q_2 \setminus Q_1))\\
+			&> \mu_0(A)
+			= 4\frac{1}{4}
+			\end{aligned}$$
+
+		Therefore we get a contradiction. So $E \notin \Sigma_C$ for all $E \subset Q_1 \subset Q_2$.\\\\
+	\end{enumerate}
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 2}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $\Omega = \mathbb{R}^2$. Assume $E$ is Lebesgue measurable with finite measure, $E_1 \cup E_2 = E,\, E_1 \cap E_2 = \emptyset$, and $\mu_*(E) = \mu_*(E_1) + \mu_*(E_2)$. Prove that $E_1$ and $E_2$ are Lebesgue measurable.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+Choose a $G_\delta$ set $G$ such that $E_1 \subseteq G$ and $\mu_*(E_1) = \mu(G)$. In particular, $G$ is measurable.\\
+
+Now let $H = (E_1 \cup E_2) \cap G$ so $H$ is measurable.
+
+Since $E_1 \subseteq H \subseteq G$, then $\mu_*(E_1) \leq \mu(H) \leq \mu(G) = \mu_*(E_1)$, so $\mu_*(E_1) = \mu(H)$.
+
+Thus
+	$$\begin{aligned}
+	\mu_*(E_1) + \mu_*(E_2)
+	&= \mu_*(E_1 \cup E_2)\\
+	&= \mu_*((E_1 \cup E_2) \cap H) + \mu_*((E_1 \cup E_2) \setminus H)\\
+	&= \mu_*(H) + \mu_*((E_1 \cup E_2) \setminus H)\\
+	&= \mu_*(E_1) + \mu_*((E_1 \cup E_2) \setminus H).
+	\end{aligned}$$
+
+So
+	$$\mu_*(E_2) = \mu((E_1 \cup E_2) \setminus H).$$
+
+On the other hand, we have $(E_1 \cup E_2) \setminus H \subseteq E_2$. Thus
+	$$\begin{aligned}
+	\mu_*(E_2)
+	&= \mu_*(E_2 \cap ((E_1 \cup E_2) \setminus H)) + \mu_*(E_2 \setminus ((E_1 \cup E_2) \setminus H))\\
+	&= \mu_*((E_1 \cup E_2) \setminus H) + \mu_*(E_2 \setminus ((E_1 \cup E_2) \setminus H))\\
+	&= \mu_*(E_2) + \mu_*(E_2 \setminus ((E_1 \cup E_2) \setminus H)),
+	\end{aligned}$$
+
+so $\mu_*(E_2 \setminus ((E_1 \cup E_2) \setminus H)) = 0$, then $E_2 \setminus ((E_1 \cup E_2) \setminus H)$ is measurable.
+
+Hence $E_2 = ((E_1 \cup E_2) \setminus H) \cup (E_2 \setminus ((E_1 \cup E_2) \setminus H))$ is also measurable.\\\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 3}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Prove the following lemma.
+
+		\textbf{\textit{Lemma:}}
+
+		Assume $f,\,g$ are measurable on $\Omega$. Then
+		\begin{enumerate}
+			\item[(1)] $fg$ is measurable.
+
+			\item[(2)] $f/g$ is measurable if $g(x) \neq 0$ for each $x \in \Omega$.
+
+			\item[(3)] If $\{f(x),\,g(x)\} \neq \{\infty,\,-\infty\}$ for each $x \in \Omega$, then $f + g$ is measurable.
+		\end{enumerate}
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+\begin{enumerate}
+	\item[(1)] Since $f$ is measurable and $\{f^2 > a\} = \{f > \sqrt{a}\} \cup \{f < -\sqrt{a}\}$ for all $a \geq 0$, then $f^2$ is measurable.\\
+
+	By (3), since $f$ and $g$ are measurable, so are $f + g$ and $f - g$. Also, since $f + g$ and $f - g$ are measurable, so are $(f + g)^2$ and $(f - g)^2$.
+
+	Hence, $fg = \dfrac{(f + g)^2 - (f - g)^2}{4}$ is measurable.\\
+
+	\item[(2)] First, we need to prove that if $g \neq 0$ and is measurable, then $1/g$ is measurable.
+		\begin{enumerate}
+			\item If $a > 0$, then $\{1/g > a\} = \{0 < g < 1/a\}$.
+
+			\item If $a = 0$, then $\{1/g > a\} = \{g > 0\}$.
+
+			\item If $a < 0$, then $\{1/g > a\} = \{g > 0\} \cup \{g < 1/a\}$.
+		\end{enumerate}
+
+	So if $g \neq 0$ and is measurable, then $1/g$ is measurable.\\
+
+	By (1), if $g(x) \neq 0$ for each $x \in \Omega$, since $f$ and $1/g$ are measurable, then $f/g$ is measurable.\\
+
+	\item[(3)] If $g$ is measurable and $a$ is finite, then $\{f > \lambda - a\}$ is measurablefor each finite $\lambda$. So $\{f + a > \lambda\}$ is measurable for each finite $\lambda$.
+
+	And since $g$ is measurable, so is $a - g$ for any finite $a$.\\
+
+	If $f$ and $a - g$ are measurable for each finte $a$. Let $\{r_k\}$ be the rational numbers, then
+		$$\{f > a - g\}
+		= \bigcup_k\,\{f > r_k > a - g\}
+		= \bigcup_k\,(\{f > r_k\} \cap \{r_k > a - g\})$$
+
+	So $\{f > a - g\}$ is measurable.
+
+	Also, since $\{f + g > a\} = \{f > a - g\}$ and $\{f(x),\,g(x)\} \neq \{\infty,\,-\infty\}$, then $f + g$ is measurable.\\\\
+
+
+\end{enumerate}
+
+% \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 4}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Assume $(\Omega,\,\Sigma,\,\mu)$ is a metric space. Let $\widetilde{\Sigma} = \{E \cup Z\,|\,E \in \Sigma,\,Z\text{ is a null set}\}$ and $\widetilde{\mu}(E \cup Z) = \mu(E)$\\if $E \in \Sigma$ and $Z$ is null. Prove $(\Omega,\,\widetilde{\Sigma},\,\widetilde{\mu})$ is a complete measure space.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+First, we need to check $\widetilde{\mu}$ is a measure of $\widetilde{\Sigma}$.
+
+Notice that $\widetilde{\mu}(\emptyset) = \mu(\emptyset) = 0$.
+
+If $A_1 \subset A_2,\,A_1 = E_1 \cup Z_1$ and $A_2 = E_2 \cup Z_2$, where $E_1,\,E_2 \in \Sigma$ and $Z_1,\,Z_2 \in \text{Null}(\Sigma)$, then
+	$$\widetilde{\mu}(A_1) = \mu(E_1)
+	\leq \mu(E_2) = \widetilde{\mu}(A_2).$$
+
+Lastly, if $A_i = E_i \cup Z_i$ where $E_i \in \Sigma$ and $Z_i \in \text{Null}(\Sigma)$ for all $i \in \mathbb{N}$, then
+	$$\widetilde{\mu}\left(\cup_{i = 1}^nA_i\right)
+	= \mu(\cup_{i=1}^n E_i)
+	\leq \sum_{i=1}^n \mu(E_i)
+	= \sum_{i=1}^n \widetilde{\mu}(A_i).$$
+
+So $\widetilde{\mu}$ is a measure of $\widetilde{\Sigma}$.\\
+
+Next for completion, we need to show if $Z \in \widetilde{\Sigma}$ and $\widetilde{\mu}(Z) = 0$, if $E \subset Z$ then $E \subset \widetilde{\Sigma}$.
+
+Let $F \subset Z \in \text{Null}(\Sigma)$.
+
+Without loss of generality, if $E \cup F \in \widetilde{\Sigma}$, while $F \subset Z \in \text{Null}(\Sigma)$, one can assume that $E \cap Z = \emptyset$.
+
+Indeed, otherwise one could write
+	$$E \cup F
+	= (E \setminus Z) \cup [(Z \cap E) \cup F].$$
+
+Also, we have
+	$$E \setminus Z \in \Sigma\,\text{ and }\,
+	(Z \cap E) \cup F \subset Z \in \text{Null}(\Sigma)$$
+
+So $E^c = E^c \setminus Z \cup Z \in \widetilde{\Sigma}$, since $E^c \setminus Z \in \Sigma,\,Z \in \text{Null}(\Sigma)$. Hence $(\Omega,\,\widetilde{\Sigma},\,\widetilde{\mu})$ is a complete.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% \begin{flushleft}
+	% 	\rule[-0.5ex]{17cm}{2pt}\\
+	% 		\textbf{Theorem}\\
+	% 	\rule[1.5ex]{17cm}{0.5pt}
+			
+	% 	\rule[1.0ex]{17cm}{0.5pt}\
+	% \end{flushleft}
+	% \textbf{\textit{Proof.}}\\
+
+\end{document}
+
+
+
+
+
+

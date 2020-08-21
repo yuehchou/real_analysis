@@ -1,0 +1,5 @@
+ch.1 27, 28, 29, 32(hw3_3), 33, 34, 35, 37 
+10/4 交
+
+38 https://math.stackexchange.com/questions/1368/prove-a-bn-geq-an-bn
+Minkowski’s Inequality

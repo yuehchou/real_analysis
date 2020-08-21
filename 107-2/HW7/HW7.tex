@@ -1,0 +1,238 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+
+
+\title{Real Analysis\\ Homework 7}
+\author{National Taiwan University, Department of Mathematics\\
+R06221012 \hspace{0.2cm} Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 11.1
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 11.1}\\
+		\rule[1.5ex]{17cm}{0.5pt}
+		\begin{enumerate}
+			\item[(a)] Prove the second statements in both parts of Corollary 11.4.\
+
+			\item[(b)] Verify the statements made before Theorem 11.5 about the function $\gamma (A)$ defined on sets $A \subset \mathbb{R}^2$. (One way to see that a set $B$ with $d(\Upsilon,B) > 0$ is not $\gamma$-measurable is to denote the mirror reflection of $B$ in the $y$-axis by $B^*$ and check that the equation $\gamma(B \cup B^*) = \gamma(B) + \gamma(B^*)$ is false.)
+		\end{enumerate}
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\begin{enumerate}
+		\item[(a)]
+			\textbf{The second statements in both parts of Corollary 11.4:}\\
+			Let $\Gamma$ be an outer measure on $\mathscr{S}$, let $\{E_k\}$ be a collection of measurable sets, and let $A$ be any set.
+			\begin{enumerate}
+				\item[(i)] If $E_k \searrow$ and if $\Gamma(A \cap E_{k_0})$ is finite for some $k_0$, then $\Gamma(A \cap \lim E_k) = \lim_{k \to \infty} \Gamma(A \cap E_k)$.\
+
+				\item[(ii)] If $\Gamma(A \cap \cup_{k=k_0}^\infty E_k)$ is finite for some $k_0$, then $\Gamma(A \cap \lim \sup E_k) \geq \lim \sup_{k \to \infty} \Gamma(A \cap E_k)$.
+			\end{enumerate}
+			\textit{\textbf {Proof.}}
+			\begin{enumerate}
+				\item[(i)]
+					Since $E_k \searrow$, then $\mathscr{S} - E_k \nearrow$. By the first statements in \textbf{Corollary 11.4(i)}, thus
+						$$\Gamma(A \cap \lim_{k \to \infty} (\mathscr{S} - E_k))
+						= \lim_{k \to \infty} \Gamma(A \cap (\mathscr{S} - E_k))
+						= \Gamma(A \cap \mathscr{S}) - \lim_{k \to \infty} \Gamma(A \cap E_k).$$
+					Also, $\Gamma(A \cap \lim_{k \to \infty} (\mathscr{S} - E_k)) = \Gamma(A \cap \mathscr{S}) - \Gamma(A \cap \lim_{k \to \infty}E_k)$, hence we have
+						$$\Gamma(A \cap \lim E_k)
+						= \lim_{k \to \infty} \Gamma(A \cap E_k).$$
+
+				\item[(ii)]
+					Let $\{E_k\}$ be measurable and define sets $X_j = \cup_{k=j}^\infty E_k,\, j = 1,2,\cdots$. Then $X_j \searrow \lim \sup E_k$, so by the second statements in \textbf{Corollary 11.4(i)},
+						$$\Gamma(A \cap \lim \sup E_k)
+						= \lim_{j \to \infty} \Gamma(A \cap X_j).$$
+					But since $A \cap X_j \supset A \cap E_j$, then we have
+						$$\Gamma(A \cap \lim \sup E_k)
+						= \lim_{j \to \infty} \Gamma(A \cap X_j)
+						\geq \lim \sup_{k \to \infty} \Gamma(A \cap E_k).$$
+			\end{enumerate}
+
+
+
+		\item[(b)]
+			Let $d$ is the usual Euclidean metric in $\mathbb{R}^2$. Define
+				$$\gamma(A) = \frac{1}{d(A,\Upsilon)},
+				\quad A \subset \mathbb{R}^2,
+				\quad \text{where $\Upsilon$ is the $y$-axis,}$$
+			with the conventions $1/0 = \infty$ and $\gamma(\phi) = 0$. To check that $\gamma$ is an outer measure on $\mathbb{R}^2$ but not a metric outer measure.\\
+
+		\textit{\textbf {Proof.}}\\
+			\begin{enumerate}
+				\item[(1)] $\gamma$ is an outer measure on $\mathbb{R}^2$:
+					\begin{enumerate}
+						\item[(i)] $\gamma(\phi) = 0$ and $d(A,\Upsilon) \geq 0$, $1/0 = \infty$ so $\gamma(A) \geq 0$.\\
+
+						\item[(ii)] Let $A_1 \subset A_2$, then $d(A_1,\Upsilon) \geq d(A_2,\Upsilon)$. Thus $\gamma(A_1) \leq \gamma(A_2)$.\\
+
+						\item[(iii)] Since $d$ is the usual Euclidean metric in $\mathbb{R}^2$, we can find some $k_0$ such that\\
+						$d(A_{k_0},\Upsilon) = \min \{d(A_k,\Upsilon)\}$ so $\gamma(A_{k_0}) = \gamma(\cup A_k)$. Thus
+							$$\gamma(\cup A_k)
+							= \gamma(A_{k_0})
+							\leq \sum \gamma(A_k)$$\
+					\end{enumerate}
+
+				\item[(2)] $\gamma$ is not a metric outer measure on $\mathbb{R}^2$:\\
+				Let the set $B$ with $d(\Upsilon,B) > 0$ and denote the mirror reflection of $B$ in the $y$-axis by $B^*$.\\
+				Since $B^*$ is the mirror reflection of $B$ in the $y$-axis, hence
+					$$\gamma(B) = \gamma(B^*)
+					\quad \text{and} \quad
+					\gamma(B \cup B^*) = \gamma(B).$$
+				So $\gamma(B \cup B^*) = \gamma(B) + \gamma(B^*)$ is false and then the result follows.\
+			\end{enumerate}
+	\end{enumerate}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 11.2
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 11.2}\\
+		\rule[1.5ex]{17cm}{0.5pt}\
+			Leyt $\mu$ be a finite Borel measure on $\mathbb{R}^1$, and define $f_\mu (x) = \mu((-\infty,x])$, $-\infty < x < +\infty$. Show that $f_\mu$ is monotone increasing, $\mu((a,b]) = f_\mu (b) - f_\mu (a)$, $f_\mu$ is continuous from the right, and $\underset{x \to -\infty}{\lim} f_\mu (x) = 0$.
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textit{\textbf {Proof.}}
+	\begin{enumerate}
+		\item[(a)]
+			Since $\mu$ is a finite Borel measure, if $b \geq a$, then
+				$$\begin{aligned}
+				f_\mu(b) - f_\mu(a)
+				&= \mu((-\infty,b]) - \mu((-\infty,a])\\
+				&= \mu((-\infty,a]) + \mu((a,b]) - \mu((-\infty,a])\\
+				&= \mu((a,b]) \geq 0
+				\end{aligned}$$
+			So $f_\mu$ is monotone increasing and $\mu((a,b]) = f_\mu(b) - f_\mu(a)$.\\
+
+		\item[(b)]
+				$$\begin{aligned}
+					\underset{\varepsilon \to 0}{\lim} f_\mu (x+\varepsilon)
+					&= \underset{\varepsilon \to 0}{\lim} (\mu((-\infty,x]) + \mu((x,x+\varepsilon]))\\
+					&= \mu((-\infty,x]) + \mu(\mathbb{R} \cap \underset{\varepsilon \to 0}{\lim}(x,x+\varepsilon])\\
+					&= \mu((-\infty,x])
+					= f_\mu (x)
+				\end{aligned}$$
+			So $f_\mu$ is continuous from right.\\
+
+		\item[(c)]
+				$$\begin{aligned}
+					\underset{x \to -\infty}{\lim} f_\mu (x)
+					&= \underset{x \to -\infty}{\lim} \mu((-\infty,x])\\
+					&= \underset{x \to -\infty}{\lim} \mu(\underset{k \to -\infty}{\lim}(k,x])\\
+					&= \underset{x \to -\infty}{\lim} \underset{k \to -\infty}{\lim} \mu((k,x])\\
+					&= \underset{x \to -\infty}{\lim} \underset{k \to -\infty}{\lim} [f_\mu(x) - f_\mu(k)] = 0
+				\end{aligned}$$
+	\end{enumerate}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 11.3
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 11.3}\\
+		\rule[1.5ex]{17cm}{0.5pt}\
+			Let $f$ be monotone increasing on $\mathbb{R}^1$.
+			\begin{enumerate}
+				\item[(a)] Show that $\Lambda_f (\mathbb{R}^1)$ is finite if and only if $f$ is bounded.\
+
+				\item[(b)] Let $f$ be bounded and right continuous, let $\mu = \Lambda_f$, and let $\bar{f}$ denote the function $f_\mu$ defined in \textbf{Exercise 11.2}. Show that $f$ and $\bar{f}$ differ by a constant.\\
+				Thus, if we make the additional assumption that $\underset{x \to -\infty}{\lim} f(x) = 0$, then $f = \bar{f}$.
+			\end{enumerate}
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textit{\textbf {Proof.}}
+	\begin{enumerate}
+		\item[(a)]
+			($\Rightarrow$)\\
+				$\forall \varepsilon > 0$ and $a \in \mathbb{R}^1$.\\
+				We have $(a, \infty) = \cup_{k=1}^\infty (a_k,a_{k+1}]$, where $\{(a_k,a_{k+1}]\}$ disjoint and 
+					$$\begin{aligned}
+						&\sum_{k=1}^\infty \lambda(a_k,a_{k+1}]
+						\leq \Lambda_f (a,\infty) + \varepsilon\\
+						&\Rightarrow \underset{k \to +\infty}{\lim} f(a_k) - f(a)
+						= \underset{k \to +\infty}{\lim} \left[ \sum_{j=1}^k (f(a_{j+1}) - f(a_j)) \right]
+						\leq \Lambda_f (a,\infty) + \varepsilon
+					\end{aligned}$$
+				Hence, we can say that $f$ is bounded.\\
+
+			($\Leftarrow$)\\
+				Suppose $f$ is bounded.\\
+				Let $a_k \nearrow \infty$ as $k \nearrow \infty$, then
+					$$f(a_k) - f(a)
+					= \lambda((a,a_k])
+					\geq \Lambda_f((a,a_k])
+					\geq 0$$
+				So $\Lambda_f$ is finite.\\
+
+		\item[(b)]
+			Let $a \in \mathbb{R}^1$, then
+				$$\begin{aligned}
+					f(a) - \bar{f}(a)
+					&= f(a) - f_\mu(a)\\
+					&= f(a) - \mu((-\infty,a])\\
+					&= f(a) - \Lambda_f((-\infty,a])\\
+					&= f(a) - [f(a) - f(-\infty)]\\
+					&= f(-\infty)
+				\end{aligned}$$
+			Since $f$ is bounded, then $f(a) - \bar{f}(a) = f(-\infty) < c$ where $c$ is a constant.\\
+	\end{enumerate}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ex 11.4
+	\begin{flushleft}
+		\rule[-0.5ex]{17cm}{2pt}\\
+			\textbf{EXERCISE 11.4}\\
+		\rule[1.5ex]{17cm}{0.5pt}\
+			If we identify two functions on $\mathbb{R}^1$ which differ by a constant, prove that there is a one-to-one correspondence between the class of finite Borel measures on $\mathbb{R}^1$ and the class of bounded increasing functions that are continuous from the right.
+		\rule[1.0ex]{17cm}{0.5pt}\
+	\end{flushleft}
+	\textit{\textbf {Proof.}}\\
+		Let $S_1 = \{f : f \text{is bounded increasing on }\mathbb{R} \text{ and continuous from right}\}$
+		and \\$S_2 = \{\mu : \mu \text{ is finite Borel measure on }\mathbb{R}\}$.\\
+		Let $\varphi : S_1 \to S_2$ and $\varphi(f) = \Lambda_f$.\\
+		By \textbf{EXERCISE 11.3(a)}, since $f$ is bounded increasing, then $\Lambda_f$ is finite Borel measure.
+		\begin{enumerate}
+			\item[(1)] one-to-one:\\
+				Let $f_1, f_2 \in S_1$, then $f_1$ and $f_2$ are bounded increasing and continuous from right. So
+					$$f_1 - f_\mu = c_1
+					\quad \text{and} \quad
+					f_2 - f_\mu = c_2
+					\quad \text{where $c_1$ and $c_2$ are constants.}$$
+				Hence $\varphi(f_1) = \varphi(f_2)$.\
+
+			\item[(2)] onto:\\
+				If $\mu \in S_2$, then by \textbf{EXERCISE 11.2}, we know that $f_\mu$ is increasing and continuous from right.\\
+				So by \textbf{Theorem 11.10}, if $f_\mu$ is increasing and continuous from right, then its Lebsegue-Stieltjes measure $\Lambda$ satisfies
+					$$\Lambda_{f_\mu}(a,b]
+					= f_\mu(b) - f_\mu(a)
+					= \mu(-\infty,b] - \mu(-\infty,a]
+					= \mu(a,b]$$
+				By \textbf{Theorem 11.21}, then $\mu = \Lambda_{f_\mu}$ on every Borel sets $B \subset \mathbb{R}^1$. $\mu$ is finite so $\Lambda_{f_\mu}$ is also finite.\\
+				Since $\Lambda_{f_\mu}$ is finite and by \textbf{EXERCISE 11.3(a)}, then $f_\mu$ is bounded.
+		\end{enumerate}
+
+
+
+\end{document}
+
+
+
+
+
+
+

@@ -1,0 +1,229 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis \\ Homework 5}
+\author{Yueh-Chou Lee}
+\date{\today}
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+
+\item (Exercise 5.3)\\
+ Let $\{ f_k \}$ be a sequence of nonnegative measurable functions defined on $E$. If $f_k \to f$ and $f_k \leq f$ a.e. on $E$, show that $\int_{E} f_k \to \int_{E} f$.\\
+ \newline
+ \textit{\textbf {Proof.}}\\
+ Since $f_k \to f$ a.e. and measurable in $E$, then $f$ is also measurable.\\
+ By Lebesgue Dominated Convergence Theorem for Nonnegative Functions, since\\$0 \leq f_k$, $f_k \leq f$ $\forall k$ with $\int_E f dx < +\infty$ and $f_k \to f$ a.e. in $E$, then $\int_E f_k(x) dx \to \int_E f(x) dx$.\\
+
+
+
+
+
+
+
+
+\item (Exercise 5.4)\\
+ If $f \in L(0,1)$, show that $x^k f(x)$ in $L(0,1)$ for $k = 1,2,...$, and that $\int_{0}^{1} x^k f(x) dx \to 0$.\\
+ \newline
+ \textit{\textbf {Proof.}}\\
+ Since $f \in L(0,1)$ and $x \in (0,1)$, then $|f|$ is also measurable and $|x^k f(x)| \leq |f(x)|$ in $(0,1)$.\\
+ $x^k f(x) \to 0$ a.e. as $k \to 0$.\\
+ By Lebesgue Dominated Convergence Theorem, since $x^k f(x) \to 0$ a.e. in $(0,1)$,\\$|x^k f(x)| \leq |f(x)|$ $\forall k$ and $|f|$ is also measurable, then $\int_{(0,1)} f_k(x) dx \to \int_{(0,1)} 0 dx = 0$.\\ 
+
+
+
+
+
+
+
+
+\item (Exercise 5.5)\\
+ Use Egorov's theorem to prove the bounded convergence theorem.\
+ 
+ \textbf{Recall (Egorov's Theorem):}\\
+ Suppose that $\{ f_k \}$ is a sequence of measurable functions that converges a.e. in a set $E$ of finite measure to a finite limit $f$. Then given $\epsilon > 0$, there is a closed subset $F$ of $E$ such that $|E - F| < \epsilon$ and $\{ f_k \}$ converge uniformly to $F$.\
+
+ \textbf{Recall (Bounded Convergence Theorem):}\\
+ Let $\{ f_k \}$ be a sequence of measurable functions on $E$ such that $f_k \to f$ a.e. in $E$. If $|E| < +\infty$ and there is a finite constant $M$ such that $|f_k| \leq M$ a.e. in $E$, then $\int_E f_k \to \int_E f$.\\
+ \newline
+ \textit{\textbf {Proof.}}\\
+ By Egorov's theorem, for any $\epsilon$, there exists a closed set $F \subseteq E$ such that $\{ f_k \}$ converges uniformly on $F$ and $|E - F| < \frac{M \epsilon}{4}$.\\
+ Since $|f_k| \leq M$ a.e. and $M|E| < \infty$, by Fatou's lemma, we have
+ $$\begin{aligned}
+ \int_F f
+ &= \int_F \underset{k \to \infty}{\lim \inf} f_k\\
+ &\leq \underset{k \to \infty}{\lim \inf} \int_F f_k\\
+ &\leq \underset{k \to \infty}{\lim \sup} \int_F f_K\\
+ &\leq \int_F \underset{k \to \infty}{\lim \sup} f_k\\
+ &= \int_F f
+ \end{aligned}$$
+ Then $\int_F f_k \to \int_F f$.\\
+ There exists $N > 0$ such that for all $k \geq N$, we have $\left| \int_F f - \int_F f_k \right| < \frac{\epsilon}{2}$.\\
+ Hence, for $k \geq N$
+ $$\left| \int_E f - \int_E f_k \right|
+ \leq \left| \int_F f - \int_F f_k \right| + \left| \int_{E - F} f \right| + \left| \int_{E - F} f_k \right| < \epsilon$$
+ Then $\int_E f_k \to \int_E f$.\\
+ 
+
+
+
+
+
+
+\item (Exercise 5.6)\\
+ Let $f(x,y)$, $0 \leq x, y \leq 1$, satisfy the following conditions: for each $x, f(x,y)$ is an integrable function of $y$, and $(\partial f(x,y) / \partial x)$ is a bounded function of $(x,y)$. Show that $(\partial f(x,y) / \partial x)$ is a measurable function of $y$ for each $x$ and
+ $$\frac{d}{dx} \int_{0}^{1} f(x,y) dy = \int_{0}^{1} \frac{\partial}{ \partial x} f(x, y) dy$$
+ \newline
+ \textit{\textbf {Proof.}}
+
+ \begin{enumerate}
+ \item $(\partial f(x,y) / \partial x)$ is a measurable function of $y$ for each $x$:\\
+ By definition, we know for every $x$
+ $$\frac{\partial f(x,y)}{ \partial x} = \underset{h \to 0}{\lim} \frac{f(x+h,y) - f(x,y)}{h}$$
+ Since $f(x,y)$ is an integrable function of $y$ for every $x$, $f(x,y)$ is measurable function of $y$ for every $x$, then $\frac{\partial f(x,y)}{ \partial x}$ is also measurable for every $x$.\\
+
+ \item
+ $$\begin{aligned}
+ \frac{d}{dx} \int_{0}^{1} f(x,y) dy
+ &= \underset{h \to 0}{\lim} \frac{\int_0^1 f(x+h,y)dy - \int_0^1 f(x,y) dy}{h}\\
+ &= \underset{h \to 0}{\lim} \int_0^1 \frac{f(x+h,y) - f(x,y)}{h} dy\\
+ \end{aligned}$$
+ By Mean Value Theorem, there exists $0 < h' \leq h$ such that
+ $$\frac{f(x+h,y) - f(x,y)}{h} = \frac{\partial}{\partial x} f(x+h',y)$$
+ which is a bounded function of $(x,y)$, then by Bounded Convergence Theorem
+ $$\frac{d}{dx} \int_{0}^{1} f(x,y) dy = \int_{0}^{1} \frac{\partial}{ \partial x} f(x, y) dy$$\
+
+ \end{enumerate}
+
+
+
+
+
+
+
+
+\item (Exercise 5.7)\\
+ Give an example of an $f$ that is not integrable, but whose improper Riemann integral exists and is finite.\\
+\newline
+\textit{\textbf {Proof.}}\\
+ Let $f$ be a function on $[1, \infty)$ with $f(x) = (-1)^n \frac{1}{n}$ if $x \in [n,n+1)$ where $n \in \mathbb{Z}^+$, then
+ $$\int_{[1,\infty)} f^+ = \int_{[1,\infty)} \max{\{ f, 0\}} =\sum_{k=1}^{\infty} \frac{1}{2k} |[2k, 2k+1)| = \infty$$
+ and
+ $$\int_{[1,\infty)} f^- = \int_{[1,\infty)} -\min{\{ f, 0\}} =\sum_{k=1}^{\infty} \frac{1}{2k-1} |[2k-1, 2k)| = \infty$$
+ $f$ is said to be integrable in $[1,\infty)$\\
+ $\iff$ $|\int_[1,\infty) f(x) dx| = |\int_[1,\infty) f^+(x) dx - \int_[1,\infty) f^-(x) dx| < \infty$.\\
+
+ Since $\int_{[1,\infty)} f^+(x) dx = \infty$ and $\int_{[1,\infty)} f^-(x) dx = \infty$, hence, $f$ is not integrable.\\
+
+ But
+ $$(R) \int_{[1,\infty)} f(x) dx = \sum_{n = 1}^{\infty} (-1)^n \frac{1}{n} < \infty$$
+ It implies that $f$ is Riemann integrable.\\
+
+
+
+
+
+
+
+
+
+\item (Exercise 5.9)\\
+ If $p > 0$ and $\int_{E} |f - f_k|^p \to 0$ as $k \to \infty$, show that $f_k \overset{m}{\to} f$ on $E$ (and thus that there is a subsequence $f_{k_j} \to f$ a.e. in $E$).\\
+ \newline
+ \textit{\textbf {Proof.}}\\
+ Let $\omega(\alpha) = |\{ x \in E : f(x) > \alpha \}|$ where $\alpha > 0$.\\
+ We first need to prove that $\omega(\alpha) \leq \frac{1}{\alpha^p} \int_{ \{f > \alpha\} } f^p(x) dx$.\\
+ Let $g(x) = \left\{ \begin{array}{ll}
+ 					\alpha, & \mbox{if $f(x) > \alpha$} \\
+ 					0, & \mbox{o.w.}
+ 					\end{array}
+ 					\right.$
+ Then
+ $$\int_{\{ f > \alpha \}} f^p \geq \int_{\{ f > \alpha \}} g^p = \int_{\{ f > \alpha \}} \alpha^p = \alpha^p |\{ f > \alpha \}| = \alpha^p \omega(\alpha)$$
+ Hence, 
+ $$\omega(\alpha) \leq \frac{1}{\alpha^p} \int_{ \{f > \alpha\} } f^p(x) dx$$\\
+
+ Now, we let
+ $$\omega'(\alpha) = |\{ x \in E: |f(x) - f_k(x)|^p > \alpha \}|$$
+ By above, we then have
+ $$\omega'(\alpha) = |\{ x \in E: |f(x) - f_k(x)|^p > \alpha \}| \leq \frac{1}{\alpha^p} \int_{E} |f - f_k|^p$$
+ That is
+ $$|\{ x \in E: |f(x) - f_k(x)| > \alpha^{1/p} \}| \leq \frac{1}{\alpha^p} \int_{E} |f - f_k|^p$$
+ Hence,
+ $$0 \leq \underset{k \to \infty}{\lim} |\{ x \in E: |f(x) - f_k(x)| > \alpha^{1/p} \}| \leq \frac{1}{\alpha^p} \cdot \underset{k \to \infty}{\lim} \int_{E} |f - f_k|^p = 0$$
+ Thus,
+ $$\underset{k \to \infty}{\lim} |\{ x \in E: |f(x) - f_k(x)| > \alpha^{1/p} \}| = 0$$
+ Since $\alpha^{1/p}$ can be any positive real number, we have that $f_k \overset{m}{\to} f$.\\
+
+
+
+
+
+
+
+
+\item (Exercise 5.10)\\
+ If $p > 0$, $\int_{E} |f - f_k|^p \to 0$ and $\int_{E} |f_k|^p \leq M$ for all $k$, show that $\int_{E} |f|^p \leq M$.\\
+ \newline
+ \textit{\textbf {Proof.}}\\
+ By Exercise 5.9, since $\int_{E} |f - f_k|^p \to 0$, $\forall p>0$, then $f_k \overset{m}{\to} f$ on $E$.\\
+ So we can find the subsequence $\{ f_{k_j} \}$ such that $f_{k_j} \to f$ a.e. in $E$.\\
+ Then $|f_{k_j}|^p \to |f|^p$ a.e. in $E$.\\
+ By Fatou's Lemma, we have
+ $$\int_{E} |f|^p = \int_{E} \underset{j \to \infty}{\lim \inf} |f_{k_j}|^p \leq \underset{j \to \infty}{\lim \inf} \int_{E} |f_{k_j}|^p \leq \underset{j \to \infty}{\lim \inf} M = M$$\\
+
+
+
+
+
+
+
+
+\item (Exercise 5.13)
+ \begin{enumerate}
+ \item Let $\{ f_k \}$ be a sequence of measurable functions on $E$. Show that $\sum f_k$ converges absolutely a.e. in $E$ if $\sum \int_{E} |f_k| < +\infty$. (Use Theorem 5.16 and 5.22.)
+ \item If $\{ r_k \}$ denotes the rational numbers in $[0,1]$ and $\{ a_k \}$ satisfies $\sum |a_k| < +\infty$, show that $\sum a_k |x - r_k|^{-1/2}$ converges absolutely a.e. in $[0,1]$.\
+ \end{enumerate}
+ \textbf{Recall (Theorem 5.16):}\\
+ If $f_k$, $k = 1,2,...,$ are nonnegative and measurable, then
+ $$\int_{E} \left( \sum_{k=1}^{\infty} f_k \right) = \sum_{k=1}^{\infty} \int_{E} f_k$$\\
+ \textbf{Recall (Theorem 5.22):}\\
+ If $f \in L(E)$, then $f$ is finite a.e. in $E$.\\
+ 
+ \textit{\textbf {Proof.}}\\
+ \begin{enumerate}
+ \item
+ If $\int_{E} \left| \sum f_k \right| < \infty$, then $\sum f_k$ converges absolutely a.e. in $E$.\\
+ $$\int_{E} \left| \sum f_k \right| = \int_{E} \sum |f_k|$$
+ $|f_k|$ is measurable on $E$, since $f_k$ is measurable on $E$.\\
+ By Theorem 5.16, since $|f_k| \geq 0$ and measurable on $E$, then
+ $$\int_{E} \left| \sum_{k=1}^{\infty} f_k \right| = \int_{E} \sum_{k=1}^{\infty} |f_k| = \sum_{k=1}^{\infty} \int_{E} |f_k| < +\infty$$
+ Hence, $\sum f_k$ converges absolutely a.e. in $E$.\\
+
+ \item
+ If $\int_{[0,1]} \left|\sum a_k |x-r_k|^{-1/2} \right| dx < \infty$, then $\sum a_k |x - r_k|^{-1/2}$ converges absolutely a.e. in $[0,1]$.\\
+ $$\begin{aligned}
+ \int_{[0,1]} \left| \sum a_k |x-r_k|^{-1/2} \right| dx
+ &\leq \int_{[0,1]} \sum |a_k| |x-r_k|^{-1/2} dx\\
+ &= \sum \int_{[0,1]} |a_k| |x-r_k|^{-1/2} dx\\
+ &= \sum |a_k| \int_{[0,1]} |x-r_k|^{-1/2} dx\\
+ &= \sum |a_k| (2r_k^{1/2} + 2(1-r_k)^{1/2}) dx\\
+ &< \infty
+ \end{aligned}$$
+ Hence, $\sum a_k |x - r_k|^{-1/2}$ converges absolutely a.e. in $[0,1]$.\\
+
+ \end{enumerate}
+
+\end{enumerate}
+\end{document}
+
+
+
+

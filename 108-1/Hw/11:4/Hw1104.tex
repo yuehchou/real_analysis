@@ -1,0 +1,445 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[top=2cm,bottom=2cm,outer=2cm,inner=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[inline]{enumitem}
+\usepackage{mathrsfs} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+
+\title{Real Analysis Homework\\ Chapter 1. Measure theory\\ Due Date: 11/4}
+\author{National Taiwan University, Department of Mathematics\\
+R06221012 \hspace{0.2cm} Yueh-Chou Lee}
+\date{November 4, 2019}
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.27}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Suppose $E_1$ and $E_2$ are a pair of compact sets in $\mathbb{R}^d$ with $E_1 \subset E_2$, and let $a = m(E_1)$ and $b = m(E_2)$. Prove that for any $c$ with $a < c < b$, there is a compact set $E$ with $E_1 \subset E \subset E_2$ and $m(E) = c$.\\
+		$[$Hint: As an example, if $d = 1$ and $E$ is a measurable subset of $[0,1]$, consider $m(E \cap [0,t])$ as a function of $t$.$]$
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+Since $E_2 \subset E_1$ and $E_1$, $E_2$ are compact sets in $\mathbb{R}^d$, $E_2 \setminus E_1$ is a bounded and measurable. For any $t > 0$, the sets $(E_2 \setminus E_1) \cap \overline{B_t(0)}$ are also bounded and measurable.
+
+Let
+	$$S_t = (E_2 \setminus E_1) \cap \overline{B_t(0)}$$
+and define
+	$$f(t) = m(S_t).$$
+Hence, if we can prove $f$ is a continuous function, the proof will be done.\\
+
+Let $0 \leq \tau < t$. Notice that the function $|f(t) - f(\tau)| = |m(S_t) - m(S_\tau)|$.
+
+Since $S_\tau \subset S_t$,
+	$$|m(S_t) - m(S_\tau)| = m(S_t) - m(S_\tau) = m(S_t \setminus S_\tau).$$
+
+Now, notice that
+	$$(S_t \setminus S_\tau) \subset \overline{B_t(0)} \setminus \overline{B_\tau(0)}$$
+so
+	$$m(S_t \setminus S_\tau)
+	\leq m(\overline{B_t(0)} \setminus \overline{B_\tau(0)})
+	\leq \alpha(d)\,(t^d - \tau^d)$$
+where $\alpha(d)\,=\,\dfrac{\pi^{\frac{d}{2}}}{\Gamma(\frac{d}{2} + 1)}$, the volume of the $d$-dimensional unit ball.(Exercise 1.6)\\
+
+Notice that the function $g(t) = \alpha\,t^d$ is continuous, but not uniformly continuous. Thus,
+	$$|t - \tau| < \delta \,\Rightarrow\,\alpha(d)\,(t^d - \tau^d) \leq \varepsilon(t).$$
+
+Therefore, $f$ is a continuous function, and by the Intermediate Value Theorem, given $c$ with $a < c < b$, we can find a $t^* > 0$ such that $m(E) = m(E_1 \cup S_{t^*}) = c$, where $E_1 \cup S_{T^*}$ is compact.\\\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.28}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $E$ be a subset of $\mathbb{R}$ with $m_*(E) > 0$. Prove that for each $0 < \alpha < 1$, there exists an open interval $I$ so that 
+			$$m_*(E \cap I) \geq \alpha\,m_*(I).$$
+		Loosely speaking, this estimate shows that $E$ contains almost a whole interval.\\
+		$[$Hint: Choose an open set $\mathcal{O}$ that contains $E$, and such that $m_*(E) \geq \alpha\,m_*(\mathcal{O})$. Write $\mathcal{O}$ as the countable union of disjoint open intervals, and show that one of these intervals must satisfy the desired property.$]$
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+Let $E$ be a subset of $\mathbb{R}$ with $m_*(E) > 0$ and fix an $\alpha \in (0,1)$. Because $E$ has positive outer measure, we can find a covering of $E$ by closed and almost disjoint interval $I_j$ such that
+	$$\sum_j |I_j| < m_*(E) + \frac{\varepsilon}{2}.$$
+
+We can expand each of these $I_j$ to an open cube $I'_j$ such that
+	$$m_*(I'_j - Q_j) < \frac{\varepsilon}{2^{k+1}}$$
+and set $\mathcal{O} = \cup_j Q'_j$. So $\mathcal{O}$ is an open set containing $E$ and so we can write
+	$$E = E \cap \mathcal{O} = \cup_j\,E \cap I'_j$$
+
+By monotonicity we can see that $m_*(E) \leq \sum_j m_*(E \cap I'_j)$.\\
+
+Now, suppose towards a contradiction that for every $j \in \mathbb{Z}^+$, we have that $m_*(E \cap I'_j) < \alpha\,m_*(I'_j)$. Then
+	$$m_*(E)
+	\leq \sum_j m_*(E \cap I'_j)
+	< \alpha \sum_j m_*(I'_j)
+	< \alpha(m_*(E) + \varepsilon)$$
+
+But, if we take
+	$$\varepsilon < \frac{1 - \alpha}{\alpha}\,m_*(E)$$
+
+Then we would get that $m_*(E) < m_*(E)$, which is impossible. Hence, we must be able to find some $j$ such that
+	$$m_*(E \cap I'_j) \geq \alpha\,m_*(I)$$\\\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.29}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Suppose $E$ is a measurable subset of $\mathbb{R}$ with $m(E) > 0$. Prove that the \textbf{difference set} of $E$, which is defined by
+			$$\{z \in \mathbb{R}\,:\,z = x - y \text{ for some }x,\,y\in E\},$$
+		contains an open interval centered at the origin.\\
+
+		If $E$ contains an interval, then the conclusion is straightforward. In general, one may rely on Exercise 1.28.\\
+
+		% $[$Hint: Indeed, by Exercise 1.28, there exists an open interval $I$ so that $m(E \cap I) \geq \frac{9}{10}\,m(I)$. If we denote $E \cap I$ by $E_0$, and suppose that the difference set of $E_0$ does not contain an open interval around the origin, then for arbitrarily small $a$ the sets $E_0$, and $E_0 + a$ are disjoint. From the fact that $(E_0 \cup (E_0 + a)) \subset (I \cup (I + a))$ we get a contradiction, since the left-hand side has measure $2m(E_0)$, while the right-hand side has measure only slightly larger than $m(I)$.$]$\\
+
+		A more general formulation of this result is as follows.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+It is enough to prove the claim for a measurable subset of $E$ with positive measure, so we do some reductions by finding some nice subsets of $E$ like this and replacing $E$ with these subsets.\\
+
+First, since the collection $\{E \cap (n,\,n+1]\,:\,n\in \mathbb{Z}\}$ of disjoint measurable sets cover $E$.
+
+By countable additivity, there exists $n \in \mathbb{N}$ such that $m(E \cap (n,\,n+1])) > 0$.
+
+So we may assume that $E$ has finite measure.\\
+
+Second, since $0 < m(E) < \infty$, by \textbf{Theorem 3.4 (iii)} of the textbook, there exists a compact set $K$ contained in $E$ such that choose $\varepsilon = \frac{m(E)}{2}$ then
+	$$m(E \setminus K) \leq \frac{m(E)}{2}.$$
+
+Then by addivity of the measure we get $m(K) \geq \frac{m(E)}{2} > 0$.
+
+So we may assume that $E$ is compact.\\
+
+Third, since $0 < m(E) < \infty$, by \textbf{Theorem 3.4 (iii)} of the textbook again, there exists an open set $U$ containing $E$ such that
+	$$m(U \setminus E) \leq \frac{m(E)}{2}.$$
+Hence, $m(U) \leq \frac{3}{2}\,m(E) < 2m(E)$.\\
+
+Now $E$ and $U^c$ are disjoint sets where $E$ is compact and $U^c$ is closed. Therefore $\delta := d(E,\,U^c) > 0$.
+
+We claim that $(-\delta,\,\delta)$ lies in the difference set of $E$.
+
+So let $t \in (-\delta,\,\delta)$. Then by the definition of $\delta$, the set
+	$$E + t = \{x + t\,:\,x \in E\}$$
+does not intersect $U^c$, therefore $E + t \subseteq U$ and hence $(E + t) \cup E \subseteq U$.\\
+
+Note that $E + t$ is a measurable set with $m(E + t) = m(E)$.
+
+Suppose $(E + t) \cap E = \emptyset$. Then by additivity, we get
+	$$m(U) \geq m((E + t) \cup E) = 2m(E)$$
+which is contradiction.\\
+
+Thus, there exists $x,\,y \in E$ such that$ x + t = y$, so $t \in (-\delta,\,\delta)$ lies in the difference set of $E$.\\\\\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.31}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		The result in Exercise 1.29 provides an alternate proof of the non-measurability of the set $\mathcal{N}$ studied in the text. In fact, we may also prove the non-measurability of a set in $\mathbb{R}$ that is very closely related to the set $\mathcal{N}$.\\
+
+		Given two real numbers $x$ and $y$, we shall write as before that $x \sim y$ whenever the difference $x-y$ is rational. Let $\mathcal{N}^*$ denote a set that consists of one element in each equivalence class of $\sim$. Prove that $\mathcal{N}^*$ is non-measurable by using the result in Exercise 1.29.\\
+
+		$[$Hint: If $\mathcal{N}^*$ is measurable, then so are its translates $\mathcal{N}^*_n = \mathcal{N}^* + r_n$, where $\{r_n\}_{n = 1}^\infty$ is an enumeration of $\mathbb{Q}$. How does this imply that $m(\mathcal{N}^*) > 0$? Can the difference set of $\mathcal{N}^*$ contain an open interval centered at the origin?$]$
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+We proceed by contradiction, assuming that $\mathcal{N}^*$ is measurable.
+
+If we consider as indicated in the hint the set $\mathcal{N}_N^*$, which is the transaltion of the set $\mathcal{N}^*$ by $r_n$, then since by construction our equivalence classes are real numbers that differ by a rational, we can enumerating all of $\mathbb{Q}$ take the countable union of these transalte, which have same measure.\\
+
+Noe if we take
+	$$m\left( \cup_{n=1}^{\infty}\, \mathcal{N}^* + r_n \right)
+	= m(\mathbb{R})
+	= \infty,$$
+
+and by countable sub-additivity, we know that
+	$$m\left( \cup_{n=1}^{\infty}\, \mathcal{N}^* + r_n \right)
+	\leq \sum_{n=1}^\infty\,m(\mathcal{N}^* + r_n)
+	= \sum_{i=1}^\infty m(C_n^*)
+	= \infty$$
+
+from the previous result.\\
+
+On the other hand, we have if $\mathcal{N}^*$ is measurable that for sets of positive measure, then the difference set of $\mathcal{N}^*$ contains an open interval centered at the origin. But this will not happen, since then $x - y = 0$ would imply $x \sim y$, and since the set consists of the selection of one element (using axiom of choice) from each equivalent class, then $0$ is not in the difference set; we infer that $m(\mathcal{N}^*) = 0$, so together this show that actually, $\mathcal{N}^*$ is not measurable.\\\\\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.32}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $\mathcal{N}$ denote the non-measurable subset of $I = [0, 1]$ constructed at the end of Section 1.3.
+		\begin{enumerate}
+			\item [(a)] Prove that if $E$ is a measurable subset of $\mathcal{N}$ , then $m(E) = 0$.
+
+			\item [(b)] If $G$ is a subset of $\mathbb{R}$ with $m_*(G) > 0$, prove that a subset of $G$ is nonmeasurable.
+		\end{enumerate}
+		$[$Hint: For (a) use the translates of $E$ by the rationals.$]$
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+\begin{enumerate}
+	\item [(a)]
+		Let $\{r_k\}_{k=1}^\infty$ be an enumeration of the rationals in the interval $[-1,\,1]$ and let $E_k = E + r_k$ for each $k$.\\
+
+		Since $E \subseteq \mathcal{N}$, $E_k \subseteq N_k$. Since each of the $\mathcal{N}_k$ are pairwise disjoint, each of the $E_k$ are pairwise disjoint.\\
+
+		Now, the Lebesgue measure is translation invariant, so $m(E_k) = m(E)$ for each $k$. We also have that $\cup_{k = 1}^\infty\,E_k \subseteq \cup_{k=1}^\infty\,\mathcal{N}_k \subseteq [-1,2]$. It follows that
+			$$\sum_{k=1}^\infty\,m(E_k) = m(\cup_{k=1}^\infty\,E_k) \leq 3 \quad \quad (\text{since } \cup_{k=1}^\infty\,E_k \subseteq [-1,\,2])$$
+
+		But $m(E_k) = m(E)$ for each $k$. Hence
+			$$3 \geq \sum_{k=1}^\infty\,m(E_k) = \sum_{k=1}^\infty\,m(E)$$
+		which implies that $m(E) = 0$.\\
+
+	\item [(b)]
+		Since $m(G) > 0$, we can find for any $\varepsilon > 0$ a closed interval $[a,\,b] \subseteq G$ with $m(G \setminus [a,\,b]) \leq \varepsilon$.\\
+
+		Now, consider the set $G - a$ ($G$ translated by $-a$ units). Since the Lebesgue measure is translation invariant, $m(G - a) = m(G)$.\\
+
+		Furthermore, the interval $[0,\,b-a] \subseteq G-a$. Let $A = [0,\,b-a] \cap \mathcal{N}$.
+
+		Observe that $A \subseteq G$. Suppose $A$ is measurable $A$ is measurable. Since $A \subseteq \mathcal{N},\,m(A) = 0$ by part $(a)$. It follows that
+			$$m(G) = m(G - a) = m((G - a) \setminus A) + m(A) \leq \varepsilon + 0 = \varepsilon$$
+
+		Since $\varepsilon$ can be chosen arbitrarily small, we conclude that $m(G) = 0$, which is a contradiction. Hence, it must be that $A$ is non-measurable.\\\\\\
+
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.33}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $\mathcal{N}$ denote the non-measurable set constructed in the text. Recall from the exercise above that measurable subsets of $\mathcal{N}$ have measure zero.\\
+
+		Show that the set $\mathcal{N}^c = I - \mathcal{N}$ satisfies $m_*(\mathcal{N}^c) = 1$, and conclude that if $E_1 = \mathcal{N}$ and $E_2 = \mathcal{N}^c$, then
+			$$m_*(E_1) + m_*(E_2) \neq m_*(E_1 \cup E_2),$$
+		although $E_1$ and $E_2$ are disjoint.\\
+
+		$[$Hint: To prove that $m_*(\mathcal{N}^c) = 1$, argue by contradiction and pick a measurable set $U$ such that $U \subset I,\,\mathcal{N}^c \subset U$ and $m_*(U) < 1 - \varepsilon.]$
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+\begin{enumerate}
+
+	\item [(i)]
+
+		Suppose $m_*(\mathcal{N}^c) < 1$, so there exists $\varepsilon > 0$ such that $m_*(\mathcal{N}^c) < 1 - \varepsilon$. Since
+			$$m_*(\mathcal{N}^c) = \inf\,\{m(U)\,:\,\mathcal{N}^c \subseteq U-\text{open}\}$$
+		there exists an open, hence measurable set $U$ containing $\mathcal{N}^c$ such that $m(U) < 1 - \varepsilon$.\\
+
+		Note that $U \cap I$ is also a measurable containing $\mathcal{N}^c$ with $m(U \cap I) < 1 - \varepsilon$, so we may assume $U \subseteq I$.\\
+
+		Since $\mathcal{N}^c = I - \mathcal{N} \subseteq U \subseteq I$, we have $I - U \subset \mathcal{N}$. But $I - U$ is a measurable set so by additivity of the measure, we have
+			$$m(I - U) = m(I) - m(U) = 1 - m(U) > \varepsilon.$$
+
+		So $I - U$ is a measurable subset of $\mathcal{N}$ with positive measure; a contradiction.\\
+
+		Therefore, $m_*(\mathcal{N}^c) \geq 1$, but on the other hand, $m_*(\mathcal{N}^c) \leq m_*(I) = 1$, hence, $m_*(\mathcal{N}^c) = 1$.\\
+
+	\item [(ii)]
+		We know that sets with outer measure zero are measurable, so $m_*(\mathcal{N}) > 0$.
+
+		Thus, by part (i), we have
+			$$m_*(\mathcal{N}) + m_*(\mathcal{N}^c) > 1 = m_*(I) = m_*(\mathcal{N} \cup \mathcal{N}^c).$$\\\\
+
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.34}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Let $\mathcal{C}_1$ and $\mathcal{C}_2$ be any two Cantor sets (constructed in Exercise 1.3). Show that there exists a function $F\,:\,[0, 1] \to [0, 1]$ with the following properties:
+		\begin{enumerate}
+			\item [(i)] $F$ is continuous and bijective,
+
+			\item [(ii)] $F$ is monotonically increasing,
+
+			\item [(iii)] $F$ maps $\mathcal{C}_1$ surjectively onto $\mathcal{C}_2$.
+		\end{enumerate}
+		$[$Hint : Copy the construction of the standard Cantor-Lebesgue function.$]$
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+Let $\mathcal{C}$ be a Cantor set of constant dissection as in \textbf{Exercise 1.3}. By construction, $\mathcal{C}$ is the intersection of a family $\{C_n\}_{n \in \mathbb{N}}$ of closed sets where each $\mathcal{C}_n$ is disjoint union of $2^n$ closed intervals. So we can label these $2^n$ intervals from left to right by bit strings of length $n$, that is, words of length $n$ consisting of $0$'s and $1$'s.\\
+
+For example, $\mathcal{C}_1 = I_0 \cup I_1$ where $I_0$ is the interval on the left hand side in $\mathcal{C}_1$ and $I_1$ is the one on the right. Keeping the labeling in a lexicographic order, we have $\mathcal{C}_2 = I_{00} \cup I_{01} \cup I_{10} \cup I_{11}$ and in general $\mathcal{C}_n$ is the union of $I_b$'s where \textbf{b}'s vary over length $n$ bit strings.\\
+
+Note that $I_b \subseteq I_c$ if and only if \textbf{c} can be truncated from the right to obtain \textbf{b}. For example, $I_0 \supseteq I_{01} \supseteq I_{010} \supseteq I_{0100}$. In general given an infinite sequence $\textbf{a} = (a_n)$ of 0's and 1's, if we write $\textbf{a}|_n$ for its $n$-truncation $(a_1,\,\dots,\,a_n)$, there is a decreasing sequence
+	$$I_{\textbf{a}|_1} \supseteq I_{\textbf{a}|_2} \supseteq I_{\textbf{a}|_3} \cdots$$
+
+By compactness, the intersection
+	$$\cap_{n \in \mathbb{N}} I_{\textbf{a}|_n}$$
+which lies in $\mathcal{C}$, is nonempty.\\
+
+Yet the diameter of the intersection is zero, hence it must be a singleton. Therefore every infinite sequence \textbf{a} of 0’s and 1’s uniquely determines a point in $\mathcal{C}$. So we get a map
+	$$f\,:\,\{0,\,1\}^{\mathbb{N}} \to \mathcal{C}$$
+which is surjective since points in $\mathcal{C}$ by definition survives the intersection of $\mathcal{C}_n$’s, hence, lie in infinitely many (hence in an infinite decreasing chain of) $I_{\textbf{b}}$’s.\\
+
+If two infinite sequences are distinct, they have different truncations so as the intervals get finer, the two points these sequences determine will fall into different intervals. Hence $f$ is a bijection.\\
+
+Two points in $\mathcal{C}$ lie in the same $I_{\textbf{b}}$ where \textbf{b} is a finite bit string if and only if their inverse images under $f$ both start with \textbf{b}. It follows from this observation (as we did for the middle thirds Cantor set in \textbf{Exercise 1.2}) that $f$ is continuous. And since $f$ goes from a compact space to a Hausdorff space, $f$ is a homeomorphism.\\
+
+Also, observe that if we order $\{0,\,1\}^{\mathbb{N}}$ by lexicographic ordering, then $f$ preserves the order. Because if a sequence beats another sequence lexicographically, then at some point it will lie to the right side of a dissection while the other lies on the left side.\\
+
+So if $\mathcal{C}_1$ and $\mathcal{C}_2$ are Cantor sets, we have order preserving homeomorphisms $f_1\,:\,\{0,\,1\}^{\mathbb{N}} \to \mathcal{C}_1$ and $f_2\,:\,\{0,\,1\}^{\mathbb{N}} \to \mathcal{C}_2$; thus, $f_2 \circ f_1^{-1}$ gives an order preserving homeomorphism from $\mathcal{C}_1$ to $\mathcal{C}_2$.\\\\\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.35}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Give an example of a measurable function $f$ and a continuous function $\Phi$ so that $f \circ \Phi$ is non-measurable.\\
+
+		$[$Hint: Let $\Phi\,:\,\mathcal{C}_1 \to \mathcal{C}_2$ as Exercise 1.34, with $m(\mathcal{C}_1) > 0$ and $m(\mathcal{C}_2) = 0$. Let $N \subset \mathcal{C}_1$ be non-measurable, and take $f = \chi_{\Phi(N)}.]$\\
+
+		Use the construction in the hint to show that there exists a Lebesgue measurable set that is not a Borel set.
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+Follow the hint, let $\Phi\,:\,\mathcal{C}_1 \to \mathcal{C}_2$ as Exercise 1.34, with $m(\mathcal{C}_1) > 0$ and $m(\mathcal{C}_2) = 0$.
+
+Let $N \subset \mathcal{C}_1$ be non-measurable, and take $f = \chi_{\Phi(N)}$. We know such $N$ exists by Exercise 1.32(b).\\
+
+Since $\Phi(N) \subseteq \mathcal{C}_2$ and $m(\mathcal{C}_2) = 0$, we have $m_*(\Phi(N)) = 0$ and so $\Phi(N)$ is a measurable set.\\
+
+Therefore, $f$ is a measurable function. However,
+	$$(f \circ \Phi)^{-1} (1)
+	= \Phi^{-1}(f^{-1}(\{ 1 \}))
+	= \Phi^{-1}(\Phi(N))
+	= N$$
+is not measurable, hence $f \circ \Phi$ is not a measurable function.\\
+
+Also, the measurable set $\Phi(N)$ cannot be Borel because the inverse images of Borel sets under continuous functions are Borel, but although $\Phi$ is continuous, $\Phi^{-1}(\Phi(N)) = N$ is not even measurable.\\\\\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.37}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Suppose $\Gamma$ is a curve $y = f(x)$ in $\mathbb{R}^2$, where $f$ is continuous. Show that $m(\Gamma) = 0$.\\
+
+		$[$Hint: Cover $\Gamma$ by rectangles, using the uniform continuity of $f.]$
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+Note that since the map $x \mapsto -x$ preserves areas of rectangles, $\Gamma$ has the same measure with the curve given by $y = |f(x)|$. Therefore we may assume $f$ is nonnegative. Also since
+	$$\Gamma = \cup_{n \in \mathbb{N}}\,\{(x,\,f(x))\,:\,x\in[n,\,n+1]\}$$
+and measure is countably sub-additive, it suffices to show that each term in the above union has measure zero.\\
+
+Thus, we may assume that $f\,:\,[a,\,b] \to \mathbb{R}$ where $[a,\,b] \subseteq \mathbb{R}$ is a finite interval. Moverover, by replacing $f$ with $f + 1$, we may assume that $f(x) \geq 1$ for every $x \in [a,\,b]$. Then given $0 < \varepsilon < 1$, the set
+	$$E_\varepsilon = \{(x,\,y)\,:\,a \leq x \leq b,\,f(x) - \varepsilon \leq y \leq f(x) + \varepsilon\}$$
+contains $\Gamma$.\\
+
+But since $f \geq 1 > \varepsilon$, both $f + \varepsilon$ and $f - \varepsilon$ are nonnegative and continuous, therefore, the measure of $E_\varepsilon$ can be calculated by a definite Riemann integral as
+	$$m(E_\varepsilon)
+	= \int_a^b\,(f(x) + \varepsilon)\,dx - \int_a^b\,(f(x) - \varepsilon)\,dx
+	= \int_a^b\,2\varepsilon\,dx
+	= 2\varepsilon(b - a).$$
+
+So $m(\Gamma) \leq 2\varepsilon(b - a)$ for arbitrarily small $\varepsilon$. As $a,\,b$ is independent from $\varepsilon$, this shows that $m(\Gamma) = 0$.\\\\\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{flushleft}
+	\rule[-0.5ex]{17cm}{2pt}\\
+		\textbf{Exercise 1.38}\\
+	\rule[1.5ex]{17cm}{0.5pt}
+		Prove that $(a + b)^\gamma \geq a^\gamma + b^\gamma$ whenever $\gamma \geq 1$ and $a, b \geq 0$. Also, show that the reverse inequality holds when $0 \leq \gamma \leq 1$.\\
+
+		$[$Hint: Integrate the inequality between $(a + t)^{\gamma - 1}$ and $t^{\gamma - 1}$ from $0$ to $b.]$
+	\rule[1.0ex]{17cm}{0.5pt}\
+\end{flushleft}
+
+\textbf{\textit{Proof.}}
+
+\begin{enumerate}
+	\item [(i)]
+		For all $a,\,b,\,t \geq 0$ and $\gamma \geq 1$, we have
+			$$\begin{aligned}
+			(a + t)^{\gamma - 1} \geq t^{\gamma - 1}\,
+			&\Rightarrow\, \int_0^b\,(a + t)^{\gamma - 1}\,dt\,
+			\geq\,\int_0^b\,t^{\gamma - 1}\,dt\\
+			&\Rightarrow\,\frac{1}{\gamma}\left[(a + b)^\gamma - a^\gamma \right]\,\geq\,\frac{1}{\gamma}\,b^\gamma\\
+			&\Rightarrow\,(a + b)^\gamma\,\geq\,a^\gamma + b^\gamma
+			\end{aligned}$$
+
+	\item [(ii)]
+		For all $a,\,b \geq 0$ and $\gamma \in [0,\,1]$. Let $k = \frac{1}{\gamma}$, $c = a^{\frac{1}{k}} = a^\gamma$ and $d = b^{\frac{1}{k}} = b^\gamma$. Then
+			$$\begin{aligned}
+			(a + b)^\gamma \leq a^\gamma + b^\gamma\,
+			&\Leftrightarrow\,
+			(c^k + d^k)^{\frac{1}{k}} \leq c + d\\
+			&\Leftrightarrow\,
+			c^k + d^k \leq (c + d)^k\\
+			&\Leftrightarrow\,
+			1 + \left(\frac{d}{c}\right)^k \leq \left( 1 + \frac{d}{c} \right)^k\\
+			&\Leftrightarrow\,
+			\left(\frac{d}{c}\right)^k \leq \left(1 + \frac{d}{c} \right)^k - 1\\
+			&\Leftrightarrow\,
+			k \int_{0}^{\frac{d}{c}}\,t^{k - 1}\,dt \leq k \int_0^{\frac{d}{c}}\,(1 + t)^{k - 1}\,dt
+			\end{aligned}$$
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% \begin{flushleft}
+	% 	\rule[-0.5ex]{17cm}{2pt}\\
+	% 		\textbf{Theorem}\\
+	% 	\rule[1.5ex]{17cm}{0.5pt}
+			
+	% 	\rule[1.0ex]{17cm}{0.5pt}\
+	% \end{flushleft}
+	% \textbf{\textit{Proof.}}\\
+
+\end{document}
+
+
+
+
+
+
